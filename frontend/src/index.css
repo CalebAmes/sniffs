@@ -1,1 +1,34 @@
 /* TODO Add site wide styles */
+.form{
+  max-width: 460px;
+  min-width: 460px;
+  background: rgba(255, 255, 255 , 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 3px 3px 0px 0px ;
+  border: 2px solid rgba(0,0,0,0.7);
+  margin: auto;
+}
+
+.labels{
+  margin: 10px;
+}
+
+.submit{
+  margin: 10px;
+  margin-bottom: 40px;
+}
+
+.formDiv{
+  display: flex;
+  justify-content: center;
+  height: 1000px;
+  width: auto;
+  background-image: url('./photos/territorio-de-zaguates.jpg');
+}
+
+body{
+  background-image: url('./photos/dogPattern.webp');
+}
