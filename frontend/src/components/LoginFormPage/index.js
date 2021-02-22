@@ -34,8 +34,12 @@ function LoginFormPage() {
           {errors.map((err, id) => <li key={id}>{err}
           </li>)}
         </ul>
-        <label className='labels'>
+        <div className='formTitleDiv'>
+          <h2 className='formTitle'>Log in</h2>
+        </div>
+        <label className='labels top'>Email address:
           <input
+            className='input'
             type='text'
             placeholder='Username or Email'
             value={credential}
@@ -43,15 +47,18 @@ function LoginFormPage() {
             required
           />
         </label>
-        <label className='labels'>
+        <label className='labels'>Password:
           <input
+            className='input'
             type='password'
             placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button className='submit' type='submit'>LOG INSKIES</button>
+        <div className='submidDiv'>
+          <button className='submit' type='submit' disabled={errors.length}>Log in</button>
+        </div>
       </form>
     </div>
   );
