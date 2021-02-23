@@ -3,9 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
-import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
-import LandingPage from './components/LandingPage'
+import LandingPage from './components/LandingPage';
+import UserProfile from './components/UserProfile';
+import * as sessionActions from './store/session';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ function App() {
       <Navigation isLoaded={ isLoaded } />
       { isLoaded && (
       <Switch>
+        <Route path='/profile'>
+          <UserProfile />
+        </Route>
         <Route path='/login'>
           <LoginFormPage />
         </Route>

@@ -5,22 +5,24 @@ import * as sessionActions from '../../store/session';
 import './SignupForm.css'
 import '../../index.css'
 
-function SignupFormPage() {
-  const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+const SignupFormPage = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([]);
+  
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
 
-  if (sessionUser) return <Redirect to='/' />;
+  if (user) return <Redirect to='/' />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
+      return dispatch(sessionActions.signup({ image, email, username, password }))
         .catch(async (res) => {
           const data = await res.json();
           if (data?.errors) setErrors(data.errors);
@@ -28,6 +30,12 @@ function SignupFormPage() {
     }
     return setErrors(['Confirm Password and Password fields must match']);
   };
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
+  };
+
 
   return (
     <div className='formDiv signupFormDiv'>
@@ -47,7 +55,7 @@ function SignupFormPage() {
             required
           />
         </label>
-        <label className='labels'>Username or Email:
+        <label className='labels'>Username:
           <input
             type='username'
             className='input'
@@ -74,9 +82,22 @@ function SignupFormPage() {
             required
             />
         </label>
+        <label>
+          <input type='file' onChange={ updateFile } />
+        </label>
         <button className='submit' type='submit'>Sign up</button>
       </form>
-      <div className='bottom'>
+      <div>
+        {user && (
+          <div>
+            <h1>{user.username}</h1>
+            <img
+              style={{ width: "150px" }}
+              src={user.profileImageUrl}
+              alt="profile"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

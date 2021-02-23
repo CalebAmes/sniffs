@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { NavLink } from 'react-router-dom';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -30,18 +31,16 @@ function ProfileButton({ user }) {
 
   return (
     <>
-    
-      <button className='dogButton' onClick={ openMenu }>
+      <button className='dogButton button' onClick={ openMenu }>
         <i className='fas fa-dog' />
       </button>
       {showMenu && (
-        <ul className='profile-dropdown'>
-          <li>{ user.username }</li>
-          <li>{ user.email }</li>
-          <li>
-            <button onClick={ logout }>Log Out</button>
-          </li>
-        </ul>
+        <div className='profile-dropdown'>
+          <div className='dropDown'>{ user.username }</div>
+          <div className='dropDown'>{ user.email }</div>
+          <button className='button dropDown' onClick={ logout }>Log Out</button>
+          <NavLink className='link dropDown' to='/profile'>Profile</NavLink>
+        </div>
       )}
     </>
   );
