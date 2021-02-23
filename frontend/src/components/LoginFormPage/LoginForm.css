@@ -1,6 +1,13 @@
-.loginFormDiv{
+.loginForm{
   min-height: 300px;
-  min-height: 300px;
+  max-height: 300px;
   /* padding-top: 40px; */
 }
-
+body{
+  /* background: #fafafa; */
+  background: url('../../photos/territorio-de-zaguates.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
