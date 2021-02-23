@@ -27,8 +27,8 @@ function LoginFormPage() {
       });
   }
   return (
+    <>
     <div className='formDiv loginFormDiv'>
-
       <form className='form loginForm' onSubmit={ handleSubmit }>
         <ul>
           {errors.map((err, id) => <li key={id}>{err}
@@ -41,7 +41,6 @@ function LoginFormPage() {
           <input
             className='input'
             type='text'
-            placeholder='Username or Email'
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
@@ -51,7 +50,6 @@ function LoginFormPage() {
           <input
             className='input'
             type='password'
-            placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -61,6 +59,8 @@ function LoginFormPage() {
         </div>
       </form>
     </div>
+    <div className='bottom'></div>
+    </>
   );
 }
 

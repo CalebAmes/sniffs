@@ -76,6 +76,8 @@ function SignupFormPage() {
         </label>
         <button className='submit' type='submit'>Sign up</button>
       </form>
+      <div className='bottom'>
+      </div>
     </div>
   );
 }

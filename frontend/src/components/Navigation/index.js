@@ -12,7 +12,7 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <li>
-          <NavLink exact to='/'>Home</NavLink>
+          <NavLink className='link' exact to='/'>Home</NavLink>
         </li>
         <li>
           <ProfileButton user={ sessionUser } />
@@ -23,13 +23,13 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <li>
-          <NavLink exact to='/'>Home</NavLink>
+          <NavLink className='link' exact to='/'>Home</NavLink>
         </li>
         <li>
-          <NavLink to='/login'>Log In</NavLink>
+          <NavLink className='link' to='/login'>Log In</NavLink>
         </li>
         <li>
-          <NavLink to='/signup'>Sign Up</NavLink>
+          <NavLink className='link lastLink' to='/signup'>Sign Up</NavLink>
         </li>
       </>
     );
@@ -37,7 +37,7 @@ function Navigation({ isLoaded }){
 
   return (
     <ul className='navbar'>
-      { isLoaded && sessionLinks }
+       { isLoaded && sessionLinks }
     </ul>
   );
 }

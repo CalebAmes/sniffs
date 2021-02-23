@@ -1,6 +1,7 @@
 /* TODO Add site wide styles */
 * {
   font-family: 'Poppins' ,sans-serif;
+  margin: 0px;
 }
 
 .form{
@@ -13,7 +14,8 @@
   flex-direction: column;
   border-radius: 3px 3px 0px 0px ;
   border: 1px solid rgba(0,0,0,0.3);
-  margin: auto;
+  margin-top: 200px;
+  margin-bottom: auto;
 }
 
 .labels{
@@ -34,14 +36,16 @@
 .formDiv{
   display: flex;
   justify-content: center;
-  height: 1000px;
-  width: auto;
-  background-image: url('./photos/territorio-de-zaguates.jpg');
+  align-items: center;
 }
-
+/* 
 body{
-  background-image: url('./photos/dogPattern.webp');
-}
+  background: url('./photos/territorio-de-zaguates.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} */
 
 .input{
   /* font-family: helvetica, arial, sans-serif; */
@@ -80,6 +84,7 @@ body{
 .formTitle{
   margin: -10px 16px 16px 16px;
   font-size: 34px;
+  padding-top: 16px;
 }
 
 .formTitleDiv{
@@ -87,3 +92,4 @@ body{
   max-width: 460px;
   min-width: 460px;
 }
+

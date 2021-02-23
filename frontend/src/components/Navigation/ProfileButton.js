@@ -31,7 +31,7 @@ function ProfileButton({ user }) {
   return (
     <>
     
-      <button onClick={ openMenu }>
+      <button className='dogButton' onClick={ openMenu }>
         <i className='fas fa-dog' />
       </button>
       {showMenu && (
