@@ -54,7 +54,7 @@ function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <div className='submidDiv'>
+        <div className='submitDiv'>
           <button className='submit' type='submit' disabled={errors.length}>Log in</button>
         </div>
       </form>

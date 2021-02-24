@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/LoginForm';
-import SignupForm from './components/SignupForm';
+import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
 import UserProfile from './components/UserProfile';
@@ -31,7 +31,7 @@ function App() {
           <LoginForm />
         </Route>
         <Route path='/signup'>
-          <SignupForm />
+          <SignupFormPage />
         </Route>
         <Route path='/'>
           <LandingPage />

@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     eventId: DataTypes.INTEGER
   }, {});
   RSVP.associate = function(models) {
-    RSVP.belongsToMany( models.User, { foreignKey: 'userId' });
-    RSVP.belongsToMany( models.Event, { foreignKey: 'eventId' });
+    RSVP.belongsTo( models.User, { foreignKey: 'userId' });
+    RSVP.belongsTo( models.Event, { foreignKey: 'eventId' });
   };
   return RSVP;
 };

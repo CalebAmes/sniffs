@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     categoryId: DataTypes.INTEGER
   }, {});
   UserCategory.associate = function(models) {
-    UserCategory.belongsToMany(models.User, { foreignKey: 'userId' });
-    UserCategory.belongsToMany(models.Category, { foreignKey: 'categoryId' });
+    UserCategory.belongsTo(models.User, { foreignKey: 'userId' });
+    UserCategory.belongsTo(models.Category, { foreignKey: 'categoryId' });
   };
   return UserCategory;
 };

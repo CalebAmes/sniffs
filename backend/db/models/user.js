@@ -50,12 +50,12 @@ module.exports = (sequelize, DataTypes) => {
     User.hasOne(models.Profile, { foreignKey: 'userId' });
 
     User.hasMany(models.UserCategory, { foreignKey: 'userId'});
-    User.hasMany(models.Category, { 
+    User.belongsToMany(models.Category, { 
       through: 'UserCategory', otherKey: 'categoryId', foreignKey: 'userId'
     });
 
     User.hasMany(models.RSVP, { foreignKey: 'userId'});
-    User.hasMany(models.Event, { 
+    User.belongsToMany(models.Event, { 
       through: 'RSVP', otherKey: 'eventId', foreignKey: 'userId'
     });
 

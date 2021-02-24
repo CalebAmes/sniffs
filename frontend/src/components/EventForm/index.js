@@ -38,8 +38,8 @@ const EventForm = () => {
 
 
   return (
-    <div className='formDiv signupFormDiv'>
-      <form onSubmit={handleSubmit} className='form signupForm'>
+    <div className='formDiv SignupFormPageDiv'>
+      <form onSubmit={handleSubmit} className='form SignupFormPage'>
         <ul>
           {errors.map((err, id) => <li key={ id } >{ err }</li>)}
         </ul>
