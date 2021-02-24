@@ -26,7 +26,6 @@ module.exports = {
       },
       photo: {
         type: Sequelize.STRING(100),
-        allowNull: false,
       },
       categoryId: {
         type: Sequelize.INTEGER,

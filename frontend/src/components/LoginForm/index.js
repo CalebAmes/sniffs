@@ -16,6 +16,9 @@ function LoginForm() {
     <Redirect to='/' />
   );
   
+  const demoLogin = () => {
+    dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +58,8 @@ function LoginForm() {
           />
         </label>
         <div className='submitDiv'>
-          <button className='submit' type='submit' disabled={errors.length}>Log in</button>
+          <button className='submit' type='submit'>Log in</button>
+          <button className='submit' type='button' onClick={ demoLogin }>Demo</button>
         </div>
       </form>
     </div>

@@ -1,94 +1,85 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import './EventForm.css'
 import '../../index.css'
 
 const EventForm = () => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [image, setImage] = useState(null);
-  const [errors, setErrors] = useState([]);
-  
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [userId, setUserId] = useState('');
+  const [categoryId, setCategoryId] = useState(1);
+  const [errors, setErrors] = useState('');
 
+  const user = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
+  // setUserId(user.id)
   // if (user) return <Redirect to='/' />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      setErrors([]);
-      return dispatch(sessionActions.signup({ image, email, username, password }))
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data?.errors) setErrors(data.errors);
-        });
-    }
-    return setErrors(['Confirm Password and Password fields must match']);
+    return dispatch(sessionActions.event({ name, description, startDate, endDate, userId, categoryId }))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data?.errors) setErrors(data.errors);
+    });
+    // return setErrors(['event errors']);
   };
-
-  const updateFile = (e) => {
-    const file = e.target.files[0];
-    if (file) setImage(file);
-  };
-
 
   return (
-    <div className='formDiv SignupFormPageDiv'>
-      <form onSubmit={handleSubmit} className='form SignupFormPage'>
+    <div className='formDiv SignupFormDiv'>
+      <form onSubmit={handleSubmit} className='form SignupForm'>
         <ul>
-          {errors.map((err, id) => <li key={ id } >{ err }</li>)}
+          {/* {errors.map((err, id) => <li key={ id } >{ err }</li>)} */}
         </ul>
         <div className='formTitleDiv'>
-          <h2 className='formTitle'>Sign up</h2>
+          <h2 className='formTitle'>Create event</h2>
         </div>
-        <label className='labels top' >Email:
+        <label className='labels top' >Name:
           <input
             type='text'
             className='input'
-            value={ email }
-            onChange={ (e) => setEmail(e.target.value) }
+            value={ name }
+            onChange={ (e) => setName(e.target.value) }
             required
           />
         </label>
-        <label className='labels'>Username:
-          <input
-            type='username'
+        <label className='labels'>Description:
+          <textarea
+            type='text'
             className='input'
-            value={ username }
-            onChange={ (e) => setUsername(e.target.value) }
+            value={ description }
+            onChange={ (e) => setDescription(e.target.value) }
             required
           />
         </label>
-        <label className='labels'>Password:
+        <label className='labels'>Start Date:
           <input
-            type='password'
+            type='datetime-local'
             className='input'
-            value={ password }
-            onChange={ (e) => setPassword(e.target.value) }
+            value={ startDate }
+            onChange={ (e) => setStartDate(e.target.value) }
             required
             />
         </label>
-        <label className='labels'>Confirm password:
+        <label className='labels'>End date:
           <input
-            type='password'
+            type='datetime-local'
             className='input'
-            value={ confirmPassword }
-            onChange={ (e) => setConfirmPassword(e.target.value) }
+            value={ endDate }
+            onChange={ (e) => setEndDate(e.target.value) }
             required
             />
         </label>
         <label>
-          <input type='file' onChange={ updateFile } />
+          {/* <input type='file' onChange={ updateFile } /> */}
         </label>
-        <button className='submit' type='submit'>Sign up</button>
+        <button className='submit' type='submit'>Create!</button>
       </form>
-      <div>
-        {user && (
+      {/* <div> */}
+        {/* {user && (
           <div>
             <h1>{user.username}</h1>
             <img
@@ -98,7 +89,7 @@ const EventForm = () => {
             />
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/LoginForm';
-import SignupFormPage from './components/SignupFormPage';
+import SignupForm from './components/SignupForm';
 import Navigation from './components/Navigation';
 import LandingPage from './components/LandingPage';
 import UserProfile from './components/UserProfile';
-import EventForm from './components/EventForm'
+import EventForm from './components/EventForm';
+import ProfileForm from './components/ProfileForm';
 import * as sessionActions from './store/session';
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
       <Navigation isLoaded={ isLoaded } />
       { isLoaded && (
       <Switch>
+        <Route path='/editProfile'>
+          <ProfileForm />
+        </Route>
         <Route path='/createEvent'>
           <EventForm />
         </Route>
@@ -31,7 +35,7 @@ function App() {
           <LoginForm />
         </Route>
         <Route path='/signup'>
-          <SignupFormPage />
+          <SignupForm />
         </Route>
         <Route path='/'>
           <LandingPage />

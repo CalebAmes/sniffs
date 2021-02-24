@@ -5,7 +5,7 @@ import * as sessionActions from '../../store/session';
 import './SignupForm.css'
 import '../../index.css'
 
-const SignupFormPage = () => {
+const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -31,8 +31,8 @@ const SignupFormPage = () => {
   };
 
   return (
-    <div className='formDiv SignupFormPageDiv'>
-      <form onSubmit={ handleSubmit } className='form SignupFormPage'>
+    <div className='formDiv SignupFormDiv'>
+      <form onSubmit={ handleSubmit } className='form SignupForm'>
         <ul>
           {errors.map((err, id) => <li key={ id } >{ err }</li>)}
         </ul>
@@ -75,10 +75,12 @@ const SignupFormPage = () => {
             required
             />
         </label>
-        <button className='submit' type='submit'>Sign up</button>
+        <div className='submitDiv'>
+          <button className='submit' type='submit'>Sign up</button>
+        </div>
       </form>
     </div>
   );
 }
 
-export default SignupFormPage;
+export default SignupForm;
