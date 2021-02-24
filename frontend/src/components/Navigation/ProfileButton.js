@@ -36,10 +36,9 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <div className='profile-dropdown'>
-          <div className='dropDown'>{ user.username }</div>
-          <div className='dropDown'>{ user.email }</div>
-          <button className='button dropDown' onClick={ logout }>Log Out</button>
-          <NavLink className='link dropDown' to='/profile'>Profile</NavLink>
+          <NavLink className='link dropDown' to='/profile'>{ user.username }</NavLink>
+          <button className='button dropDown' onClick={ logout }>Log out</button>
+          <NavLink className='link dropDown' to='/createEvent'>Create event</NavLink>
         </div>
       )}
     </>
