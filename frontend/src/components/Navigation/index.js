@@ -52,14 +52,27 @@ import '../../index.css'
 
 const Navigation = (props) => {
   const sessionUser = useSelector(state => state.session.user);
+  const body1 = () => {
+    const body = document.getElementById('body');
+    body.classList.add('body1');
+    body.classList.remove('body2');
+  }
+
+  const body2 = () => {
+    const body = document.getElementById('body');
+    body.classList.add('body2');
+    body.classList.remove('body1');
+  }
+
+
   return (
     <nav className='navbar'>
       <ul className='navbar-nav'>
         {/* { props.children } */}
         {/* <NavItem icon='🤟' /> */}
-        <NavLink className='link icon-navlink' to='/login'>Log In</NavLink>
-        <NavLink className='link icon-navlink' to='/signup'>Sign Up</NavLink>
-        <NavLink className='link icon-navlink' to='/'>Home</NavLink>
+        <NavLink className='link icon-navlink' onClick={ body2 } to='/login'>Log In</NavLink>
+        <NavLink className='link icon-navlink' onClick={ body2 } to='/signup'>Sign Up</NavLink>
+        <NavLink className='link icon-navlink' onClick={ body1 } to='/'>Home</NavLink>
         <NavItem icon={<i class="fas fa-chevron-circle-down"/>}>
           <Dropdown>
             
@@ -128,8 +141,8 @@ export function Dropdown() {
         >
         <div className='menu'>
 
-          <DropdownItem leftIcon={'⚙︎'} goToMenu='events'>Events</DropdownItem>
-          <DropdownItem leftIcon={'🤧'} goToMenu='categories'>Categories</DropdownItem>
+          <DropdownItem leftIcon={<i class="far fa-calendar-alt"/>} goToMenu='events'>Events</DropdownItem>
+          <DropdownItem leftIcon={<i class="fas fa-layer-group"/>} goToMenu='categories'>Categories</DropdownItem>
 
         </div>
       </CSSTransition>

@@ -94,13 +94,14 @@
   position: absolute;
   top: 58px;
   width: 300px;
+  max-height: 600px;
   transform: translateX(-45%);
   color: #484a4d;
   background-color: var(--bg);
   border: var(--border);
   border-radius: var(--border-radius);
   padding: 1rem;
-  overflow: hidden;
+  overflow: scroll;
   z-index: 10;
   transition: height var(--speed) ease;
 }
@@ -117,7 +118,7 @@
 
 .menu-item:hover {
   background: #484a4d;
-  color: #fff
+  color: #fafafa;
 }
 
 .icon-right {

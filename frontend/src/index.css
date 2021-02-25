@@ -143,12 +143,12 @@
 }
 
 :root {
-  --bg: #fff;
+  --bg: rgba(255, 255, 255, 0.6);
   --bg-accent: #666;
   --text-color: #dadce1;
   --nav-size: 60px;
   --border: 1px solid #474a4d;
-  --border-radius: 8px;
+  --border-radius: 3px;
   --speed: 500ms;
 }
 
