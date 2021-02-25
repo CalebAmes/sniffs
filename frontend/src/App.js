@@ -21,14 +21,14 @@ function App() {
   return (
     <>
       <Navigation isLoaded={ isLoaded }>
-        <NavItem icon='🤮'>
+        {/* <NavItem icon='🤮'>
           <Dropdown>
-            
+
           </Dropdown>
         </NavItem>
         <NavItem icon='🤟' />
         <NavItem icon='⚡︎' />
-        <NavItem icon='👾' />
+        <NavItem icon='👾' /> */}
       </Navigation>
       { isLoaded && (
       <Switch>

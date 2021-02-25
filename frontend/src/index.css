@@ -143,8 +143,8 @@
 }
 
 :root {
-  --bg: #242526;
-  --bg-accent: #484a4d;
+  --bg: #fff;
+  --bg-accent: #666;
   --text-color: #dadce1;
   --nav-size: 60px;
   --border: 1px solid #474a4d;

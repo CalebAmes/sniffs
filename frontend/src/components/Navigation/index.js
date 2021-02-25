@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-// import { NavLink } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import { getEvent } from '../../store/event';
+import { getCategory } from '../../store/category';
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 // import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import '../../index.css'
 // function Navigation({ isLoaded }){
-//   const sessionUser = useSelector(state => state.session.user);
+  // const sessionUser = useSelector(state => state.session.user);
 
 //   const body1 = () => {
 //     const body = document.getElementById('body');
@@ -48,16 +50,35 @@ import '../../index.css'
 //   }
 // }
 
-const Navigation = (props) => (
-  <nav className='navbar'>
-    <ul className='navbar-nav'>
-      { props.children }
-    </ul>
-  </nav>
-)
+const Navigation = (props) => {
+  const sessionUser = useSelector(state => state.session.user);
+  return (
+    <nav className='navbar'>
+      <ul className='navbar-nav'>
+        {/* { props.children } */}
+        {/* <NavItem icon='🤟' /> */}
+        <NavLink className='link icon-navlink' to='/login'>Log In</NavLink>
+        <NavLink className='link icon-navlink' to='/signup'>Sign Up</NavLink>
+        <NavLink className='link icon-navlink' to='/'>Home</NavLink>
+        <NavItem icon={<i class="fas fa-chevron-circle-down"/>}>
+          <Dropdown>
+            
+          </Dropdown>
+        </NavItem>
+      </ul>
+      
+    </nav>
+)}
 
 export function NavItem(props) {
   const [open, setOpen] = useState(false);
+
+  const sessionUser = useSelector(state => state.session.user);
+  const eventItems = useSelector((state) => state.event);
+  const categoryItems = useSelector((state) => state.category);
+  
+  const eventItemsArray = Object.values(eventItems);
+  const categoryItemsArray = Object.values(categoryItems);
   
   return (
     <li className='nav-item'>
@@ -72,6 +93,13 @@ export function NavItem(props) {
 
 export function Dropdown() {
 
+  const sessionUser = useSelector(state => state.session.user);
+  const eventItems = useSelector((state) => state.event);
+  const categoryItems = useSelector((state) => state.category);
+  
+  const eventItemsArray = Object.values(eventItems);
+  const categoryItemsArray = Object.values(categoryItems);
+
   const [activeMenu, setActiveMenu] = useState('main');
   const [menuHeight, setMenuHeight] = useState(null);
 
@@ -81,6 +109,7 @@ export function Dropdown() {
   }
 
   function DropdownItem(props) {
+    // if (sessionUser) {
     return (
       <a href='#' className='menu-item' onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
         <span className='icon-button'>{props.leftIcon}</span>
@@ -99,13 +128,13 @@ export function Dropdown() {
         >
         <div className='menu'>
 
-          <DropdownItem leftIcon={'⚙︎'} goToMenu='settings'>settings</DropdownItem>
-          <DropdownItem leftIcon={'🤧'}>Categories</DropdownItem>
+          <DropdownItem leftIcon={'⚙︎'} goToMenu='events'>Events</DropdownItem>
+          <DropdownItem leftIcon={'🤧'} goToMenu='categories'>Categories</DropdownItem>
 
         </div>
       </CSSTransition>
       <CSSTransition 
-        in={activeMenu === 'settings'} 
+        in={activeMenu === 'events'} 
         unmountOnExit timeout={500}
         classNames='menu-secondary'
         onEnter={ calcHeight }
@@ -113,19 +142,32 @@ export function Dropdown() {
         <div className='menu'>
 
           <DropdownItem goToMenu='main' leftIcon={'←'}>Settings</DropdownItem>
-          <DropdownItem>thisga</DropdownItem>
-          <DropdownItem>thisga</DropdownItem>
-          <DropdownItem>thisga</DropdownItem>
-          <DropdownItem>thisga</DropdownItem>
-          <DropdownItem>thisga</DropdownItem>
-          <DropdownItem>thisga</DropdownItem>
-          <DropdownItem>thisga</DropdownItem>
-          <DropdownItem>thisga</DropdownItem>
+          {
+                eventItemsArray.map(item => (
+                  <DropdownItem event={ item } key={ item.id }> { item.name }</DropdownItem>
+                  ))
+          }
+        </div>
+      </CSSTransition>
+      <CSSTransition 
+        in={activeMenu === 'categories'} 
+        unmountOnExit timeout={500}
+        classNames='menu-secondary'
+        onEnter={ calcHeight }
+        >
+        <div className='menu'>
 
+          <DropdownItem goToMenu='main' leftIcon={'←'}>Settings</DropdownItem>
+          {
+                categoryItemsArray.map(item => (
+                  <DropdownItem category={ item } key={ item.id }> { item.name }</DropdownItem>
+                  ))
+          }
         </div>
       </CSSTransition>
     </div>
   )
 }
+// }
 
 export default Navigation;
