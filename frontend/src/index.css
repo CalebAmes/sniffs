@@ -30,15 +30,6 @@
 	outline: inherit;
 }
 
-.profile-dropdown {
-  display: flex;
-  flex-direction: row;
-  margin: 0px 200px;
-  align-items: flex-start;
-  justify-content: center;
-  list-style: none;
-}
-
 .dropDown {
   color: #666;
   padding: 0px 50px;
