@@ -17,13 +17,7 @@ const LandingPage = () => {
   const eventItemsArray = Object.values(eventItems);
   const categoryItemsArray = Object.values(categoryItems);
   
-  const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 500, itemsToShow: 2 },
-    { width: 755, itemsToShow: 3 },
-    { width: 1000, itemsToShow: 4 },
-    { width: 1400, itemsToShow: 5 }
-  ]
+
   
   useEffect(() => {
     body1()
