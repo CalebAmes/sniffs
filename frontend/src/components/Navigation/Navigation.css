@@ -34,6 +34,9 @@
   margin: auto 200px auto 40px;
   color: #666;
 } */
+.flip{
+  transform: rotate(1.5turn);
+}
 
 .link{
   color: #666;

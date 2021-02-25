@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { getEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import * as sessionActions from '../../store/session';
 
 import './Navigation.css';
 import '../../index.css'
@@ -19,7 +20,7 @@ const Navigation = (props) => {
           <NavLink className='link icon-navlink' to='/login'>Log In</NavLink>
           <NavLink className='link icon-navlink' to='/signup'>Sign Up</NavLink>
           <NavLink className='link icon-navlink' to='/'>Home</NavLink>
-          <NavItem icon={<i class="fas fa-chevron-circle-down"/>}>
+          <NavItem icon={<i class="fas fa-chevron-circle-down"/>} >
             <Dropdown />
           </NavItem>
         </ul>
@@ -47,10 +48,10 @@ export function NavItem(props) {
   
   const eventItemsArray = Object.values(eventItems);
   const categoryItemsArray = Object.values(categoryItems);
-  
+
   return (
     <li className='nav-item'>
-      <a href='#' className='icon-button' onClick={() => setOpen(!open)}>
+      <a href='#' className='icon-button' onClick={()=> setOpen(!open)}>
         { props.icon }
       </a>
 
@@ -147,14 +148,12 @@ export function Dropdown() {
 
 export function Dropdown2() {
   const history = useHistory();
-
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const eventItems = useSelector((state) => state.event);
   const categoryItems = useSelector((state) => state.category);
-  
   const eventItemsArray = Object.values(eventItems);
   const categoryItemsArray = Object.values(categoryItems);
-
   const [activeMenu, setActiveMenu] = useState('main');
   const [menuHeight, setMenuHeight] = useState(null);
 
@@ -163,12 +162,9 @@ export function Dropdown2() {
     setMenuHeight(height);
   }
 
-  function home() {
+  function logout () {
+    dispatch(sessionActions.logout());
     history.push('/')
-  }
-
-  function profile() {
-    history.push('/profile')
   }
 
   function DropdownItem(props) {
@@ -210,6 +206,10 @@ export function Dropdown2() {
           <DropdownExternal onClick={()=>history.push('/profile')} leftIcon={<i class="fas fa-house-user"/>}>Profile</DropdownExternal> */}
           <DropdownItem leftIcon={<i class="far fa-calendar-alt"/>} goToMenu='events'>Events</DropdownItem>
           <DropdownItem leftIcon={<i class="fas fa-layer-group"/>} goToMenu='categories'>Categories</DropdownItem>
+          <div onClick={logout} className='menu-item'>
+            <div className='icon-button'>{<i class="fas fa-sign-out-alt"/>}</div>
+              Log Out
+            </div>
         </div>
       </CSSTransition>
       <CSSTransition 
