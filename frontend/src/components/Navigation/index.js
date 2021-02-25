@@ -154,7 +154,7 @@ export function Dropdown() {
         >
         <div className='menu'>
 
-          <DropdownItem goToMenu='main' leftIcon={'←'}>Settings</DropdownItem>
+          <DropdownItem goToMenu='main' leftIcon={<i class="far fa-arrow-alt-circle-left"/>}>...back</DropdownItem>
           {
                 eventItemsArray.map(item => (
                   <DropdownItem event={ item } key={ item.id }> { item.name }</DropdownItem>
@@ -170,7 +170,7 @@ export function Dropdown() {
         >
         <div className='menu'>
 
-          <DropdownItem goToMenu='main' leftIcon={'←'}>Settings</DropdownItem>
+          <DropdownItem goToMenu='main' leftIcon={<i class="far fa-arrow-alt-circle-left"/>}>...back</DropdownItem>
           {
                 categoryItemsArray.map(item => (
                   <DropdownItem category={ item } key={ item.id }> { item.name }</DropdownItem>
