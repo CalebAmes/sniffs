@@ -4,7 +4,7 @@ import { getEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
 import EventHolder from '../EventHolder';
 import CategoryHolder from '../CategoryHolder';
-import Carousel from 'react-elastic-carousel';
+import { ScrollingCarousel } from '@trendyol-js/react-carousel';
 import './LandingPage.css';
 
 const LandingPage = () => {
@@ -35,13 +35,13 @@ const LandingPage = () => {
       <div>
         <h1 className='h1'>Events:</h1>
           <div className='carouselDiv'>
-            <Carousel className='carousel' breakPoints={ breakPoints }>
+            <ScrollingCarousel className='scrollingCarousel'>
               {
                 eventItemsArray.map(item => (
                   <EventHolder event={ item } key={ item.id }> { item.name }</EventHolder>
                   ))
               }
-            </Carousel>
+            </ScrollingCarousel>
           </div>
       </div>
         <h1 className='h1'>Categories:</h1>

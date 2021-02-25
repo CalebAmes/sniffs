@@ -1,3 +1,17 @@
+.scrollingCarousel {
+  width: 80%;
+  overflow: hidden;
+  margin: auto;
+}
+
+.scrollingCarousel button {
+  display: flex;
+  flex-direction: row;
+  visibility: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 .carouselDiv {
   display: grid;
   margin: auto;
