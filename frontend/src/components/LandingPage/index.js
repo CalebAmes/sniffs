@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
-import EventHolder from '../EventHolder'
+import EventHolder from '../EventHolder';
+import CategoryHolder from '../CategoryHolder';
 import Carousel from 'react-elastic-carousel';
 import './LandingPage.css';
 
@@ -17,9 +18,10 @@ const LandingPage = () => {
   
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 4 },
+    { width: 500, itemsToShow: 2 },
+    { width: 755, itemsToShow: 3 },
+    { width: 1000, itemsToShow: 4 },
+    { width: 1400, itemsToShow: 5 }
   ]
   
   useEffect(() => {
@@ -28,33 +30,31 @@ const LandingPage = () => {
   }, [dispatch])
 
   return (
-    <>
+    <div className='home'>
+      <div className='topPad'></div>
       <div>
-        <p>This is the landing page</p>
+        <h1 className='h1'>Events:</h1>
+          <div className='carouselDiv'>
+            <Carousel className='carousel' breakPoints={ breakPoints }>
+              {
+                eventItemsArray.map(item => (
+                  <EventHolder event={ item } key={ item.id }> { item.name }</EventHolder>
+                  ))
+              }
+            </Carousel>
+          </div>
       </div>
-      <div>
-        <h1>Events:</h1>
-        <div className='carouselDiv'>
-          <Carousel breakPoints={ breakPoints }>
-            {
-              eventItemsArray.map(item => (
-                <EventHolder event={ item } key={ item.id }> { item.name }</EventHolder>
-              ))
-            }
-          </Carousel>
-        </div>
-      </div>
-      <div>
-        <h1>Categories:</h1>
-        <ul>
+        <h1 className='h1'>Categories:</h1>
+        <div className='categoryBlock'>
           {
             categoryItemsArray.map(item => (
-              <li key={ item.id }>{ item.name }</li>
+              <CategoryHolder category={ item } key={ item.id }>
+                { item.name }
+              </CategoryHolder>
             ))
           }
-        </ul>
-      </div>  
-    </>
+      </div>
+    </div>  
   )
 }
 

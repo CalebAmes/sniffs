@@ -1,0 +1,13 @@
+.categoryHolder {
+  background: #fff;
+  margin: 12px;
+  padding: 10px;
+  color: #2e3e48;
+  font-size: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0px 0px 4px rgba(0,0,0,0.5);
+  overflow: hidden;
+}

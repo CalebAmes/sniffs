@@ -4,6 +4,22 @@
   margin: 0px;
 }
 
+.body1 {
+  background: #fafafa no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.body2 {
+  background: url('./photos/territorio-de-zaguates.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .button {
   background: none;
 	color: #666;
@@ -102,3 +118,7 @@
   min-width: 460px;
 }
 
+.topPad {
+  width: 100%;
+  padding: 30px;
+}

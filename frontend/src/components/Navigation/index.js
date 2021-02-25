@@ -7,6 +7,18 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
+  const body1 = () => {
+    const body = document.getElementById('body');
+    body.classList.add('body1');
+    body.classList.remove('body2');
+  }
+
+  const body2 = () => {
+    const body = document.getElementById('body');
+    body.classList.add('body2');
+    body.classList.remove('body1');
+  }
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -23,13 +35,13 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
         <li>
-          <NavLink className='link' exact to='/'>Home</NavLink>
+          <NavLink onClick={ body1 } className='link' exact to='/'>Home</NavLink>
         </li>
         <li>
-          <NavLink className='link' to='/login'>Log In</NavLink>
+          <NavLink onClick={ body2 } className='link' to='/login'>Log In</NavLink>
         </li>
         <li>
-          <NavLink className='link lastLink' to='/signup'>Sign Up</NavLink>
+          <NavLink onClick={ body2 } className='link lastLink' to='/signup'>Sign Up</NavLink>
         </li>
       </>
     );
