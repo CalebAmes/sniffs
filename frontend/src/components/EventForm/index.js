@@ -9,24 +9,24 @@ const EventForm = () => {
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [userId, setUserId] = useState('');
-  const [categoryId, setCategoryId] = useState(1);
-  const [errors, setErrors] = useState('');
+  // const [userId, setUserId] = useState('');
+  // const [categoryId, setCategoryId] = useState(1);
+  // const [errors, setErrors] = useState('');
 
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   // setUserId(user.id)
   // if (user) return <Redirect to='/' />;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    return dispatch(sessionActions.event({ name, description, startDate, endDate, userId, categoryId }))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data?.errors) setErrors(data.errors);
-    });
-    // return setErrors(['event errors']);
-  };
+  const handleSubmit = (e) => null;
+  //   e.preventDefault();
+
+  //     .catch(async (res) => {
+  //       const data = await res.json();
+  //       if (data?.errors) setErrors(data.errors);
+  //   });
+  //   // return setErrors(['event errors']);
+  // };
 
   return (
     <div className='formDiv SignupFormDiv'>

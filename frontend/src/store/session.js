@@ -2,7 +2,6 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
-const SET_EVENT = 'session/setEvent';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -12,11 +11,6 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 });
-
-const setEvent = (event) => ({
-  type: SET_EVENT,
-  event,
-})
 
 export const signup = (user) => async (dispatch) => {
   const { username, email, password } = user;
@@ -33,21 +27,6 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
-export const event = (event) => async (dispatch) => {
-  const { name, description, userId, categoryId} = event;
-  const response = await csrfFetch('/api/events', {
-    method: 'POST',
-    body: JSON.stringify({
-      name,
-      description,
-      userId,
-      categoryId,
-    }),
-  });
-  const data = await response.json();
-  dispatch(setEvent(data.event))
-  return response;
-}
 // export const signup = (user) => async (dispatch) => {
 
   // const { username, email, password } = user;
@@ -107,8 +86,6 @@ const sessionReducer = (state = initialState, action) => {
       return { ...state, user: action.user };
     case REMOVE_USER:
       return { ...state, user: null };
-    case SET_EVENT:
-      return { ...state, event: action.event };
     default:
       return state;
   }
