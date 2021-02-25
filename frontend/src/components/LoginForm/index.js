@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import './LoginForm.css'
-import '../../index.css'
+import { body2 } from '../index'
+import './LoginForm.css';
+import '../../index.css';
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -12,40 +13,31 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if(sessionUser) return (
-    <Redirect to='/' />
-  );
-  
+  const user = useSelector((state) => state.session.user);
+
   const demoLogin = () => {
-    body1();
     dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
   }
 
-  const body1 = () => {
-    const body = document.getElementById('body');
-    body.classList.add('body1');
-    body.classList.remove('body2');
-  }
-
-  const body2 = () => {
-    const body = document.getElementById('body');
-    body.classList.add('body2');
-    body.classList.remove('body1');
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    body1();
     return dispatch(sessionActions.login({ credential, password }))
     .catch(async (res) => {
         const data = await res.json();
         if(data?.errors) {
-          body2();
           setErrors(data.errors);
         }
       });
   }
+
+  useEffect(() => {
+    body2()
+  }, []);
+
+  if (user) return <Redirect to='/' />;
+
   return (
     <>
     <div className='formDiv loginFormDiv'>

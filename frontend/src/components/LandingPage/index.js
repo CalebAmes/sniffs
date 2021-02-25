@@ -6,6 +6,7 @@ import EventHolder from '../EventHolder';
 import CategoryHolder from '../CategoryHolder';
 import { ScrollingCarousel } from '@trendyol-js/react-carousel';
 import './LandingPage.css';
+import { body1 } from '../index'
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const LandingPage = () => {
   ]
   
   useEffect(() => {
+    body1()
     dispatch(getEvent())
     dispatch(getCategory())
   }, [dispatch])

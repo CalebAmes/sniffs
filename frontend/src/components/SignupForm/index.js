@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
-import './SignupForm.css'
-import '../../index.css'
+import { body2 } from '../index';
+import './SignupForm.css';
+import '../../index.css';
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
@@ -15,30 +16,20 @@ const SignupForm = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
+  useEffect(() => {
+    body2()
+  }, []);
+
   if (user) return <Redirect to='/' />;
-
-  const body1 = () => {
-    const body = document.getElementById('body');
-    body.classList.add('body1');
-    body.classList.remove('body2');
-  }
-
-  const body2 = () => {
-    const body = document.getElementById('body');
-    body.classList.add('body2');
-    body.classList.remove('body1');
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      body1()
       return dispatch(sessionActions.signup({ email, username, password }))
         .catch(async (res) => {
           const data = await res.json();
           if (data?.errors){
-            body2()
             setErrors(data.errors);
           }
         });
