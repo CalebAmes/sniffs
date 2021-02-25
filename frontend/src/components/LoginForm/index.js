@@ -17,26 +17,41 @@ function LoginForm() {
   );
   
   const demoLogin = () => {
+    body1();
     dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
+  }
+
+  const body1 = () => {
+    const body = document.getElementById('body');
+    body.classList.add('body1');
+    body.classList.remove('body2');
+  }
+
+  const body2 = () => {
+    const body = document.getElementById('body');
+    body.classList.add('body2');
+    body.classList.remove('body1');
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    body1();
     return dispatch(sessionActions.login({ credential, password }))
-      .catch(async (res) => {
+    .catch(async (res) => {
         const data = await res.json();
-        if(data?.errors) setErrors(data.errors);
+        if(data?.errors) {
+          body2();
+          setErrors(data.errors);
+        }
       });
   }
   return (
     <>
     <div className='formDiv loginFormDiv'>
       <form className='form loginForm' onSubmit={ handleSubmit }>
-        <ul>
-          {errors.map((err, id) => <li key={id}>{err}
-          </li>)}
-        </ul>
+        {errors.map((err, id) => <div className='errors' key={id}>{err}
+        </div>)}
         <div className='formTitleDiv'>
           <h2 className='formTitle'>Log in</h2>
         </div>

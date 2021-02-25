@@ -17,14 +17,30 @@ const SignupForm = () => {
 
   if (user) return <Redirect to='/' />;
 
+  const body1 = () => {
+    const body = document.getElementById('body');
+    body.classList.add('body1');
+    body.classList.remove('body2');
+  }
+
+  const body2 = () => {
+    const body = document.getElementById('body');
+    body.classList.add('body2');
+    body.classList.remove('body1');
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
+      body1()
       return dispatch(sessionActions.signup({ email, username, password }))
         .catch(async (res) => {
           const data = await res.json();
-          if (data?.errors) setErrors(data.errors);
+          if (data?.errors){
+            body2()
+            setErrors(data.errors);
+          }
         });
     }
     return setErrors(['Confirm Password and Password fields must match']);
@@ -33,9 +49,7 @@ const SignupForm = () => {
   return (
     <div className='formDiv SignupFormDiv'>
       <form onSubmit={ handleSubmit } className='form SignupForm'>
-        <ul>
-          {errors.map((err, id) => <li key={ id } >{ err }</li>)}
-        </ul>
+        {errors.map((err, id) => <div className='errors' key={ id } >{ err }</div>)}
         <div className='formTitleDiv'>
           <h2 className='formTitle'>Sign up</h2>
         </div>

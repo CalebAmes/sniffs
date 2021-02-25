@@ -6,6 +6,10 @@
   border-radius: 8px;
 }
 
+.eventHolder:hover{
+  background: #e6e6e6;
+}
+
 .eventPhoto{
   height: 140px;
   width: 248px;
@@ -21,7 +25,7 @@
   align-items: center;
   color: #212121;
   font-size: 12pt;
-  background-color: #fff;
+  background-color: inherit;
   height: 208px;
   width: 248px;
   border-radius: 0px 0px 8px 8px;

@@ -11,3 +11,7 @@
   box-shadow: inset 0px 0px 4px rgba(0,0,0,0.5);
   overflow: hidden;
 }
+
+.categoryHolder:hover {
+  background: #e6e6e6
+}

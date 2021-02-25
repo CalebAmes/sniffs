@@ -14,6 +14,20 @@ function ProfileButton({ user }) {
     setShowMenu(true);
   }
 
+  const profile = () => {
+    history.push('/profile');
+  }
+  
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+    history.push('/')
+  }
+
+  const createEvent = () => {
+    history.push('/createEvent');
+  }
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -26,24 +40,24 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-    history.push('/')
-  }
 
   return (
     <>
-      <button className='dogButton button' onClick={ openMenu }>
-        <i className='fas fa-dog' />
-      </button>
+      <div>
+        <button className='link dogButton button' onClick={ openMenu }>
+          <i className='fas fa-dog' />
+        </button>
+      </div>
+      <div>
       {showMenu && (
-        <div className='profile-dropdown'>
-          <NavLink className='link dropDown' to='/profile'>{ user.username }</NavLink>
-          <button className='button dropDown' onClick={ logout }>Log out</button>
-          <NavLink className='link dropDown' to='/createEvent'>Create event</NavLink>
+        <div className='profileDropdown'>
+          <h2>{user.username}</h2>
+          <button className='button link dropDown' onClick={profile}>Profile</button>
+          <button className='button link dropDown' onClick={ logout }>Log out</button>
+          <button className='button link dropDown' onClick={ createEvent }>Create event</button>
         </div>
-      )}
+        )}
+      </div>
     </>
   );
 }

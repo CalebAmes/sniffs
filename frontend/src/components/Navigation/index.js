@@ -19,39 +19,32 @@ function Navigation({ isLoaded }){
     body.classList.remove('body1');
   }
 
-  let sessionLinks;
   if (sessionUser) {
-    sessionLinks = (
-      <>
-        <li>
+    return (
+      <nav className='navbar'>
+        <div>
           <NavLink className='link' exact to='/'>Home</NavLink>
-        </li>
-        <li>
-          <ProfileButton user={ sessionUser } />
-        </li>
-      </>
+        </div>
+        <div>
+          <ProfileButton className='link' user={ sessionUser } />
+        </div>
+      </nav>
     );
   } else {
-    sessionLinks = (
-      <>
-        <li>
+    return (
+      <nav className='navbar'>
+        <div>
           <NavLink onClick={ body1 } className='link' exact to='/'>Home</NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink onClick={ body2 } className='link' to='/login'>Log In</NavLink>
-        </li>
-        <li>
+        </div>
+        <div>
           <NavLink onClick={ body2 } className='link lastLink' to='/signup'>Sign Up</NavLink>
-        </li>
-      </>
+        </div>
+      </nav>
     );
   }
-
-  return (
-    <ul className='navbar'>
-       { isLoaded && sessionLinks }
-    </ul>
-  );
 }
 
 export default Navigation;

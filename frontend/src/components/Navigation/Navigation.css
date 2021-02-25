@@ -13,10 +13,22 @@
   top: 0;
 }
 
+.profileDropdown{
+  text-align: center;
+  height: 200px;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
 .link{
   color: #666;
   text-decoration: none;
   padding: 0px 30px;
+}
+
+.link:hover{
+  color: #000;
 }
 
 .lastLink{
