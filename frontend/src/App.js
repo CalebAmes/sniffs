@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
-import Navigation from './components/Navigation';
+import Navigation, { NavItem, Dropdown } from './components/Navigation';
 import LandingPage from './components/LandingPage';
 import UserProfile from './components/UserProfile';
 import EventForm from './components/EventForm';
@@ -13,13 +13,23 @@ import * as sessionActions from './store/session';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
     <>
-      <Navigation isLoaded={ isLoaded } />
+      <Navigation isLoaded={ isLoaded }>
+        <NavItem icon='🤮'>
+          <Dropdown>
+            
+          </Dropdown>
+        </NavItem>
+        <NavItem icon='🤟' />
+        <NavItem icon='⚡︎' />
+        <NavItem icon='👾' />
+      </Navigation>
       { isLoaded && (
       <Switch>
         <Route path='/editProfile'>
