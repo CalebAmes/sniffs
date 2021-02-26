@@ -1,7 +1,7 @@
 .scrollingCarousel {
-  width: 80%;
-  overflow: hidden;
+  width: 60%;
   margin: auto;
+  padding: 10px;
 }
 
 .scrollingCarousel button {
@@ -9,26 +9,22 @@
   flex-direction: row;
   visibility: hidden;
   margin: 0;
-  padding: 0;
-}
-
-.carouselDiv {
-  display: grid;
-  margin: auto;
-  width: 75%;
+  padding: 0px;
 }
 
 .h1 {
-  margin-left: 10%;
+  margin-left: 15%;
+  margin-top: 2%;
 }
-.carousel > button {
-  background: #fff
-}
-.carousel > button:hover {
-  background: #666
+
+.h3 {
+  width: 30%;
+  margin: auto;
+  text-align: center;
 }
 
 .categoryBlock {
+  padding: 40px;
   display: grid;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 33% 33% 33%;

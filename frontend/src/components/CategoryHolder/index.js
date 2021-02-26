@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const CategoryHolder = ({ category }) => {
   
   return (
-    <Link className='categoryHolder' to={`${category.id}`}>
+    <Link className='categoryHolder' to={`/${category.id}`}>
         { category.name }
     </Link>
   )

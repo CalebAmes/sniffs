@@ -12,78 +12,40 @@ import { body1 } from '../index';
 const LandingPage = () => {
   const dispatch = useDispatch();
   const [events, setEvents] = useState([])
-  const [category, setCategory] = useState([])
   const eventItems = useSelector((state) => state.event);
   const categoryItems = useSelector((state) => state.category);
-  
-  const eventItemsArray = Object.values(eventItems);
-  const categoryItemsArray = Object.values(categoryItems);
   const { id } = useParams();
-  const category = useState([])
   
-  if(id) {
-    console.log(category[0])
-    console.log(
-      )
-    }
-
   useEffect(() => {
     body1()
     dispatch(getEvent())
     dispatch(getCategory())
   }, [dispatch])
-      
+
+  const eventItemsArray = Object.values(eventItems);
+  const categoryItemsArray = Object.values(categoryItems);
+  const array = eventItemsArray.filter(event=> event.categoryId == id);
+  const cat = categoryItemsArray.filter(category=> category.id == id)
+  const category = cat[0];
   if(id){
-    const array = eventItemsArray.filter(event=> event.categoryId == id);
-    const cat = categoryItemsArray.filter(category=> category.id == id);
-    setEvents(array);
-    setCategory(cat[0]);
-    
     return(
       <div className='home'>
       <div className='topPad'></div>
       <div>
-        <h1 className='h1'>{category.name}:</h1>
+        <h1 className='h1'>{category.name}.</h1>
+        <h3 className='h3'>{category.description}</h3>
           <div className='carouselDiv'>
             <ScrollingCarousel className='scrollingCarousel'>
               {
-                eventItemsArray.map(item => (
+                eventItemsArray.filter(event=> event.categoryId == id)
+                  .map(item => (
                   <EventHolder event={ item } key={ item.id }> { item.name }</EventHolder>
                 ))
               }
             </ScrollingCarousel>
           </div>
       </div>
-        <h1 className='h1'>Categories:</h1>
-        <div className='categoryBlock'>
-          {
-            categoryItemsArray.map(item => (
-              <CategoryHolder category={ item } key={ item.id }>
-                { item.name }
-              </CategoryHolder>
-            ))
-          }
-      </div>
-    </div>  
-
-    )
-  }
-  return (
-    <div className='home'>
-      <div className='topPad'></div>
-      <div>
-        <h1 className='h1'>Events:</h1>
-          <div className='carouselDiv'>
-            <ScrollingCarousel className='scrollingCarousel'>
-              {
-                eventItemsArray.map(item => (
-                  <EventHolder event={ item } key={ item.id }> { item.name }</EventHolder>
-                ))
-              }
-            </ScrollingCarousel>
-          </div>
-      </div>
-        <h1 className='h1'>Categories:</h1>
+        <h1 className='h1'>categories.</h1>
         <div className='categoryBlock'>
           {
             categoryItemsArray.map(item => (
@@ -95,6 +57,35 @@ const LandingPage = () => {
       </div>
     </div>  
   )
+  } else {
+    return (
+      <div className='home'>
+        <div className='topPad'></div>
+        <div>
+          <h1 className='h1'>events.</h1>
+            <div className='carouselDiv'>
+              <ScrollingCarousel className='scrollingCarousel'>
+                {
+                  eventItemsArray.map(item => (
+                    <EventHolder event={ item } key={ item.id }> { item.name }</EventHolder>
+                  ))
+                }
+              </ScrollingCarousel>
+            </div>
+        </div>
+          <h1 className='h1'>categories.</h1>
+          <div className='categoryBlock'>
+            {
+              categoryItemsArray.map(item => (
+                <CategoryHolder category={ item } key={ item.id }>
+                  { item.name }
+                </CategoryHolder>
+              ))
+            }
+        </div>
+      </div>  
+    )
+  }
 }
 
 export default LandingPage;

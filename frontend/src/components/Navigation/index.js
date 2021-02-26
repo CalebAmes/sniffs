@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { getEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 
@@ -61,14 +61,13 @@ export function NavItem(props) {
 }
 
 export function Dropdown() {
-
+  const history = useHistory();
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const eventItems = useSelector((state) => state.event);
   const categoryItems = useSelector((state) => state.category);
-  
   const eventItemsArray = Object.values(eventItems);
   const categoryItemsArray = Object.values(categoryItems);
-
   const [activeMenu, setActiveMenu] = useState('main');
   const [menuHeight, setMenuHeight] = useState(null);
 
@@ -92,6 +91,22 @@ export function Dropdown() {
         <div className='icon-button'>{props.leftIcon}</div>
         {props.children}
       </div>
+    )
+  }
+  function DropdownCategory({ category }) {
+    return (
+      <Link to={`/${category.id}`} className='menu-item'>
+        <div className='icon-button'></div>
+        {category.name}
+      </Link>
+    )
+  }
+  function DropdownEvent({ event }) {
+    return (
+      <a href={`/${event.id}`} className='menu-item'>
+        <div className='icon-button'></div>
+        {event.name}
+      </a>
     )
   }
   return (
@@ -137,7 +152,9 @@ export function Dropdown() {
           <DropdownToMenu goToMenu='main' leftIcon={<i class="far fa-arrow-alt-circle-left"/>}>...back</DropdownToMenu>
           {
             categoryItemsArray.map(item => (
-              <DropdownExternal category={ item } key={ item.id }> { item.name }</DropdownExternal>
+              <DropdownCategory category={ item } key={ item.id }> 
+              { item.name }
+              </DropdownCategory>
             ))
           }
         </div>
@@ -176,17 +193,6 @@ export function Dropdown2() {
       </a>
     )
   }
-  function DropdownExternal(props) {
-    return (
-      <NavLink>
-        
-      </NavLink>
-      // <a href='#' className='menu-item' onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
-      //   <div className='icon-button'>{props.leftIcon}</div>
-      //   {props.children}
-      // </a>
-    )
-  }
   return (
     <div className='dropdown' style={{ height: menuHeight }}>
       <CSSTransition 
@@ -197,7 +203,7 @@ export function Dropdown2() {
         onEnter={ calcHeight }
         >
         <div className='menu'>
-          <a href='/home' className='menu-item'>
+          <a href='/' className='menu-item'>
           <div className='icon-button'>{<i class="fas fa-home"/>}</div>
           Home
           </a>
@@ -205,8 +211,6 @@ export function Dropdown2() {
           <div className='icon-button'>{<i class="fas fa-house-user"/>}</div>
           Profile
           </a>
-          {/* <DropdownExternal href='/home' leftIcon={<i class="fas fa-home"/>}>Home</DropdownExternal>
-          <DropdownExternal onClick={()=>history.push('/profile')} leftIcon={<i class="fas fa-house-user"/>}>Profile</DropdownExternal> */}
           <DropdownItem leftIcon={<i class="far fa-calendar-alt"/>} goToMenu='events'>Events</DropdownItem>
           <DropdownItem leftIcon={<i class="fas fa-layer-group"/>} goToMenu='categories'>Categories</DropdownItem>
           <div onClick={logout} className='menu-item'>

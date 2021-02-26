@@ -13,6 +13,9 @@
   background-color: var(--bg);
   padding: 0 1rem;
   border-bottom: var(--border);
+  position: fixed;
+  z-index: 10;
+  width: 100%;
 }
 
 .navbar-nav {
@@ -27,6 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 3%;
 }
 
 .icon-navlink {

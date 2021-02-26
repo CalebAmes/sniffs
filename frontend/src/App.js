@@ -22,14 +22,6 @@ function App() {
   return (
     <>
       <Navigation isLoaded={ isLoaded }>
-        {/* <NavItem icon='🤮'>
-          <Dropdown>
-
-          </Dropdown>
-        </NavItem>
-        <NavItem icon='🤟' />
-        <NavItem icon='⚡︎' />
-        <NavItem icon='👾' /> */}
       </Navigation>
       { isLoaded && (
       <Switch>
@@ -52,7 +44,7 @@ function App() {
           <LandingPage />
         </Route>
         <Route path='/:id'>
-          <LandingPage />
+          <CategoryPage />
         </Route>
       </Switch>
       )}
