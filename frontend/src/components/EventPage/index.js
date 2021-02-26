@@ -11,8 +11,10 @@ const EventPage = () => {
   const eventItems = useSelector((state) => state.event);
   const categoryItems = useSelector((state) => state.category);
   const { id } = useParams();
-  const event = eventItems[id];
-  const category = categoryItems[event.id];
+  const event = eventItems && eventItems[id];
+  const category = categoryItems && event && categoryItems[event.categoryId];
+  console.log(event, '<--- event');
+  console.log(category, '<--- category')
   
   useEffect(() => {
     body1()
