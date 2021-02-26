@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategory } from '../../store/category';
 import * as sessionActions from '../../store/session';
 import './EventForm.css';
+import '../../index.css'
 
 const EventForm = () => {
   const dispatch = useDispatch();
@@ -34,12 +35,12 @@ const EventForm = () => {
 
   return (
     <div className='formDiv SignupFormDiv'>
-      <form onSubmit={handleSubmit} className='form SignupForm'>
+      <form onSubmit={handleSubmit} className='formE SignupForm'>
         <ul>
           {/* {errors.map((err, id) => <li key={ id } >{ err }</li>)} */}
         </ul>
-        <div className='formTitleDiv'>
-          <h2 className='formTitle'>Create event</h2>
+        <div className='formTitleDivE'>
+          <h2 className='formTitleE'>Create event</h2>
         </div>
         <label className='labels top' >Name:
           <input
@@ -78,7 +79,7 @@ const EventForm = () => {
             />
         </label>
         <label className='labels'>pick a category.</label>
-        <div className='selectDiv'>
+        <div className='selectDivE'>
           <label className='wrap'>
             <select>
               {
