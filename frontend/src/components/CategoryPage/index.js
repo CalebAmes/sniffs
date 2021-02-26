@@ -24,8 +24,8 @@ const LandingPage = () => {
   function Header () {
     return(
       <>
-      <h1 className='h1'>{category.name}.</h1>
-      <h3 className='h3'>{category.description}</h3>
+      <h1 className='h1'>{category?.name}.</h1>
+      <h3 className='h3'>{category?.description}</h3>
     </>
   )}
   
@@ -43,9 +43,9 @@ const LandingPage = () => {
           <div className='carouselDiv'>
             <ScrollingCarousel className='scrollingCarousel'>
               {
-                eventItemsArray.filter(event=> event.categoryId == id)
+                eventItemsArray.filter(event=> event?.categoryId == id)
                   .map(item => (
-                  <EventHolder event={ item } key={ item.id }> { item.name }</EventHolder>
+                  <EventHolder event={ item } key={ item?.id }> { item?.name }</EventHolder>
                 ))
               }
             </ScrollingCarousel>
@@ -55,8 +55,8 @@ const LandingPage = () => {
         <div className='categoryBlock'>
           {
             categoryItemsArray.map(item => (
-              <CategoryHolder category={ item } key={ item.id }>
-                { item.name }
+              <CategoryHolder category={ item } key={ item?.id }>
+                { item?.name }
               </CategoryHolder>
             ))
           }

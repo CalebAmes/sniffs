@@ -22,10 +22,10 @@ const EventPage = () => {
 
   return(
     <>
-    <h1 className='title'>{category.name}.</h1>
+    <h1 className='title'>{category?.name}.</h1>
     <div className='eventBox'>
-      <div className='name'>{event.name.toUpperCase()}</div>
-      <div className='desc'>{event.description.toLowerCase()}</div>
+      <div className='name'>{event?.name.toUpperCase()}</div>
+      <div className='desc'>{event?.description.toLowerCase()}</div>
     </div>
     </>
   )

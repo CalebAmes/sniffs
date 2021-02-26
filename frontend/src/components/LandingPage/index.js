@@ -73,7 +73,7 @@ const LandingPage = () => {
               <ScrollingCarousel className='scrollingCarousel'>
                 {
                   eventItemsArray.map(item => (
-                    <EventHolder event={ item } key={ item.id }> { item.name }</EventHolder>
+                    <EventHolder event={ item } key={ item?.id }> { item?.name }</EventHolder>
                   ))
                 }
               </ScrollingCarousel>
@@ -83,8 +83,8 @@ const LandingPage = () => {
           <div className='categoryBlock'>
             {
               categoryItemsArray.map(item => (
-                <CategoryHolder category={ item } key={ item.id }>
-                  { item.name }
+                <CategoryHolder category={ item } key={ item?.id }>
+                  { item?.name }
                 </CategoryHolder>
               ))
             }
