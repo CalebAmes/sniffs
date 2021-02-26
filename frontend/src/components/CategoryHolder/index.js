@@ -1,11 +1,12 @@
 import './CategoryHolder.css'
+import { Link } from 'react-router-dom'
 
 const CategoryHolder = ({ category }) => {
   
   return (
-    <div className='categoryHolder'>
+    <Link className='categoryHolder' to={`${category.id}`}>
         { category.name }
-    </div>
+    </Link>
   )
 }
 

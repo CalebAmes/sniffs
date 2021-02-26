@@ -178,10 +178,13 @@ export function Dropdown2() {
   }
   function DropdownExternal(props) {
     return (
-      <a href='#' className='menu-item' onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
-        <div className='icon-button'>{props.leftIcon}</div>
-        {props.children}
-      </a>
+      <NavLink>
+        
+      </NavLink>
+      // <a href='#' className='menu-item' onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+      //   <div className='icon-button'>{props.leftIcon}</div>
+      //   {props.children}
+      // </a>
     )
   }
   return (

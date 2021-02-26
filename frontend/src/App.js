@@ -8,6 +8,7 @@ import LandingPage from './components/LandingPage';
 import UserProfile from './components/UserProfile';
 import EventForm from './components/EventForm';
 import ProfileForm from './components/ProfileForm';
+import CategoryPage from './components/CategoryPage'
 import * as sessionActions from './store/session';
 
 function App() {
@@ -47,7 +48,10 @@ function App() {
         <Route path='/signup'>
           <SignupForm />
         </Route>
-        <Route path='/'>
+        <Route exact path='/'>
+          <LandingPage />
+        </Route>
+        <Route path='/:id'>
           <LandingPage />
         </Route>
       </Switch>

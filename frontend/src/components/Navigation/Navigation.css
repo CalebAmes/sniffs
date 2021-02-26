@@ -1,39 +1,3 @@
-/* .navbar{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  list-style: none;
-  border-bottom: 1px solid rgba(0,0,0,0.3);
-  padding: 15px 0px;
-  background-color: #fff;
-  position: fixed;
-  z-index: 10;
-  top: 0;
-}
-
-.profileDropdown{
-  text-align: center;
-  height: 200px;
-  border-radius: 5px;
-  margin-top: 20px;
-  padding: 20px;
-}
-
-
-.link:hover{
-  color: #000;
-}
-
-.lastLink{
-  margin-right: 140px;
-}
-
-.dogButton{
-  margin: auto 200px auto 40px;
-  color: #666;
-} */
 .flip{
   transform: rotate(1.5turn);
 }
