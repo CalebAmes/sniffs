@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getCategory } from '../../store/category';
 import * as sessionActions from '../../store/session';
-import './EventForm.css'
-import '../../index.css'
+import './EventForm.css';
 
 const EventForm = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  // const [userId, setUserId] = useState('');
-  // const [categoryId, setCategoryId] = useState(1);
-  // const [errors, setErrors] = useState('');
-
+  const categoryItems = useSelector((state) => state.category);
   const user = useSelector((state) => state.session.user);
-  const dispatch = useDispatch();
-  // setUserId(user.id)
-  // if (user) return <Redirect to='/' />;
+
+  const categories = Object.values(categoryItems);
+
+  // const [errors, setErrors] = useState('');
 
   const handleSubmit = (e) => null;
   //   e.preventDefault();
@@ -25,8 +24,13 @@ const EventForm = () => {
   //       const data = await res.json();
   //       if (data?.errors) setErrors(data.errors);
   //   });
-  //   // return setErrors(['event errors']);
+  //   return setErrors(['event errors']);
   // };
+
+  useEffect(() => {
+    dispatch(getCategory())
+  }, [dispatch])
+
 
   return (
     <div className='formDiv SignupFormDiv'>
@@ -73,10 +77,17 @@ const EventForm = () => {
             required
             />
         </label>
-        <label>
-          {/* <input type='file' onChange={ updateFile } /> */}
-        </label>
-        <button className='submit' type='submit'>Create!</button>
+        <label className='labels'>pick a category.</label>
+        <div className='selectDiv'>
+          <label className='wrap'>
+            <select>
+              {
+                categories.map((category) => <option>{category?.name}</option>)
+              }
+            </select>
+          </label>
+          <button className='submit' type='submit'>Create!</button>
+        </div>
       </form>
       {/* <div> */}
         {/* {user && (

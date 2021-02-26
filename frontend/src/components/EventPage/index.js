@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent } from '../../store/event';
@@ -13,8 +13,6 @@ const EventPage = () => {
   const { id } = useParams();
   const event = eventItems && eventItems[id];
   const category = categoryItems && event && categoryItems[event.categoryId];
-  console.log(event, '<--- event');
-  console.log(category, '<--- category')
   
   useEffect(() => {
     body1()

@@ -1,7 +1,6 @@
 .scrollingCarousel {
-  width: 60%;
   margin: auto;
-  padding: 10px;
+  padding: 10px 0px;
 }
 
 .scrollingCarousel button {
