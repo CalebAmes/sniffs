@@ -1,3 +1,5 @@
+import { csrfFetch } from './csrf';
+
 const SET_EVENT = 'event/setEvent'
 
 const setEvent = (event) => ({
@@ -11,6 +13,24 @@ export const getEvent = () => async (dispatch) => {
   dispatch(setEvent(data.event))
   return res;
 }
+
+export const createEvent = (event) => async (dispatch) => {
+  const { name, description, dateStart, dateEnd, categoryId, userId } = event;
+  const response = await csrfFetch('/api/event', {
+    method: 'POST',
+    body: JSON.stringify({
+      name,
+      description,
+      dateStart,
+      dateEnd,
+      categoryId,
+      userId,
+    }),
+  });
+  const data = await response.json();
+  dispatch(setEvent(data.event));
+  return response;
+};
 
 function reducer(state = {}, action) {
   let newState;

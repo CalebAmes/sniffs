@@ -27,27 +27,6 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
-// export const signup = (user) => async (dispatch) => {
-
-  // const { username, email, password } = user;
-  // const formData = new FormData();
-  // formData.append("username", username);
-  // formData.append("email", email);
-  // formData.append("password", password);
-
-  // const res = await csrfFetch(`/api/users/`, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  //   body: formData,
-  // });
-
-  // const data = await res.json();
-  // dispatch(setUser(data.user));
-  // return res
-// };
-
 export const restoreUser = () => async dispatch => {
   const response = await csrfFetch('/api/session');
   const data = await response.json();
@@ -80,7 +59,6 @@ export const logout = () => async (dispatch) => {
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
-  let newState;
   switch (action.type) {
     case SET_USER:
       return { ...state, user: action.user };

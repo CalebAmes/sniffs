@@ -1,41 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { getCategory } from '../../store/category';
-import * as sessionActions from '../../store/session';
+import * as eventActions from '../../store/event';
 import './EventForm.css';
-import '../../index.css'
+import '../../index.css';
 
 const EventForm = () => {
+  const user = useSelector((state) => state.session.user);
+  const categoryItems = useSelector((state) => state.category);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const categoryItems = useSelector((state) => state.category);
-  const user = useSelector((state) => state.session.user);
+  const [dateStart, setDateStart] = useState('');
+  const [dateEnd, setDateEnd] = useState('');
+  const [categoryId, setCategoryId] = useState(null);
+  const [userId, setUserId] = useState(user?.id)
 
   const categories = Object.values(categoryItems);
-
-  // const [errors, setErrors] = useState('');
-
-  const handleSubmit = (e) => null;
-  //   e.preventDefault();
-
-  //     .catch(async (res) => {
-  //       const data = await res.json();
-  //       if (data?.errors) setErrors(data.errors);
-  //   });
-  //   return setErrors(['event errors']);
-  // };
 
   useEffect(() => {
     dispatch(getCategory())
   }, [dispatch])
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    return dispatch(eventActions.createEvent({ name, description, dateStart, dateEnd,categoryId, userId}))
+  }
+
+  if (!user) return <Redirect to='/' />;
 
   return (
     <div className='formDiv SignupFormDiv'>
-      <form onSubmit={handleSubmit} className='formE SignupForm'>
+      <form onSubmit={ handleSubmit } className='formE SignupForm'>
         <ul>
           {/* {errors.map((err, id) => <li key={ id } >{ err }</li>)} */}
         </ul>
@@ -64,8 +61,8 @@ const EventForm = () => {
           <input
             type='datetime-local'
             className='input'
-            value={ startDate }
-            onChange={ (e) => setStartDate(e.target.value) }
+            value={ dateEnd }
+            onChange={ (e) => setDateEnd(e.target.value) }
             required
             />
         </label>
@@ -73,35 +70,23 @@ const EventForm = () => {
           <input
             type='datetime-local'
             className='input'
-            value={ endDate }
-            onChange={ (e) => setEndDate(e.target.value) }
+            value={ dateStart }
+            onChange={ (e) => setDateStart(e.target.value) }
             required
             />
         </label>
         <label className='labels'>pick a category.</label>
         <div className='selectDivE'>
-          <label className='wrap'>
-            <select>
+          <label value={ categoryId } className='wrap'>
+            <select onChange={(e) => setCategoryId(e.target.value)}>
               {
-                categories.map((category) => <option>{category?.name}</option>)
+                categories.map((category) => <option value={category?.id}>{category?.name}</option>)
               }
             </select>
           </label>
           <button className='submit' type='submit'>Create!</button>
         </div>
       </form>
-      {/* <div> */}
-        {/* {user && (
-          <div>
-            <h1>{user.username}</h1>
-            <img
-              style={{ width: "150px" }}
-              src={user.profileImageUrl}
-              alt="profile"
-            />
-          </div>
-        )}
-      </div> */}
     </div>
   );
 }

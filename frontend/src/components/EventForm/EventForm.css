@@ -95,7 +95,7 @@ select::-ms-expand {
 }
 
 label.wrap {
-  width:200px;
+  width:250px;
   overflow: hidden;
   height: 50px;
   position: relative;
@@ -109,7 +109,7 @@ select{
   padding: 10px;
   border: 0;
   font-size: 15px;
-  width: 200px;
+  width: 250px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

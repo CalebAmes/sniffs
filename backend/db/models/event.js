@@ -20,6 +20,14 @@ module.exports = (sequelize, DataTypes) => {
     Event.hasMany(models.Comment, { foreignKey: 'eventId'});
 
     Event.belongsTo(models.Category, { foreignKey: 'categoryId'});
+
+    Event.createEvent = async function ({ 
+      name, description, dateStart, dateEnd, categoryId, userId
+    }) {
+      const event = await Event.create({
+        name, description, dateStart, dateEnd, categoryId, userId
+      })
+    }
   };
   return Event;
 };
