@@ -19,7 +19,7 @@
 .lower{
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   align-items: center;
   color: #212121;
@@ -29,4 +29,6 @@
   width: 248px;
   border-radius: 0px 0px 8px 8px;
   overflow: scroll;
+  margin: auto;
+  text-align: center;
 }

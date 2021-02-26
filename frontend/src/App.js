@@ -8,7 +8,8 @@ import LandingPage from './components/LandingPage';
 import UserProfile from './components/UserProfile';
 import EventForm from './components/EventForm';
 import ProfileForm from './components/ProfileForm';
-import CategoryPage from './components/CategoryPage'
+import EventPage from './components/EventPage';
+import CategoryPage from './components/CategoryPage';
 import * as sessionActions from './store/session';
 
 function App() {
@@ -21,10 +22,18 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={ isLoaded }>
-      </Navigation>
+      <Navigation isLoaded={ isLoaded }/>
       { isLoaded && (
       <Switch>
+        <Route exact path='/'>
+          <LandingPage />
+        </Route>
+        <Route path='/category/:id'>
+          <CategoryPage />
+        </Route>
+        <Route path='/event/:id'>
+          <EventPage />
+        </Route>
         <Route path='/editProfile'>
           <ProfileForm />
         </Route>
@@ -40,11 +49,8 @@ function App() {
         <Route path='/signup'>
           <SignupForm />
         </Route>
-        <Route exact path='/'>
-          <LandingPage />
-        </Route>
-        <Route path='/:id'>
-          <CategoryPage />
+        <Route>
+          <LandingPage/>
         </Route>
       </Switch>
       )}

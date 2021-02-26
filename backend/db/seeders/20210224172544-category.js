@@ -24,8 +24,8 @@ module.exports = {
         description: 'Can all dogs swim? With a life vest and some dog swimming lessons from you, every breed should be able to get around in the water.'
       },
       {
-        name: `car rides. Don't let them drive!`,
-        description: `In California, it's perfectly legal to drive with your pet on your lap or unrestrained in your car, as there is nothing in the California Vehicle Code that forbids it. However, driving with a pet on your lap or loose in the car can be dangerous and the California Highway Patrol strongly advises against both.`
+        name: `car rides`,
+        description: `In California, it's perfectly legal to drive with your pet on your lap or unrestrained in your car. Just don't let the dogs drive!`
       },
       {
         name: 'frisbee',

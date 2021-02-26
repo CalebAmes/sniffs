@@ -1,0 +1,22 @@
+.title {
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.eventBox {
+  display: flex;
+  margin: 10% auto;
+  box-sizing: border-box;
+  padding: 3%;
+  width: 30%;
+  flex-direction: column;
+  border: 1px solid #000;
+}
+
+.name {
+  font-size: 20px;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  margin: 2% auto;
+  padding-bottom: 15px;
+}
