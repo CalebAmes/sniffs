@@ -14,7 +14,7 @@ const EventForm = () => {
   const [description, setDescription] = useState('');
   const [dateStart, setDateStart] = useState('');
   const [dateEnd, setDateEnd] = useState('');
-  const [categoryId, setCategoryId] = useState(null);
+  const [categoryId, setCategoryId] = useState(1);
   const [userId, setUserId] = useState(user?.id)
 
   const categories = Object.values(categoryItems);
@@ -32,7 +32,7 @@ const EventForm = () => {
 
   return (
     <div className='formDiv SignupFormDiv'>
-      <form onSubmit={ handleSubmit } className='formE SignupForm'>
+      <form value={ categoryId } onSubmit={ handleSubmit } className='formE SignupForm'>
         <ul>
           {/* {errors.map((err, id) => <li key={ id } >{ err }</li>)} */}
         </ul>
@@ -77,10 +77,10 @@ const EventForm = () => {
         </label>
         <label className='labels'>pick a category.</label>
         <div className='selectDivE'>
-          <label value={ categoryId } className='wrap'>
+          <label className='wrap'>
             <select onChange={(e) => setCategoryId(e.target.value)}>
               {
-                categories.map((category) => <option value={category?.id}>{category?.name}</option>)
+                categories.map((category) => <option key={category.id} value={category?.id}>{category?.name}</option>)
               }
             </select>
           </label>

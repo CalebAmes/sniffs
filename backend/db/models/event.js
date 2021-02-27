@@ -26,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     }) {
       const event = await Event.create({
         name, description, dateStart, dateEnd, categoryId, userId
-      })
+      });
+      return await Event.findByPk(event.id);
     }
   };
   return Event;

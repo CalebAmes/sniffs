@@ -1,9 +1,15 @@
 import { csrfFetch } from './csrf';
 
 const SET_EVENT = 'event/setEvent'
+const ADD_EVENT = 'event/addEvent'
 
 const setEvent = (event) => ({
   type: SET_EVENT,
+  payload: event,
+})
+
+const addEvent = (event) => ({
+  type: ADD_EVENT,
   payload: event,
 })
 
@@ -28,13 +34,19 @@ export const createEvent = (event) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  dispatch(setEvent(data.event));
+  console.log(data)
+  dispatch(addEvent(data.event));
   return response;
 };
 
 function reducer(state = {}, action) {
   let newState;
   switch (action.type) {
+    case ADD_EVENT:
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      console.log(newState)
+      return newState;
     case SET_EVENT:
       newState = {};
       action.payload.forEach(item => {
