@@ -1,28 +1,28 @@
 import { csrfFetch } from "./csrf";
 
-const SET_RSVP = 'event/setRSVP';
-const ADD_RSVP = 'event/addRSVP';
+const SET_RSVP = 'rsvp/setRSVP';
+const ADD_RSVP = 'rsvp/addRSVP';
 
 const setRSVP = (rsvp) => ({
   type: SET_RSVP,
-  rsvp,
+  payload: rsvp,
 })
 
 const addRSVP = (rsvp) => ({
   type: ADD_RSVP,
-  rsvp,
+  payload: rsvp,
 })
 
 export const getRSVP = () => async (dispatch) => {
-  const res = await fetch('/api/rsvp');
-  const data = await res.json();
+  const response = await fetch('/api/rsvp');
+  const data = await response.json();
   dispatch(setRSVP(data.rsvp))
-  return res;
+  return response;
 }
 
 export const createRSVP = (rsvp) => async (dispatch) => {
   const { userId, eventId } = rsvp;
-  const res = await csrfFetch('/api/rsvp', 
+  const response = await csrfFetch('/api/rsvp', 
   {
     method: 'POST',
     body: JSON.stringify({
@@ -30,9 +30,9 @@ export const createRSVP = (rsvp) => async (dispatch) => {
       eventId,
     })
   });
-  const data = await res.json();
+  const data = await response.json();
   dispatch(addRSVP(data.rsvp));
-  return res;
+  return response;
 }
 
 function reducer(state = {}, action) {
@@ -40,11 +40,11 @@ function reducer(state = {}, action) {
   switch (action.type) {
     case ADD_RSVP:
       newState = { ...state };
-      newState[action.rsvp.id] = action.rsvp;
+      newState[action.payload.id] = action.payload;
       return newState;
     case SET_RSVP:
       newState = {};
-      action.rsvp.forEach(item => {
+      action.payload.forEach(item => {
         newState[item.id] = item;
       });
       return newState;

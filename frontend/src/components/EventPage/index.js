@@ -12,6 +12,8 @@ const EventPage = () => {
   const eventItems = useSelector((state) => state.event);
   const categoryItems = useSelector((state) => state.category);
   const user = useSelector(state => state.session.user);
+  // const rsvp = useSelector(state => state.rsvp);
+  // const rsvpArray = Object.values(rsvp);
   const { id } = useParams();
   const event = eventItems && eventItems[id];
   const category = categoryItems && event && categoryItems[event.categoryId];
@@ -22,10 +24,9 @@ const EventPage = () => {
     body1()
     dispatch(getEvent())
     dispatch(getCategory())
-    // console.log( eventId, '<---- eventId')
-    // console.log( userId, '<------ userId')
+    // dispatch(rsvpActions.createRSVP())
   }, [dispatch])
-
+  
   const addRSVP = () => {
     return dispatch(rsvpActions.createRSVP({ userId, eventId }))
   }
@@ -39,6 +40,12 @@ const EventPage = () => {
           <div className='desc'>{event?.description.toLowerCase()}</div>
         <button type='button' onClick={ addRSVP } className='submit rsvp'>RSVP</button>
         </div>
+        {/* <div>
+          {
+            rsvpArray.map(r => 
+              <p key={ r?.id }>{ r.userId }</p>)
+          }
+        </div> */}
       </>
     )} else {
       return (
