@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
+import * as rsvpActions from '../../store/rsvp';
 import './EventPage.css';
 import { body1 } from '../index';
 
@@ -14,12 +15,20 @@ const EventPage = () => {
   const { id } = useParams();
   const event = eventItems && eventItems[id];
   const category = categoryItems && event && categoryItems[event.categoryId];
+  const [ userId, setUserId ] = useState(user?.id);
+  const [ eventId, setEventId ] = useState(event?.id)
   
   useEffect(() => {
     body1()
     dispatch(getEvent())
     dispatch(getCategory())
+    // console.log( eventId, '<---- eventId')
+    // console.log( userId, '<------ userId')
   }, [dispatch])
+
+  const addRSVP = () => {
+    return dispatch(rsvpActions.createRSVP({ userId, eventId }))
+  }
 
   if(user){
     return (
@@ -28,7 +37,7 @@ const EventPage = () => {
         <div className='eventBox'>
           <div className='name'>{event?.name.toUpperCase()}</div>
           <div className='desc'>{event?.description.toLowerCase()}</div>
-        <button className='submit rsvp'>RSVP</button>
+        <button type='button' onClick={ addRSVP } className='submit rsvp'>RSVP</button>
         </div>
       </>
     )} else {

@@ -27,9 +27,7 @@ router.post(
     const event = await Event.createEvent({
       name, description, dateStart, dateEnd, categoryId, userId
     });
-    return res.json({
-      event,
-    })
+    return res.json({ event })
   })
 )
 
