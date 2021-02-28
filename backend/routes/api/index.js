@@ -3,6 +3,8 @@ const sessionRouter = require('./session');
 const usersRouter = require('./users');
 const eventRouter = require('./event');
 const categoryRouter = require('./category');
+const commentRouter = require('./comment');
+const rsvpRouter = require('./rsvp')
 
 router.post('/test', function(req, res){
   res.json({ requestBody: req.body });
@@ -10,8 +12,10 @@ router.post('/test', function(req, res){
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
-router.use('/event', eventRouter)
-router.use('/category', categoryRouter)
+router.use('/event', eventRouter);
+router.use('/category', categoryRouter);
+router.use('/comment', commentRouter);
+router.use('/rsvp', rsvpRouter);
 
 
 module.exports = router;

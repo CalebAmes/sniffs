@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import event from './event';
 import category from './category';
 import rsvp from './rsvp';
+import comment from './comment';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   event,
   category,
   rsvp,
+  comment,
 })
 
 let enhancer;

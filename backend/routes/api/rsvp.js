@@ -5,7 +5,7 @@ const { RSVP } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async function (req, res) {
-  const rsvp = await RSVP.findAll({});
+  const rsvp = await RSVP.findAll();
   return res.json({ rsvp })
 }));
 

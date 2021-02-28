@@ -14,15 +14,15 @@ const addRSVP = (rsvp) => ({
 })
 
 export const getRSVP = () => async (dispatch) => {
-  const response = await fetch('/api/rsvp');
-  const data = await response.json();
+  const res = await fetch('/api/rsvp');
+  const data = await res.json();
   dispatch(setRSVP(data.rsvp))
-  return response;
+  return res;
 }
 
 export const createRSVP = (rsvp) => async (dispatch) => {
   const { userId, eventId } = rsvp;
-  const response = await csrfFetch('/api/rsvp', 
+  const response = await fetch('/api/rsvp', 
   {
     method: 'POST',
     body: JSON.stringify({
