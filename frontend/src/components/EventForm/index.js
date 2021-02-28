@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { getCategory } from '../../store/category';
 import * as eventActions from '../../store/event';
 import './EventForm.css';
@@ -16,6 +16,7 @@ const EventForm = () => {
   const [dateEnd, setDateEnd] = useState('');
   const [categoryId, setCategoryId] = useState(1);
   const [userId, setUserId] = useState(user?.id)
+  const history = useHistory();
 
   const categories = Object.values(categoryItems);
 
@@ -25,7 +26,11 @@ const EventForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    return dispatch(eventActions.createEvent({ name, description, dateStart, dateEnd,categoryId, userId}))
+    dispatch(eventActions.createEvent({ 
+        name, description, dateStart, 
+        dateEnd,categoryId, userId,
+      }))
+    history.push('/');
   }
 
   if (!user) return <Redirect to='/' />;

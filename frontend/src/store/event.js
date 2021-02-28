@@ -34,7 +34,6 @@ export const createEvent = (event) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log(data)
   dispatch(addEvent(data.event));
   return response;
 };
@@ -45,7 +44,6 @@ function reducer(state = {}, action) {
     case ADD_EVENT:
       newState = { ...state };
       newState[action.payload.id] = action.payload;
-      console.log(newState)
       return newState;
     case SET_EVENT:
       newState = {};
