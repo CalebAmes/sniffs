@@ -18,8 +18,7 @@
 
 .commentBlock{
   display: flex;
-  margin: auto auto 80px auto;
-  margin-bottom: 80px;
+  margin: 80px auto;
   box-sizing: border-box;
   padding: padding 5%;
   width: 50%;
