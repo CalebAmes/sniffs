@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
 import { getComment, createComment } from '../../store/comment';
-import { getRSVP, createRSVP } from '../../store/rsvp';
+import { getRsvp, createRsvp } from '../../store/rsvp'
 import './EventPage.css';
 import { body1 } from '../index';
 
 const EventPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   
   const user = useSelector(state => state.session.user);
   const [userId, setUserId] = useState(user?.id)
@@ -20,19 +21,11 @@ const EventPage = () => {
   const { id } = useParams();
   const event = eventItems && eventItems[id];
 
-  const rsvpArray = Object.values(rsvpItems);
   const commentsArray = Object.values(commentItems);
 
   const category = categoryItems && event && categoryItems[event.categoryId];
   const [content, setContent] = useState('')
   const eventId = id;
-
-  console.log(rsvpItems)
-  console.log(commentItems)
-
-  const addRSVP = () => (
-    dispatch(createRSVP({ userId, eventId }))
-    )
     
   const addComment = (e) => {
     e.preventDefault();
@@ -40,43 +33,62 @@ const EventPage = () => {
       userId, content, eventId
     }))
   }
+
+  const addRsvp = () => {
+    dispatch(createRsvp({
+      userId, eventId
+    }))
+    history.push('/')
+  }
     
     useEffect(() => {
       body1()
       dispatch(getEvent())
       dispatch(getCategory())
       dispatch(getComment())
-      dispatch(getRSVP())
+      dispatch(getRsvp())
     }, [dispatch])
     
   if(user){
     return (
       <>
         <h1 className='title'>{category?.name}.</h1>
-        <div className='eventBox'>
-          <div className='name'>{event?.name.toUpperCase()}</div>
-          <div className='desc'>{event?.description.toLowerCase()}</div>
-        <button type='button' className='submit rsvp' onClick={addRSVP}>RSVP</button>
+        <div className='block'>
+          <div className='image'>
+            <img src={event?.photo} />
+          </div>
+          <div className='eventBox'>
+            <div className='name'>{event?.name.toUpperCase()}</div>
+            <div className='desc'>{event?.description.toLowerCase()}</div>
+            <div className='dateTimeDiv'>
+              <div className='dateTime'>{event?.dateStart}</div>
+              <p>-</p>
+              <div className='dateTime'>{event?.dateEnd}</div>
+            </div>
+            <button type='button' className='submit rsvp' onClick={addRsvp}>RSVP</button>
+          </div>
         </div>
-        <div className='comments'>
-          { commentsArray?.filter(comment => comment.eventId == id).map(comment => 
-            <div key={comment?.id} className='comment'>{comment?.content}
-          </div>) }
+        <div className='commentBlock'>
+          <div className='comments'>
+            { commentsArray?.filter(comment => comment.eventId == id).map(comment => 
+              <div key={comment?.id} className='comment'>{comment?.content}
+            </div>) }
+          </div>
+          <div>
+            <form value={ userId } onSubmit={ addComment }>
+              <div className='postComment'>
+                <textarea
+                  type='text'
+                  className='input'
+                  value={ content }
+                  onChange={(e) => setContent(e.target.value)}
+                  required />
+                <button className='submit commentB' type='submit'>comment.</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div>
-          <form value={ userId } onSubmit={ addComment }>
-            <label>
-              <textarea
-                type='text'
-                className='input'
-                value={ content }
-                onChange={(e) => setContent(e.target.value)}
-                required />
-            </label>
-            <button className='submit' type='submit'>comment.</button>
-          </form>
-        </div>
-
+        <div className='pad'/>
       </>
     )} else {
       return (

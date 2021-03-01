@@ -1,7 +1,7 @@
 import { csrfFetch } from './csrf';
 
 const SET_RSVP = 'rsvp/setRsvp';
-const ADD_RSVP = 'rsvp/addRsvp';
+const ADD_RSVP = 'comment/addRsvp';
 
 const setRsvp = (rsvp) => ({
   type: SET_RSVP,
@@ -13,19 +13,19 @@ const addRsvp = (rsvp) => ({
   payload: rsvp
 })
 
-export const getRSVP = () => async (dispatch) => {
+export const getRsvp = () => async (dispatch) => {
   const res = await fetch('/api/rsvp');
   const data = await res.json();
   dispatch(setRsvp(data.rsvp));
   return res;
 }
 
-export const createRSVP = (rsvp) => async (dispatch) => {
-  const { userId, eventId } = rsvp;
+export const createRsvp = (rsvp) => async (dispatch) => {
+  const { userId, content, eventId } = rsvp;
   const res = await csrfFetch('/api/rsvp', {
     method: 'POST',
     body: JSON.stringify({
-      userId, eventId
+      userId, content, eventId
     }),
   });
   const data = await res.json();
@@ -39,7 +39,6 @@ function reducer(state = {}, action) {
     case ADD_RSVP:
       newState = { ...state };
       newState[action.payload] = action.payload;
-      console.log(action.payload)
       return newState;
     case SET_RSVP:
       newState = {};

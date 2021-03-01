@@ -3,8 +3,8 @@ import thunk from "redux-thunk";
 import sessionReducer from './session';
 import event from './event';
 import category from './category';
-import rsvp from './rsvp';
 import comment from './comment';
+import rsvp from './rsvp'
 
 const rootReducer = combineReducers({
   session: sessionReducer,

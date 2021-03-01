@@ -40,10 +40,10 @@ function LoginForm() {
 
   return (
     <>
+    {errors.map((err, id) => <div className='errors' key={id}>{err}
+      </div>)}
     <div className='formDiv loginFormDiv'>
       <form className='form loginForm' onSubmit={ handleSubmit }>
-        {errors.map((err, id) => <div className='errors' key={id}>{err}
-        </div>)}
         <div className='formTitleDiv'>
           <h2 className='formTitle'>Log in</h2>
         </div>

@@ -1,16 +1,54 @@
 .title {
   margin-top: 10px;
   margin-left: 30px;
+  margin-bottom: 80px;
 }
 
 .eventBox {
   display: flex;
-  margin: 10% auto;
+  margin: auto 30px;
   box-sizing: border-box;
-  padding: 3%;
-  width: 30%;
+  padding: 2%;
+  width: 80%;
   flex-direction: column;
   border: 1px solid #000;
+  height: 302px;
+  overflow: scroll;
+}
+
+.commentBlock{
+  display: flex;
+  margin: auto auto 80px auto;
+  margin-bottom: 80px;
+  box-sizing: border-box;
+  padding: padding 5%;
+  width: 50%;
+  height: 100%;
+  flex-direction: column;
+  border: 1px solid #000;
+  overflow: scroll;
+  transform: translateY(20%);
+}
+
+.image {
+  display: flex;
+  margin: auto;
+  box-sizing: border-box;
+  flex-direction: column;
+  border: 1px solid #000;
+  height: 302px;
+  width: 538px;
+  overflow: -moz-hidden-unscrollable;
+  overflow: hidden;
+}
+
+.block {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  margin: auto -3%;
+  height: 18em;
+  
 }
 
 .name {
@@ -23,9 +61,47 @@
 
 .desc{
   margin-bottom: 25px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 15px;
 }
 
 .rsvp {
-  width: 80%;
+  width: 50%;
   margin: auto;
+  height: 40px;
+}
+
+.commentB {
+  width: 30%;
+  margin: auto 0px;
+}
+
+.comment {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 20px;
+  margin: 8px 0px;
+  border-bottom: 1px solid rgba(0,0,0, 0.3)
+}
+.pad{
+  margin: 400px;
+}
+
+.postComment {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+.dateTimeDiv {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 15px 5%;
 }
