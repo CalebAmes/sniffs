@@ -9,5 +9,19 @@ router.get('/', asyncHandler(async function (req, res) {
   return res.json({ comment })
 }))
 
+router.post(
+  '/',
+  asyncHandler(async(req, res) => {
+    const {
+      userId, 
+      content,
+      eventId
+    } = req.body;
+    const comment = await Comment.createComment({
+      userId, content, eventId
+    });
+    return res.json({ comment })
+  })
+)
 
 module.exports = router;

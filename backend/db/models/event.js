@@ -21,14 +21,15 @@ module.exports = (sequelize, DataTypes) => {
 
     Event.belongsTo(models.Category, { foreignKey: 'categoryId'});
 
-    Event.createEvent = async function ({ 
-      name, description, dateStart, dateEnd, categoryId, userId
-    }) {
-      const event = await Event.create({
-        name, description, dateStart, dateEnd, categoryId, userId
-      });
-      return await Event.findByPk(event.id);
-    }
   };
+  Event.createEvent = async function ({ 
+    name, description, dateStart, dateEnd, categoryId, userId
+  }) {
+    const event = await Event.create({
+      name, description, dateStart, dateEnd, categoryId, userId
+    });
+    return await Event.findByPk(event.id);
+  }
+  
   return Event;
 };

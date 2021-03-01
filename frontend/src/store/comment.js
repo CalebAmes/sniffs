@@ -1,14 +1,16 @@
+import { csrfFetch } from './csrf';
+
 const SET_COMMENT = 'comment/setComment';
 const ADD_COMMENT = 'comment/addComment';
 
 const setComment = (comment) => ({
   type: SET_COMMENT,
-  payload: comment,
+  payload: comment
 })
 
-const setComment = (comment) => ({
-  type: SET_COMMENT,
-  payload: comment,
+const addComment = (comment) => ({
+  type: ADD_COMMENT,
+  payload: comment
 })
 
 export const getComment = () => async (dispatch) => {
@@ -18,15 +20,15 @@ export const getComment = () => async (dispatch) => {
   return res;
 }
 
-export const createComment = (event) => async (dispatch) => {
+export const createComment = (comment) => async (dispatch) => {
   const { userId, content, eventId } = comment;
-  const res = await fetch('/api/comment', {
+  const res = await csrfFetch('/api/comment', {
     method: 'POST',
     body: JSON.stringify({
-      userId, content, eventId,
+      userId, content, eventId
     }),
   });
-  const date = await res.json();
+  const data = await res.json();
   dispatch(addComment(data.comment));
   return res;
 }

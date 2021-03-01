@@ -22,12 +22,12 @@ export const getRSVP = () => async (dispatch) => {
 
 export const createRSVP = (rsvp) => async (dispatch) => {
   const { userId, eventId } = rsvp;
-  const response = await fetch('/api/rsvp', 
+  const response = await csrfFetch('/api/rsvp', 
   {
     method: 'POST',
     body: JSON.stringify({
       userId,
-      eventId,
+      eventId
     })
   });
   const data = await response.json();
