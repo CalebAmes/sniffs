@@ -6,16 +6,12 @@ const categoryRouter = require('./category');
 const commentRouter = require('./comment');
 const rsvpRouter = require('./rsvp')
 
-router.post('/test', function(req, res){
-  res.json({ requestBody: req.body });
-});
-
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/event', eventRouter);
 router.use('/category', categoryRouter);
-router.use('/comment', commentRouter);
 router.use('/rsvp', rsvpRouter);
+router.use('/comment', commentRouter);
 
 
 module.exports = router;

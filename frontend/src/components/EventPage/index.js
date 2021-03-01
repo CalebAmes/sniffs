@@ -27,6 +27,9 @@ const EventPage = () => {
   const [content, setContent] = useState('')
   const eventId = id;
 
+  console.log(rsvpItems)
+  console.log(commentItems)
+
   const addRSVP = () => (
     dispatch(createRSVP({ userId, eventId }))
     )

@@ -1,11 +1,11 @@
  const express = require('express');
 const asyncHandler = require ('express-async-handler');
-const { RSVP } = require('../../db/models');
+const { Rsvp } = require('../../db/models');
 
 const router = express.Router();
 
 router.get('/', asyncHandler(async function (req, res) {
-  const rsvp = await RSVP.findAll();
+  const rsvp = await Rsvp.findAll({});
   return res.json({ rsvp })
 }))
 
@@ -16,7 +16,7 @@ router.post(
       userId, 
       eventId
     } = req.body;
-    const rsvp = await RSVP.createRSVP({
+    const rsvp = await Rsvp.createRsvp({
       userId, eventId
     });
     return res.json({ rsvp })

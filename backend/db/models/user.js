@@ -54,9 +54,9 @@ module.exports = (sequelize, DataTypes) => {
       through: 'UserCategory', otherKey: 'categoryId', foreignKey: 'userId'
     });
 
-    User.hasMany(models.RSVP, { foreignKey: 'userId'});
+    User.hasMany(models.Rsvp, { foreignKey: 'userId'});
     User.belongsToMany(models.Event, { 
-      through: 'RSVP', otherKey: 'eventId', foreignKey: 'userId'
+      through: 'Rsvp', otherKey: 'eventId', foreignKey: 'userId'
     });
 
     User.hasMany(models.Comment, { foreignKey: 'userId'});
