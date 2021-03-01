@@ -92,11 +92,21 @@ const EventPage = () => {
       </>
     )} else {
       return (
-      <>
-      <h1 className='title'>{category?.name}.</h1>
-        <div className='eventBox'>
-          <div className='name'>{event?.name.toUpperCase()}</div>
-          <div className='desc'>{event?.description.toLowerCase()}</div>
+        <>
+        <h1 className='title'>{category?.name}.</h1>
+        <div className='block'>
+          <div className='image'>
+            <img src={event?.photo} />
+          </div>
+          <div className='eventBox'>
+            <div className='name'>{event?.name.toUpperCase()}</div>
+            <div className='desc'>{event?.description.toLowerCase()}</div>
+            <div className='dateTimeDiv'>
+              <div className='dateTime'>{event?.dateStart}</div>
+              <p>-</p>
+              <div className='dateTime'>{event?.dateEnd}</div>
+            </div>
+          </div>
         </div>
       </>
       )}
