@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import Navigation, { NavItem, Dropdown } from './components/Navigation';
+import Splash from './components/SplashPage';
 import LandingPage from './components/LandingPage';
 import UserProfile from './components/UserProfile';
 import EventForm from './components/EventForm';
@@ -26,6 +27,9 @@ function App() {
       { isLoaded && (
       <Switch>
         <Route exact path='/'>
+          <Splash />
+        </Route>
+        <Route path='/home'>
           <LandingPage />
         </Route>
         <Route path='/category/:id'>
