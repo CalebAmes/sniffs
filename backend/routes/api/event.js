@@ -22,7 +22,7 @@ router.post(
       dateStart, 
       dateEnd, 
       categoryId, 
-      userId 
+      userId, 
     } = req.body;
     const event = await Event.createEvent({
       name, description, dateStart, dateEnd, categoryId, userId

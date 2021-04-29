@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Rsvp.associate = function(models) {
     Rsvp.belongsTo( models.User, { foreignKey: 'userId' });
-
     Rsvp.belongsTo( models.Event, { foreignKey: 'eventId' });
   };
   Rsvp.createRsvp = async function ({ userId, eventId }) {
