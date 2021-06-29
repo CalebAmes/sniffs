@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { getCategory } from '../../store/category';
 import * as eventActions from '../../store/event';
+import { body2 } from '../index'
 import './EventForm.css';
 import '../../index.css';
 
@@ -22,6 +23,7 @@ const EventForm = () => {
 
   useEffect(() => {
     dispatch(getCategory())
+    body2()
   }, [dispatch])
 
   const handleSubmit = (e) => {
