@@ -9,4 +9,3 @@ export const body2 = () => {
   body.classList.add('body2');
   body.classList.remove('body1');
 }
-
