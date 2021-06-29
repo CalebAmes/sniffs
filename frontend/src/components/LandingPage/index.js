@@ -31,13 +31,20 @@ const LandingPage = () => {
   }
   
   const search = (e) => {
-    let val = e.target.value
+    let val = e.target.value.toLowerCase()
     if(val.length === 0){
       clear()
     }
     else {
       setEventItemsArray(
-          eventItemsArray.filter(el => el['name'].includes(val) || el['description'].includes(val)))
+          Object.values(eventItems).filter((el) => {
+            let name = el.name.toLowerCase();
+            let desc = el.description.toLowerCase();
+
+            if(name.includes(val) || desc.includes(val))
+              return el;
+            else return;
+          }))
     }
   }
 
