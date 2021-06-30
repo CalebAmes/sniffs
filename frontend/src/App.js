@@ -11,13 +11,17 @@ import ProfileForm from './components/ProfileForm';
 import EventPage from './components/EventPage';
 import CategoryPage from './components/CategoryPage';
 import * as sessionActions from './store/session';
+import { getEvent } from './store/event';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(getEvent())
+      .then(dispatch(sessionActions.restoreUser()))
+      .then(() => setIsLoaded(true))
+    // dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (

@@ -13,19 +13,22 @@ const LandingPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   
+  const categoryItems = useSelector((state) => state.category);
+  const eventItems = useSelector((state) => state.event);
+  
+  const [eventItemsArray, setEventItemsArray] = useState(Object.values(eventItems));
+  const [isLoaded, setIsLoaded] = useState(false);
+  const categoryItemsArray = Object.values(categoryItems);
+  const category = categoryItems[id];
+  
   useEffect(() => {
     body1()
     dispatch(getCategory())
     dispatch(getEvent())
+    setEventItemsArray(Object.values(eventItems))
+    setIsLoaded(true)
   }, [dispatch])
   
-  const eventItems = useSelector((state) => state.event);
-  const categoryItems = useSelector((state) => state.category);
-
-  const [eventItemsArray, setEventItemsArray] = useState(Object.values(eventItems));
-  const categoryItemsArray = Object.values(categoryItems);
-  const category = categoryItems[id];
-
   const clear = () => {
     setEventItemsArray(Object.values(eventItems))
   }
@@ -50,32 +53,36 @@ const LandingPage = () => {
 
 
     return (
-      <div className='home'>
-        <div className='topPad'></div>
-        <div>
-          <h1 className='h1'>events.</h1>
-          <input onChange={(e)=>search(e)}></input>
-            <div className='carouselDiv'>
-              <ScrollingCarousel className='scrollingCarousel'>
-                {
-                  eventItemsArray.map(item => (
-                    <EventHolder event={ item } key={ item?.id }> { item?.name }</EventHolder>
-                  ))
-                }
-              </ScrollingCarousel>
-            </div>
-        </div>
-          <h1 className='h1'>categories.</h1>
-          <div className='categoryBlock'>
-            {
-              categoryItemsArray.map(item => (
-                <CategoryHolder category={ item } key={ item?.id }>
-                  { item?.name }
-                </CategoryHolder>
-              ))
-            }
-        </div>
-      </div>  
+      <>
+      { isLoaded &&
+        <div className='home'>
+          <div className='topPad'></div>
+          <div>
+            <h1 className='h1'>events.</h1>
+            <input onChange={(e)=>search(e)}></input>
+              <div className='carouselDiv'>
+                <ScrollingCarousel className='scrollingCarousel'>
+                  {
+                    eventItemsArray.map(item => (
+                      <EventHolder event={ item } key={ item?.id }> { item?.name }</EventHolder>
+                    ))
+                  }
+                </ScrollingCarousel>
+              </div>
+          </div>
+            <h1 className='h1'>categories.</h1>
+            <div className='categoryBlock'>
+              {
+                categoryItemsArray.map(item => (
+                  <CategoryHolder category={ item } key={ item?.id }>
+                    { item?.name }
+                  </CategoryHolder>
+                ))
+              }
+          </div>
+        </div>  
+      }
+      </>
     )
 }
 
