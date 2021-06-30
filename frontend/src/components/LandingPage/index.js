@@ -58,8 +58,12 @@ const LandingPage = () => {
         <div className='home'>
           <div className='topPad'></div>
           <div>
-            <h1 className='h1'>events.</h1>
-            <input onChange={(e)=>search(e)}></input>
+            <div className='headerDiv'>
+              <h1 className='h1'>events.</h1>
+            </div>
+              <div className='eventSearchDiv'>
+                <input className='eventSearchInput' onChange={(e)=>search(e)} placeholder='search.'></input>
+              </div>
               <div className='carouselDiv'>
                 <ScrollingCarousel className='scrollingCarousel'>
                   {
