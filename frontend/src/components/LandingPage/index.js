@@ -29,26 +29,18 @@ const LandingPage = () => {
     setIsLoaded(true)
   }, [dispatch])
   
-  const clear = () => {
-    setEventItemsArray(Object.values(eventItems))
-  }
-  
   const search = (e) => {
     let val = e.target.value.toLowerCase()
-    if(val.length === 0){
-      clear()
-    }
-    else {
       setEventItemsArray(
-          Object.values(eventItems).filter((el) => {
-            let name = el.name.toLowerCase();
-            let desc = el.description.toLowerCase();
+        Object.values(eventItems).filter((el) => {
+          let name = el.name.toLowerCase();
+          let desc = el.description.toLowerCase();
 
-            if(name.includes(val) || desc.includes(val))
-              return el;
-            else return;
-          }))
-    }
+          if(name.includes(val) || desc.includes(val))
+            return el;
+          else return;
+        })
+      )
   }
 
 

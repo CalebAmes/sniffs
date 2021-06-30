@@ -17,39 +17,57 @@ const LandingPage = () => {
   const eventItems = useSelector((state) => state.event);
   const categoryItems = useSelector((state) => state.category);
   
-  const eventItemsArray = Object.values(eventItems);
+  const [eventItemsArray, setEventItemsArray] = useState(Object.values(eventItems)
+    .filter(ev => ev?.categoryId == id));
   const categoryItemsArray = Object.values(categoryItems);
   const category = categoryItems[id];
   
-  function Header () {
-    return(
+  const search = (e) => {
+    let val = e.target.value.toLowerCase();
+    let baseArr = Object.values(eventItems).filter(ev => ev.categoryId == id)
+      setEventItemsArray(
+        baseArr.filter((el) => {
+          let name = el.name.toLowerCase();
+          let desc = el.description.toLowerCase();
+
+          if(name.includes(val) || desc.includes(val))
+            return el;
+          else return;
+        })
+      )
+  }
+
+  const Header = () => (
       <>
-      <h1 className='h1'>{category?.name}.</h1>
-      <h3 className='h3'>{category?.description}</h3>
-    </>
-  )}
+        <h1 className='h1'>{category?.name}.</h1>
+        <h3 className='h3'>{category?.description}</h3>
+      </>
+  )
   
   useEffect(() => {
     body1()
     dispatch(getCategory())
     dispatch(getEvent())
-  }, [dispatch])
+    setEventItemsArray(Object.values(eventItems).filter(ev => ev.categoryId == id))
+  }, [dispatch, id])
 
     return(
       <div className='home'>
       <div className='topPad'></div>
       <div>
         <Header/>
-          <div className='carouselDiv'>
-            <ScrollingCarousel className='scrollingCarousel'>
-              {
-                eventItemsArray.filter(event=> event?.categoryId == id)
-                  .map(item => (
-                  <EventHolder event={ item } key={ item?.id }> { item?.name }</EventHolder>
-                ))
-              }
-            </ScrollingCarousel>
-          </div>
+        <div className='eventSearchDiv'>
+          <input className='eventSearchInput' onChange={(e)=>search(e)} placeholder='search category.'></input>
+        </div>
+        <div className='carouselDiv'>
+          <ScrollingCarousel className='scrollingCarousel'>
+            {
+              eventItemsArray.map(item => (
+                <EventHolder event={ item } key={ item?.id }> { item?.name }</EventHolder>
+              ))
+            }
+          </ScrollingCarousel>
+        </div>
       </div>
         <h1 className='h1'>categories.</h1>
         <div className='categoryBlock'>
