@@ -87,6 +87,7 @@ const EventPage = () => {
                 <textarea
                   type='text'
                   className='input'
+                  maxLength='140'
                   value={ content }
                   onChange={(e) => setContent(e.target.value)}
                   required />
