@@ -28,7 +28,7 @@
 }
 
 .h3 {
-  width: 30%;
+  max-width: 30%;
   margin: auto;
   text-align: center;
 }
@@ -44,3 +44,6 @@
   overflow: hidden;
 }
 
+.Header {
+  padding-bottom: 2%;
+}
