@@ -27,6 +27,7 @@ router.post(
 router.delete(
   '/:id(\\d+/delete)',
   asyncHandler(async (req, res) => {
+    console.log(req.body)
     const { id } = req.body;
     const comment = await Comment.findByPk(id);
     comment.destroy();

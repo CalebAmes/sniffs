@@ -2,15 +2,21 @@ import { csrfFetch } from './csrf';
 
 const SET_COMMENT = 'comment/setComment';
 const ADD_COMMENT = 'comment/addComment';
+const DELETE_COMMENT = 'comment/deleteComment';
 
 const setComment = (comment) => ({
   type: SET_COMMENT,
-  payload: comment
+  payload: comment,
 })
 
 const addComment = (comment) => ({
   type: ADD_COMMENT,
-  payload: comment
+  payload: comment,
+})
+
+const deleteComment = (id) => ({
+  type: DELETE_COMMENT,
+  payload: id,
 })
 
 export const getComment = () => async (dispatch) => {
@@ -31,6 +37,12 @@ export const createComment = (comment) => async (dispatch) => {
   const data = await res.json();
   dispatch(addComment(data.comment));
   return res;
+}
+
+export const deleteComment = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/comment/${id}/delete`, {
+    meth
+  })
 }
 
 function reducer(state = {}, action) {
