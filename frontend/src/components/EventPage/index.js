@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
-import { getComment, createComment } from '../../store/comment';
+import { getComment, createComment, removeComment } from '../../store/comment';
 import { getRsvp, createRsvp } from '../../store/rsvp'
 import './EventPage.css';
 import { body1 } from '../index';
@@ -32,6 +32,10 @@ const EventPage = () => {
     dispatch(createComment({
       userId, content, eventId
     }))
+  }
+
+  const deleteCommentId = (id) => {
+    dispatch(removeComment(id))
   }
 
   const addRsvp = () => {
@@ -71,8 +75,11 @@ const EventPage = () => {
         <div className='commentBlock'>
           <div className='comments'>
             { commentsArray?.filter(comment => comment.eventId == id).map(comment => 
-              <div key={comment?.id} className='comment'>{comment?.content}
-            </div>) }
+              <>
+                <div key={comment?.id} className='comment'>{comment?.content}</div>
+                <button onClick={() => deleteCommentId(comment.id)}>Delete</button>
+              </>
+            )}
           </div>
           <div>
             <form value={ userId } onSubmit={ addComment }>
