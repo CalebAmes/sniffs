@@ -36,6 +36,7 @@ const EventPage = () => {
 				eventId,
 			})
 		);
+    setContent('')
 	};
 
 	const deleteCommentId = (id) => {
