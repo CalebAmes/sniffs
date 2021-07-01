@@ -21,7 +21,6 @@ function App() {
     dispatch(getEvent())
       .then(dispatch(sessionActions.restoreUser()))
       .then(() => setIsLoaded(true))
-    // dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
   return (
