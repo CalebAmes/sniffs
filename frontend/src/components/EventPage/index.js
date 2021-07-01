@@ -98,7 +98,9 @@ const EventPage = () => {
 									<div key={comment?.id} className="comment">
 										{comment?.content}
 									</div>
-									<button onClick={() => deleteCommentId(comment.id)}>Delete</button>
+                  { userId === comment.userId &&
+                    <button onClick={() => deleteCommentId(comment.id)}>Delete</button>
+                  }
 								</>
 							))}
 					</div>
