@@ -20,7 +20,7 @@ const deleteComment = (id) => ({
 })
 
 export const getComment = () => async (dispatch) => {
-  const res = await fetch('/api/comment');
+  const res = await fetch('/api/comment/');
   const data = await res.json();
   dispatch(setComment(data.comment));
   return res;

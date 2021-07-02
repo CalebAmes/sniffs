@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const SET_EVENT = 'event/setEvent'
 const ADD_EVENT = 'event/addEvent'
+const DELETE_EVENT = 'event/deleteEvent'
 
 const setEvent = (event) => ({
   type: SET_EVENT,
@@ -14,12 +15,12 @@ const addEvent = (event) => ({
 })
 
 const deleteEvent = (id) => ({
-  type: DELETE_COMMENT,
+  type: DELETE_EVENT,
   payload: id,
 })
 
 export const getEvent = () => async (dispatch) => {
-  const res = await fetch('/api/event');
+  const res = await fetch('/api/event/');
   const data = await res.json();
   dispatch(setEvent(data.event))
   return res;
@@ -27,7 +28,7 @@ export const getEvent = () => async (dispatch) => {
 
 export const createEvent = (event) => async (dispatch) => {
   const { name, description, dateStart, dateEnd, categoryId, userId } = event;
-  const response = await csrfFetch('/api/event', {
+  const response = await csrfFetch('/api/event/', {
     method: 'POST',
     body: JSON.stringify({
       name,
@@ -46,12 +47,12 @@ export const createEvent = (event) => async (dispatch) => {
 export const removeEvent = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/event/${id}/delete`, {
     method: 'DELETE',
-    headers: {'Content-Type': 'appliction/json'},
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       id
     })
   });
-  await dispatch(deleteComment(id))
+  await dispatch(deleteEvent(id))
   return res;
 }
 
@@ -68,7 +69,7 @@ function reducer(state = {}, action) {
         newState[item.id] = item;
       });
       return newState;
-    case DELETE_COMMENT:
+    case DELETE_EVENT:
       newState = { ...state };
       delete newState[action.payload];
       return newState

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getEvent } from '../../store/event';
+import { getEvent, removeEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
 import { getComment, createComment, removeComment } from '../../store/comment';
 import { getRsvp, createRsvp } from '../../store/rsvp';
@@ -38,6 +38,10 @@ const EventPage = () => {
 		);
     setContent('')
 	};
+
+	const deleteEventId = (id) => {
+		dispatch(removeEvent(id))
+	}
 
 	const deleteCommentId = (id) => {
 		dispatch(removeComment(id));
@@ -86,6 +90,9 @@ const EventPage = () => {
 						</div>
 						<button type="button" className="submit rsvp" onClick={addRsvp}>
 							RSVP
+						</button>
+						<button type="button" className="submit rsvp" onClick={() => deleteEventId(event.id)}>
+							Delete
 						</button>
 					</div>
 				</div>
