@@ -38,10 +38,10 @@ const LandingPage = () => {
   }
 
   const Header = () => (
-      <>
+      <div className='Header'>
         <h1 className='h1'>{category?.name}.</h1>
         <h3 className='h3'>{category?.description}</h3>
-      </>
+      </div>
   )
   
   useEffect(() => {

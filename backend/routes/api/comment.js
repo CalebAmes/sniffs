@@ -27,22 +27,11 @@ router.post(
 router.delete(
   '/:id(\\d+/delete)',
   asyncHandler(async (req, res) => {
-    console.log(req.body)
     const { id } = req.body;
     const comment = await Comment.findByPk(id);
     comment.destroy();
     return res.json();
   })
 );
-
-// router.delete(
-// 	'/:id(\\d+/delete)',
-// 	asyncHandler(async (req, res) => {
-// 		const { id } = req.body;
-// 		const message = await ChannelMessage.findByPk(id);
-// 		message.destroy();
-// 		return res.json();
-// 	})
-// );
 
 module.exports = router;
