@@ -66,7 +66,6 @@ function reducer(state = {}, action) {
       return newState;
       case DELETE_COMMENT:
         newState = { ...state };
-        console.log('this is action.payload: ', action.payload)
         delete newState[action.payload];
         return newState
     default:

@@ -31,4 +31,14 @@ router.post(
   })
 )
 
+router.delete(
+  '/:id(\\d+/delete)',
+  asyncHandler(async (req, res) => {
+    const { id } = req.body;
+    const event = await event.findByPk(id);
+    event.destroy();
+    return res.json();
+  })
+);
+
 module.exports = router;

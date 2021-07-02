@@ -13,6 +13,11 @@ const addEvent = (event) => ({
   payload: event,
 })
 
+const deleteEvent = (id) => ({
+  type: DELETE_COMMENT,
+  payload: id,
+})
+
 export const getEvent = () => async (dispatch) => {
   const res = await fetch('/api/event');
   const data = await res.json();
@@ -38,6 +43,18 @@ export const createEvent = (event) => async (dispatch) => {
   return response;
 };
 
+export const removeEvent = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/event/${id}/delete`, {
+    method: 'DELETE',
+    headers: {'Content-Type': 'appliction/json'},
+    body: JSON.stringify({
+      id
+    })
+  });
+  await dispatch(deleteComment(id))
+  return res;
+}
+
 function reducer(state = {}, action) {
   let newState;
   switch (action.type) {
@@ -51,6 +68,10 @@ function reducer(state = {}, action) {
         newState[item.id] = item;
       });
       return newState;
+    case DELETE_COMMENT:
+      newState = { ...state };
+      delete newState[action.payload];
+      return newState
     default:
       return state;
   }
