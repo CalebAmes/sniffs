@@ -39,8 +39,9 @@ const EventPage = () => {
     setContent('')
 	};
 
-	const deleteEventId = (id) => {
-		dispatch(removeEvent(id))
+	const deleteEventId = async (id) => {
+		await dispatch(removeEvent(id))
+		history.push('/')
 	}
 
 	const deleteCommentId = (id) => {

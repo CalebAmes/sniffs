@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Event, Comment } = require('../../db/models');
+const { Event, Comment, Rsvp } = require('../../db/models');
 
 const router = express.Router();
 
@@ -35,16 +35,22 @@ router.delete(
   '/:id(\\d+/delete)',
   asyncHandler(async (req, res) => {
     const { id } = req.body;
-    const event = await Event.findByPk(id, {
-      include: Comment
-    });
+    const event = await Event.findByPk(id);
     const comments = await Comment.findAll({
       where:{
         eventId: id
       }
     })
+    const rsvps = await Rsvp.findAll({
+      where:{
+        eventId: id
+      }
+    })
+    console.log('this is the event: ', event)
+    console.log('this is the comments: ', comments)
     comments.forEach(comment => comment.destroy())
-    event.destroy();
+    rsvps.forEach(rsvp => rsvp.destroy())
+    event.destroy()
     return res.json();
   })
 );
