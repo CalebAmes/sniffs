@@ -17,7 +17,7 @@ const EventPage = () => {
 	const eventItems = useSelector((state) => state.event);
 	const categoryItems = useSelector((state) => state.category);
 	const commentItems = useSelector((state) => state.comment);
-	const rsvpItems = useSelector((state) => state.rsvp);
+	const [commentEditor, setCommentEditor] = useState(false);
 	const { id } = useParams();
 	const event = eventItems && eventItems[id];
 
@@ -38,6 +38,37 @@ const EventPage = () => {
 		);
 		setContent('');
 	};
+
+	const editComment = async (comment, newComment, id) => {
+		if (newComment !== comment.content) {
+			console.log('in editComment()')
+			// await dispatch(updateComment(newComment, id));
+		}
+		setCommentEditor(!commentEditor)
+	}
+
+	const EditComment = ({ func, comment }) => {
+		const [value, setValue] = useState(comment.content);
+		const keyPress = (e) => {
+			if (e.key === 'Enter') {
+				e.preventDefault();
+				func(value, comment.id)
+			}
+		};
+		return (
+			<div className="editCommentDiv">
+				<textarea
+					maxLength="140"
+					onChange={(e) => setValue(e.target.value)}
+					onKeyPress={keyPress}
+					value={value}
+					className="messageInputTextarea"
+				>
+					{comment.content}
+				</textarea>
+			</div>
+		)
+	}
 
 	const deleteEventId = async (id) => {
 		await dispatch(removeEvent(id));
@@ -107,8 +138,14 @@ const EventPage = () => {
 										{comment?.content}
 									</div>
 									{userId === comment.userId && (
-										<button onClick={() => deleteCommentId(comment.id)}>Delete</button>
+										<>
+											<button onClick={() => setCommentEditor(!commentEditor)}>edit.</button>
+											<button onClick={() => deleteCommentId(comment.id)}>delete.</button>
+										</>
 									)}
+									{commentEditor &&
+										<EditComment func={editComment} comment={comment} />
+									}
 								</>
 							))}
 					</div>
