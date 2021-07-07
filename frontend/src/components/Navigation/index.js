@@ -35,7 +35,6 @@ const Navigation = (props) => {
 				<ul className="navbar-nav">
 					<NavLink className="link icon-navlink" to="/profile">{`Welcome,  ${sessionUser.username}`}</NavLink>
 					<NavItem icon={<i class="fas fa-chevron-circle-down" />}>
-						<Dropdown2 />
 					</NavItem>
 				</ul>
 			</nav>
@@ -56,15 +55,12 @@ export function NavItem(props) {
 				{props.icon}
 			</a>
 
-			{open && <Dropdown openFunc={openFunc} />}
+			{open && <Dropdown2 openFunc={openFunc} />}
 		</li>
 	);
 }
 
 export function Dropdown({ openFunc }) {
-	const history = useHistory();
-	const dispatch = useDispatch();
-	const sessionUser = useSelector((state) => state.session.user);
 	const eventItems = useSelector((state) => state.event);
 	const categoryItems = useSelector((state) => state.category);
 	const eventItemsArray = Object.values(eventItems);
@@ -78,7 +74,6 @@ export function Dropdown({ openFunc }) {
 	}
 
 	function DropdownToMenu(props) {
-		// if (sessionUser) {
 		return (
 			<a href="#" className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
 				<div className="icon-button">{props.leftIcon}</div>
@@ -215,7 +210,7 @@ export function Dropdown2({ openFunc }) {
 	}
 	return (
     <>
-    <div className='cardBackground' onClick={ openFunc}>
+    <div className='cardBackground' onClick={ openFunc }>
 		<div className="dropdown" style={{ height: menuHeight }}>
 			<CSSTransition
 				in={activeMenu === 'main'}
