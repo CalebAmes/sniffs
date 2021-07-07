@@ -54,115 +54,12 @@ export function NavItem(props) {
 			<a href="#" className="icon-button" onClick={openFunc}>
 				{props.icon}
 			</a>
-			{open && <Dropdown2 openFunc={openFunc} />}
+			{open && <Dropdown openFunc={openFunc} />}
 		</li>
 	);
 }
 
 export function Dropdown({ openFunc }) {
-	const eventItems = useSelector((state) => state.event);
-	const categoryItems = useSelector((state) => state.category);
-	const eventItemsArray = Object.values(eventItems);
-	const categoryItemsArray = Object.values(categoryItems);
-	const [activeMenu, setActiveMenu] = useState('main');
-	const [menuHeight, setMenuHeight] = useState(null);
-
-	function calcHeight(el) {
-		const height = el.offsetHeight;
-		setMenuHeight(height);
-	}
-
-	function DropdownToMenu(props) {
-		return (
-			<a href="#" className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
-				<div className="icon-button">{props.leftIcon}</div>
-				{props.children}
-			</a>
-		);
-	}
-
-	function DropdownCategory({ category }) {
-		return (
-			<Link to={`/category/${category.id}`} className="menu-item">
-				<div className="icon-button"></div>
-				{category.name}
-			</Link>
-		);
-	}
-
-	function DropdownEvent({ event }) {
-		return (
-			<Link to={`/event/${event.id}`} className="menu-item">
-				<div className="icon-button"></div>
-				{event.name}
-			</Link>
-		);
-	}
-
-	return (
-		<>
-			<div className="cardBackground" onClick={openFunc}>
-				<div className="dropdown" style={{ height: menuHeight }}>
-					<CSSTransition
-						in={activeMenu === 'main'}
-						unmountOnExit
-						timeout={500}
-						classNames="menu-primary"
-						onEnter={calcHeight}
-					>
-						<div className="menu">
-							<DropdownToMenu leftIcon={<i class="far fa-calendar-alt" />} goToMenu="events">
-								Events
-							</DropdownToMenu>
-							<DropdownToMenu leftIcon={<i class="fas fa-layer-group" />} goToMenu="categories">
-								Categories
-							</DropdownToMenu>
-						</div>
-					</CSSTransition>
-					<CSSTransition
-						in={activeMenu === 'events'}
-						unmountOnExit
-						timeout={500}
-						classNames="menu-secondary"
-						onEnter={calcHeight}
-					>
-						<div className="menu">
-							<DropdownToMenu goToMenu="main" leftIcon={<i class="far fa-arrow-alt-circle-left" />}>
-								...back
-							</DropdownToMenu>
-							{eventItemsArray.map((item) => (
-								<DropdownEvent event={item} key={item.id}>
-									{' '}
-									{item.name}
-								</DropdownEvent>
-							))}
-						</div>
-					</CSSTransition>
-					<CSSTransition
-						in={activeMenu === 'categories'}
-						unmountOnExit
-						timeout={500}
-						classNames="menu-secondary"
-						onEnter={calcHeight}
-					>
-						<div className="menu">
-							<DropdownToMenu goToMenu="main" leftIcon={<i class="far fa-arrow-alt-circle-left" />}>
-								...back
-							</DropdownToMenu>
-							{categoryItemsArray.map((item) => (
-								<DropdownCategory category={item} key={item.id}>
-									{item.name}
-								</DropdownCategory>
-							))}
-						</div>
-					</CSSTransition>
-				</div>
-			</div>
-		</>
-	);
-}
-
-export function Dropdown2({ openFunc }) {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
@@ -220,16 +117,16 @@ export function Dropdown2({ openFunc }) {
         >
           <div className="menu">
             {sessionUser &&
-            <>
-            <Link onClick={ openFunc } to="/" className="menu-item">
-              <div className="icon-button">{<i class="fas fa-home" />}</div>
-              Home
-            </Link>
-            <Link onClick={ openFunc } to="/profile" className="menu-item">
-              <div className="icon-button">{<i class="fas fa-house-user" />}</div>
-              Profile
-            </Link>
-            </>
+              <>
+                <Link onClick={ openFunc } to="/" className="menu-item">
+                  <div className="icon-button">{<i class="fas fa-home" />}</div>
+                  Home
+                </Link>
+                <Link onClick={ openFunc } to="/profile" className="menu-item">
+                  <div className="icon-button">{<i class="fas fa-house-user" />}</div>
+                  Profile
+                </Link>
+              </>
             }
             <DropdownItem leftIcon={<i class="far fa-calendar-alt" />} goToMenu="events">
               Events
@@ -238,16 +135,16 @@ export function Dropdown2({ openFunc }) {
               Categories
             </DropdownItem>
             { sessionUser &&
-            <>
-            <Link onClick={ openFunc } to="/createEvent" className="menu-item">
-              <div className="icon-button">{<i class="far fa-calendar-plus" />}</div>
-              Create Event
-            </Link>
-            <div onClick={() => {logout(); openFunc();}} className="menu-item">
-              <div className="icon-button">{<i class="fas fa-sign-out-alt" />}</div>
-              Log Out
-            </div>
-            </>
+              <>
+                <Link onClick={ openFunc } to="/createEvent" className="menu-item">
+                  <div className="icon-button">{<i class="far fa-calendar-plus" />}</div>
+                  Create Event
+                </Link>
+                <div onClick={() => {logout(); openFunc();}} className="menu-item">
+                  <div className="icon-button">{<i class="fas fa-sign-out-alt" />}</div>
+                  Log Out
+                </div>
+              </>
             }
           </div>
         </CSSTransition>
