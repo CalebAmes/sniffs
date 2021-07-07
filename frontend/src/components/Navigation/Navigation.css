@@ -51,6 +51,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 
 .icon-button:hover {
@@ -62,11 +63,11 @@
 }
 
 .dropdown {
-  position: absolute;
+  position: fixed;
   top: 58px;
   width: 300px;
   max-height: 600px;
-  transform: translateX(-45%);
+  transform: translateX(75vw);
   color: #484a4d;
   background-color: var(--bg);
   border: var(--border);
@@ -136,4 +137,13 @@
 .menu-secondary-exit-active {
   transform: translateX(110%);
   transition: all var(--speed) ease;
+}
+
+.cardBackground {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
 }
