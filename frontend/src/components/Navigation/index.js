@@ -25,7 +25,6 @@ const Navigation = (props) => {
 						Home
 					</NavLink>
 					<NavItem icon={<i class="fas fa-chevron-circle-down" />}>
-						<Dropdown />
 					</NavItem>
 				</ul>
 			</nav>
@@ -57,7 +56,7 @@ export function NavItem(props) {
 				{props.icon}
 			</a>
 
-			{open && props.children}
+			{open && <Dropdown openFunc={openFunc} />}
 		</li>
 	);
 }
@@ -105,7 +104,7 @@ export function Dropdown({ openFunc }) {
 			</Link>
 		);
 	}
-  
+
 	return (
 		<>
 			<div className="cardBackground" onClick={openFunc}>
