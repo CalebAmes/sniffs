@@ -24,6 +24,7 @@
 }
 
 .eventSearchInput {
+  min-width: 32vw;
   margin: 50px, 50vw;
 }
 
