@@ -28,7 +28,7 @@ const EventPage = () => {
 	const eventId = id;
 
 	const addComment = (e) => {
-		if(e) e.preventDefault();
+		if (e) e.preventDefault();
 		dispatch(
 			createComment({
 				userId,
@@ -36,13 +36,13 @@ const EventPage = () => {
 				eventId,
 			})
 		);
-    setContent('')
+		setContent('');
 	};
 
 	const deleteEventId = async (id) => {
-		await dispatch(removeEvent(id))
-		history.push('/')
-	}
+		await dispatch(removeEvent(id));
+		history.push('/');
+	};
 
 	const deleteCommentId = (id) => {
 		dispatch(removeComment(id));
@@ -58,12 +58,12 @@ const EventPage = () => {
 		history.push('/');
 	};
 
-  const keyPress = (e) => {
-    if(e.key === 'Enter') {
-      e.preventDefault();
-      addComment();
-    }
-  }
+	const keyPress = (e) => {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			addComment();
+		}
+	};
 
 	useEffect(() => {
 		body1();
@@ -106,9 +106,9 @@ const EventPage = () => {
 									<div key={comment?.id} className="comment">
 										{comment?.content}
 									</div>
-                  { userId === comment.userId &&
-                    <button onClick={() => deleteCommentId(comment.id)}>Delete</button>
-                  }
+									{userId === comment.userId && (
+										<button onClick={() => deleteCommentId(comment.id)}>Delete</button>
+									)}
 								</>
 							))}
 					</div>
