@@ -43,7 +43,7 @@ const Navigation = (props) => {
 };
 
 export function NavItem(props) {
-	const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const openFunc = () => {
     setOpen(!open);
@@ -54,7 +54,6 @@ export function NavItem(props) {
 			<a href="#" className="icon-button" onClick={openFunc}>
 				{props.icon}
 			</a>
-
 			{open && <Dropdown2 openFunc={openFunc} />}
 		</li>
 	);
@@ -220,6 +219,8 @@ export function Dropdown2({ openFunc }) {
           onEnter={calcHeight}
         >
           <div className="menu">
+            {sessionUser &&
+            <>
             <Link onClick={ openFunc } to="/" className="menu-item">
               <div className="icon-button">{<i class="fas fa-home" />}</div>
               Home
@@ -228,12 +229,16 @@ export function Dropdown2({ openFunc }) {
               <div className="icon-button">{<i class="fas fa-house-user" />}</div>
               Profile
             </Link>
+            </>
+            }
             <DropdownItem leftIcon={<i class="far fa-calendar-alt" />} goToMenu="events">
               Events
             </DropdownItem>
             <DropdownItem leftIcon={<i class="fas fa-layer-group" />} goToMenu="categories">
               Categories
             </DropdownItem>
+            { sessionUser &&
+            <>
             <Link onClick={ openFunc } to="/createEvent" className="menu-item">
               <div className="icon-button">{<i class="far fa-calendar-plus" />}</div>
               Create Event
@@ -242,6 +247,8 @@ export function Dropdown2({ openFunc }) {
               <div className="icon-button">{<i class="fas fa-sign-out-alt" />}</div>
               Log Out
             </div>
+            </>
+            }
           </div>
         </CSSTransition>
         <CSSTransition
