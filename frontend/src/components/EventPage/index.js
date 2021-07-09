@@ -8,6 +8,8 @@ import { getRsvp, createRsvp } from '../../store/rsvp';
 import './EventPage.css';
 import { body1 } from '../index';
 
+import CommentSection from '../Comments'
+
 const EventPage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -16,68 +18,75 @@ const EventPage = () => {
 	const [userId, setUserId] = useState(user?.id);
 	const eventItems = useSelector((state) => state.event);
 	const categoryItems = useSelector((state) => state.category);
-	const commentItems = useSelector((state) => state.comment);
-	const [commentEditor, setCommentEditor] = useState(false);
+	// const commentItems = useSelector((state) => state.comment);
+	// const [commentEditor, setCommentEditor] = useState(false);
 	const { id } = useParams();
 	const event = eventItems && eventItems[id];
 
-	const commentsArray = Object.values(commentItems);
+	// const commentsArray = Object.values(commentItems);
 
 	const category = categoryItems && event && categoryItems[event.categoryId];
-	const [content, setContent] = useState('');
+	// const [content, setContent] = useState('');
 	const eventId = id;
 
-	const addComment = (e) => {
-		if (e) e.preventDefault();
-		dispatch(
-			createComment({
-				userId,
-				content,
-				eventId,
-			})
-		);
-		setContent('');
-	};
+	// const addComment = (e) => {
+	// 	if (e) e.preventDefault();
+	// 	dispatch(
+	// 		createComment({
+	// 			userId,
+	// 			content,
+	// 			eventId,
+	// 		})
+	// 	);
+	// 	setContent('');
+	// };
 
-	const editComment = async (comment, newComment, id) => {
-		if (newComment !== comment.content) {
-			console.log('in editComment()')
-			// await dispatch(updateComment(newComment, id));
-		}
-		setCommentEditor(!commentEditor)
-	}
+	// const editComment = async (comment, newComment, id) => {
+	// 	if (newComment !== comment.content) {
+	// 		console.log('in editComment()')
+	// 		// await dispatch(updateComment(newComment, id));
+	// 	}
+	// 	setCommentEditor(!commentEditor)
+	// }
 
-	const EditComment = ({ func, comment }) => {
-		const [value, setValue] = useState(comment.content);
-		const keyPress = (e) => {
-			if (e.key === 'Enter') {
-				e.preventDefault();
-				func(value, comment.id)
-			}
-		};
-		return (
-			<div className="editCommentDiv">
-				<textarea
-					maxLength="140"
-					onChange={(e) => setValue(e.target.value)}
-					onKeyPress={keyPress}
-					value={value}
-					className="messageInputTextarea"
-				>
-					{comment.content}
-				</textarea>
-			</div>
-		)
-	}
+	// const EditComment = ({ func, comment }) => {
+	// 	const [value, setValue] = useState(comment.content);
+	// 	const keyPress = (e) => {
+	// 		if (e.key === 'Enter') {
+	// 			e.preventDefault();
+	// 			func(value, comment.id)
+	// 		}
+	// 	};
+	// 	return (
+	// 		<div className="editCommentDiv">
+	// 			<textarea
+	// 				maxLength="140"
+	// 				onChange={(e) => setValue(e.target.value)}
+	// 				onKeyPress={keyPress}
+	// 				value={value}
+	// 				className="messageInputTextarea"
+	// 			>
+	// 				{comment.content}
+	// 			</textarea>
+	// 		</div>
+	// 	)
+	// }
+	// const deleteCommentId = (id) => {
+	// 	dispatch(removeComment(id));
+	// };
+
+	// const keyPress = (e) => {
+	// 	if (e.key === 'Enter') {
+	// 		e.preventDefault();
+	// 		addComment();
+	// 	}
+	// };
 
 	const deleteEventId = async (id) => {
 		await dispatch(removeEvent(id));
 		history.push('/');
 	};
 
-	const deleteCommentId = (id) => {
-		dispatch(removeComment(id));
-	};
 
 	const addRsvp = () => {
 		dispatch(
@@ -89,18 +98,10 @@ const EventPage = () => {
 		history.push('/');
 	};
 
-	const keyPress = (e) => {
-		if (e.key === 'Enter') {
-			e.preventDefault();
-			addComment();
-		}
-	};
-
 	useEffect(() => {
 		body1();
 		dispatch(getEvent());
 		dispatch(getCategory());
-		dispatch(getComment());
 		dispatch(getRsvp());
 	}, [dispatch]);
 
@@ -128,7 +129,8 @@ const EventPage = () => {
 						</button>
 					</div>
 				</div>
-				<div className="commentBlock">
+				<CommentSection id = { id } userId = { userId } />
+				{/* <div className="commentBlock">
 					<div className="comments">
 						{commentsArray
 							?.filter((comment) => comment.eventId == id)
@@ -167,7 +169,7 @@ const EventPage = () => {
 							</div>
 						</form>
 					</div>
-				</div>
+				</div> */}
 				<div className="pad" />
 			</>
 		);
