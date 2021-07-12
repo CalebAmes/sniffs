@@ -6,12 +6,14 @@ const CommentSection = ({ id, userId }) => {
   const dispatch = useDispatch();
 
   const commentItems = useSelector((state) => state.comment);
-	const commentsArray = Object.values(commentItems).filter(comment => comment.eventId === id);
+	const commentsArray = Object.values(commentItems).filter(comment =>
+			comment.eventId === parseInt(id))
 
   const [content, setContent] = useState('');
 	const [commentEditor, setCommentEditor] = useState(false);
 
-  console.log('this is comments array: ',commentsArray)
+  console.log('this is comments array: ', typeof commentsArray[0].eventId)
+  console.log('this is id: ', typeof id)
 
   const addComment = (e) => {
 		if (e) e.preventDefault();
