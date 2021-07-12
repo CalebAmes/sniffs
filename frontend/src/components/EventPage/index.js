@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, removeEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
 import { getRsvp, createRsvp } from '../../store/rsvp';
+import EditEventModal from '../EventForm/EditEventModal';
 import './EventPage.css';
 import { body1 } from '../index';
 
@@ -16,6 +17,8 @@ const EventPage = () => {
 	const user = useSelector((state) => state.session.user);
 	const eventItems = useSelector((state) => state.event);
 	const categoryItems = useSelector((state) => state.category);
+
+	const [editModal, setEditModal] = useState(false);
 
 	const { id } = useParams();
 	const event = eventItems && eventItems[id];
@@ -68,10 +71,16 @@ const EventPage = () => {
 						<button type="button" className="submit rsvp" onClick={() => deleteEventId(event.id)}>
 							Delete
 						</button>
+						<button type="button" className="submit rsvp" onClick={() => setEditModal(!editModal)}>
+							Update
+						</button>
 					</div>
 				</div>
 				<CommentSection id={ id } userId={ user.id } />
 				<div className="pad" />
+				{/* {editModal &&
+				} */}
+				<EditEventModal />
 			</>
 		);
 	} else {
