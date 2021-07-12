@@ -3,7 +3,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, removeEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
-import { getComment, createComment, removeComment } from '../../store/comment';
 import { getRsvp, createRsvp } from '../../store/rsvp';
 import './EventPage.css';
 import { body1 } from '../index';

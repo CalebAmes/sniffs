@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getComment, createComment, removeComment } from '../../store/comment';
+import { getComment, createComment } from '../../store/comment';
 import CommentHolder from './CommentHolder';
 
 const CommentSection = ({ id, userId }) => {
@@ -11,7 +11,6 @@ const CommentSection = ({ id, userId }) => {
 			comment.eventId === parseInt(id))
 
   const [content, setContent] = useState('');
-	const [commentEditor, setCommentEditor] = useState(false);
 
   const addComment = (e) => {
 		if (e) e.preventDefault();
