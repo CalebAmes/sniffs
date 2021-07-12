@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, removeEvent } from '../../store/event';
@@ -70,7 +70,7 @@ const EventPage = () => {
 						</button>
 					</div>
 				</div>
-				<CommentSection id = { id } userId = { user.id } />
+				<CommentSection id={ id } userId={ user.id } />
 				<div className="pad" />
 			</>
 		);
