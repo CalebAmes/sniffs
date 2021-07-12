@@ -8,68 +8,42 @@ import { getRsvp, createRsvp } from '../../store/rsvp';
 import './EventPage.css';
 import { body1 } from '../index';
 
+import CommentSection from '../Comments'
+
 const EventPage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const user = useSelector((state) => state.session.user);
-	const [userId, setUserId] = useState(user?.id);
 	const eventItems = useSelector((state) => state.event);
 	const categoryItems = useSelector((state) => state.category);
-	const commentItems = useSelector((state) => state.comment);
-	const rsvpItems = useSelector((state) => state.rsvp);
+
 	const { id } = useParams();
 	const event = eventItems && eventItems[id];
 
-	const commentsArray = Object.values(commentItems);
-
 	const category = categoryItems && event && categoryItems[event.categoryId];
-	const [content, setContent] = useState('');
 	const eventId = id;
-
-	const addComment = (e) => {
-		if (e) e.preventDefault();
-		dispatch(
-			createComment({
-				userId,
-				content,
-				eventId,
-			})
-		);
-		setContent('');
-	};
 
 	const deleteEventId = async (id) => {
 		await dispatch(removeEvent(id));
 		history.push('/');
 	};
 
-	const deleteCommentId = (id) => {
-		dispatch(removeComment(id));
-	};
 
 	const addRsvp = () => {
 		dispatch(
 			createRsvp({
-				userId,
+				userId: user.id,
 				eventId,
 			})
 		);
 		history.push('/');
 	};
 
-	const keyPress = (e) => {
-		if (e.key === 'Enter') {
-			e.preventDefault();
-			addComment();
-		}
-	};
-
 	useEffect(() => {
 		body1();
 		dispatch(getEvent());
 		dispatch(getCategory());
-		dispatch(getComment());
 		dispatch(getRsvp());
 	}, [dispatch]);
 
@@ -97,40 +71,7 @@ const EventPage = () => {
 						</button>
 					</div>
 				</div>
-				<div className="commentBlock">
-					<div className="comments">
-						{commentsArray
-							?.filter((comment) => comment.eventId == id)
-							.map((comment) => (
-								<>
-									<div key={comment?.id} className="comment">
-										{comment?.content}
-									</div>
-									{userId === comment.userId && (
-										<button onClick={() => deleteCommentId(comment.id)}>Delete</button>
-									)}
-								</>
-							))}
-					</div>
-					<div>
-						<form value={userId} onSubmit={addComment}>
-							<div className="postComment">
-								<textarea
-									type="text"
-									className="input"
-									maxLength="140"
-									value={content}
-									onChange={(e) => setContent(e.target.value)}
-									onKeyPress={keyPress}
-									required
-								/>
-								<button className="submit commentB" type="submit">
-									comment.
-								</button>
-							</div>
-						</form>
-					</div>
-				</div>
+				<CommentSection id = { id } userId = { user.id } />
 				<div className="pad" />
 			</>
 		);
