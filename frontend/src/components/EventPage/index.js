@@ -15,7 +15,6 @@ const EventPage = () => {
 	const history = useHistory();
 
 	const user = useSelector((state) => state.session.user);
-	const [userId, setUserId] = useState(user?.id);
 	const eventItems = useSelector((state) => state.event);
 	const categoryItems = useSelector((state) => state.category);
 	// const commentItems = useSelector((state) => state.comment);
@@ -23,7 +22,7 @@ const EventPage = () => {
 	const { id } = useParams();
 	const event = eventItems && eventItems[id];
 
-	// const commentsArray = Object.values(commentItems);
+	// console.log('this is user.id: ', user.id)
 
 	const category = categoryItems && event && categoryItems[event.categoryId];
 	// const [content, setContent] = useState('');
@@ -91,7 +90,7 @@ const EventPage = () => {
 	const addRsvp = () => {
 		dispatch(
 			createRsvp({
-				userId,
+				userId: user.id,
 				eventId,
 			})
 		);
@@ -129,7 +128,7 @@ const EventPage = () => {
 						</button>
 					</div>
 				</div>
-				<CommentSection id = { id } userId = { userId } />
+				<CommentSection id = { id } userId = { user.id } />
 				{/* <div className="commentBlock">
 					<div className="comments">
 						{commentsArray

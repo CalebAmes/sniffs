@@ -12,8 +12,7 @@ const CommentSection = ({ id, userId }) => {
   const [content, setContent] = useState('');
 	const [commentEditor, setCommentEditor] = useState(false);
 
-  console.log('this is comments array: ', typeof commentsArray[0].eventId)
-  console.log('this is id: ', typeof id)
+	// console.log('this is the userId', userId)
 
   const addComment = (e) => {
 		if (e) e.preventDefault();
