@@ -24,6 +24,24 @@ router.post(
   })
 )
 
+// this is for updating a comment
+router.put(
+  '/:id',
+  asyncHandler(async(req, res) => {
+    console.log('backend put route hit');
+    const {
+      content,
+      id,
+    } = req.body;
+    console.log('this is id: ', id)
+    const comment = await Comment.updateComment({
+      commentId: id,
+      content,
+    });
+    return res.json({ comment })
+  })
+)
+
 router.delete(
   '/:id(\\d+/delete)',
   asyncHandler(async (req, res) => {
