@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     const comment = await Comment.create({ userId, content, eventId });
     return await Comment.findByPk(comment.id)
   }
+  Comment.updateComment = async function ({ commentId, content }) {
+    const comment = await Comment.findByPk(commentId);
+    comment.content = content;
+    await comment.save();
+    return await Comment.findByPk(commentId);
+  }
   
   return Comment;
 }
