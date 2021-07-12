@@ -12,8 +12,6 @@ const CommentSection = ({ id, userId }) => {
   const [content, setContent] = useState('');
 	const [commentEditor, setCommentEditor] = useState(false);
 
-	// console.log('this is the userId', userId)
-
   const addComment = (e) => {
 		if (e) e.preventDefault();
 		dispatch(
@@ -29,7 +27,6 @@ const CommentSection = ({ id, userId }) => {
 	const editComment = async (comment, newComment, id) => {
 		if (newComment !== comment.content) {
 			console.log('in editComment()')
-			// await dispatch(updateComment(newComment, id));
 		}
 		setCommentEditor(!commentEditor)
 	}
