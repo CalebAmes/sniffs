@@ -5,7 +5,6 @@ import { removeComment, updateComment } from '../../store/comment';
 const CommentHolder = ({ comment, id }) => {
   const dispatch = useDispatch();
   const [commentEditor, setCommentEditor] = useState(false);
-  const [content, setContent] = useState('');
 
   const userId = useSelector(state => state.session.user.id);
 
@@ -42,12 +41,6 @@ const CommentHolder = ({ comment, id }) => {
 	const deleteCommentId = (id) => {
 		dispatch(removeComment(id));
 	};
-
-  const keyPress = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-    }
-  }
 
   return (
     <>
