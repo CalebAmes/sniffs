@@ -17,8 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     return await Comment.findByPk(comment.id)
   }
   Comment.updateComment = async function ({ commentId, content }) {
-    console.log('update comment commentId: ', commentId)
-    console.log('update comment content: ', content)
     const comment = await Comment.findByPk(commentId);
     comment.content = content;
     await comment.save();

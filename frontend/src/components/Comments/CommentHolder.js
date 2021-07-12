@@ -10,12 +10,7 @@ const CommentHolder = ({ comment, id }) => {
   const userId = useSelector(state => state.session.user.id);
 
 	const editComment = async (comment, newComment, id) => {
-    console.log('this is comment', comment)
-    console.log('this is newComment', newComment)
-    console.log('this is id', id)
 		if (newComment !== comment.content) {
-			// this is where we dispatch an action to the store
-      console.log('this is id: ', id)
       dispatch(updateComment({id, newComment}));
 		}
 		setCommentEditor(!commentEditor)

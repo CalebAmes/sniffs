@@ -24,7 +24,6 @@ router.post(
   })
 )
 
-// this is for updating a comment
 router.put(
   '/:id',
   asyncHandler(async(req, res) => {
@@ -33,7 +32,6 @@ router.put(
       content,
       id,
     } = req.body;
-    console.log('this is id: ', id)
     const comment = await Comment.updateComment({
       commentId: id,
       content,
