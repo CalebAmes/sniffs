@@ -33,7 +33,7 @@ const EditEventModal = ({setOpen, open, event}) => {
 
   const noChanges = () => {
     setChanges(true)
-    setTimeout(() => setChanges(false), 3000)
+    setTimeout(() => setChanges(false), 4900)
   }
 
   const openFunc = () => {
@@ -43,11 +43,11 @@ const EditEventModal = ({setOpen, open, event}) => {
   return (
     <>
       <div className='editModal'>
+          { changes &&
+          <h1 className='changes'>No changes detected</h1>
+          }
         <div className='modalBackground' onClick={openFunc} />
         <div className='editEventDiv'>
-          { changes &&
-            <div>No changes detected</div>
-          }
         <form value={ categoryId } onSubmit={ handleSubmit } className='formE SignupForm editEventForm'>
         <ul>
           {/* {errors.map((err, id) => <li key={ id } >{ err }</li>)} */}
@@ -78,24 +78,22 @@ const EditEventModal = ({setOpen, open, event}) => {
           <input
             type='datetime-local'
             className='input'
-            value={ dateEnd }
-            onChange={ (e) => setDateEnd(e.target.value) }
-            required
+            value={ dateStart }
+            onChange={ (e) => setDateStart(e.target.value) }
             />
         </label>
         <label className='labels'>End date:
           <input
             type='datetime-local'
             className='input'
-            value={ dateStart }
-            onChange={ (e) => setDateStart(e.target.value) }
-            required
+            value='1990-12-31T23:59:60Z'
+            onChange={ (e) => setDateEnd(e.target.value) }
             />
         </label>
         <label className='labels'>pick a category.</label>
         <div className='selectDivE'>
           <label className='wrap'>
-            <select onChange={(e) => setCategoryId(e.target.value)}>
+            <select value={ categoryId } onChange={(e) => setCategoryId(e.target.value)}>
               {
                 categories.map((category) => <option key={category.id} value={category?.id}>{category?.name}</option>)
               }
