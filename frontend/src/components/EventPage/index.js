@@ -31,7 +31,6 @@ const EventPage = () => {
 		history.push('/');
 	};
 
-
 	const addRsvp = () => {
 		dispatch(
 			createRsvp({
@@ -58,7 +57,7 @@ const EventPage = () => {
 				}
 				<div className="block">
 					<div className="image">
-						<img src={event?.photo} />
+						<img src={event?.photo[2]} />
 					</div>
 					<div className="eventBox">
 						<div className="name">{event?.name.toUpperCase()}</div>

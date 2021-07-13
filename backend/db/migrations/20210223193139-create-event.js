@@ -25,8 +25,10 @@ module.exports = {
         allowNull: false,
       },
       photo: {
-        type: Sequelize.STRING(500),
-        defaultValue: 'https://global-uploads.webflow.com/5c098da588bb06e551e5c0c4/5ca21aecb9de9c2b1fb90281_activedog-2.jpg',
+        type: Sequelize.ARRAY(Sequelize.STRING(500)),
+        defaultValue: ['https://global-uploads.webflow.com/5c098da588bb06e551e5c0c4/5ca21aecb9de9c2b1fb90281_activedog-2.jpg',
+        'https://getyourpet.com/wp-content/uploads/2019/02/AdobeStock_122086342-min.jpeg',
+        'https://cff2.earth.com/uploads/2020/08/21170611/shutterstock_759950959-scaled.jpg'],
       },
       categoryId: {
         type: Sequelize.INTEGER,
