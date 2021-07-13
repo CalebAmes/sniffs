@@ -53,6 +53,9 @@ const EventPage = () => {
 		return (
 			<>
 				<h1 className="title">{category?.name}.</h1>
+				{editModal &&
+					<EditEventModal setOpen={setEditModal} open={editModal} event={event} />
+				}
 				<div className="block">
 					<div className="image">
 						<img src={event?.photo} />
@@ -77,9 +80,6 @@ const EventPage = () => {
 					</div>
 				</div>
 				<CommentSection id={ id } userId={ user.id } />
-				{editModal &&
-					<EditEventModal setOpen={setEditModal} open={editModal}/>
-				}
 				{/* <div className="pad" /> */}
 			</>
 		);
