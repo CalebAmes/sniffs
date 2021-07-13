@@ -31,6 +31,25 @@ router.post(
   })
 )
 
+router.put(
+  '/:id',
+  asyncHandler(async(req, res) => {
+    const { id } = req.params;
+    const {
+      name,
+      description,
+      dateStart,
+      dateEnd,
+      categoryId,
+      userId,
+    } = req.body;
+    const event = await Event.updateEvent({
+      name, description, dateStart, dateEnd, categoryId, userId, id
+    });
+    return res.json({ event })
+  })
+)
+
 router.delete(
   '/:id(\\d+/delete)',
   asyncHandler(async (req, res) => {

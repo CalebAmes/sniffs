@@ -1,0 +1,42 @@
+.editModal {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.editEventDiv {
+	position: absolute;
+	max-width: 90vw;
+	max-height: 80vh;
+	z-index: 10;
+	animation-name: slide;
+	animation-duration: 0.5s;
+  transform: translateY(200px);
+}
+
+.modalBackground {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 10;
+}
+
+.editEventForm {
+	background-color: blanchedalmond;
+}
+
+@keyframes slide {
+	from {
+    transform: translateY(-500px);
+	}
+	to {
+    transform: translateY(200px);
+	}
+};

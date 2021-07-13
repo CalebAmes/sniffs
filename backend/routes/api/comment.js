@@ -27,7 +27,6 @@ router.post(
 router.put(
   '/:id',
   asyncHandler(async(req, res) => {
-    console.log('backend put route hit');
     const {
       content,
       id,

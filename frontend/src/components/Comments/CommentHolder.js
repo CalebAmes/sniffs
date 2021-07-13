@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeComment, updateComment } from '../../store/comment';
 
 const CommentHolder = ({ comment, id }) => {
-  console.log(id)
   const dispatch = useDispatch();
   const [commentEditor, setCommentEditor] = useState(false);
 
