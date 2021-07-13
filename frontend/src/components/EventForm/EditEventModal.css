@@ -1,0 +1,41 @@
+.editModal {
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.editEventDiv {
+	position: absolute;
+	max-width: 90vw;
+	max-height: 80vh;
+	z-index: 10;
+	animation-name: zoom;
+	animation-duration: 0.5s;
+  transform: translateY(-200px);
+}
+
+.modalBackground {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	/* background-color: rgba(0, 0, 0, 0.5); */
+	z-index: 10;
+}
+
+@keyframes zoom {
+	from {
+		/* transform: scale(0); */
+    transform: translateY(100px);
+	}
+	to {
+		/* transform: scale(1); */
+    transform: translateY(-200px);
+	}
+};

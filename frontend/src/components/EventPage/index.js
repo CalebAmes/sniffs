@@ -77,10 +77,10 @@ const EventPage = () => {
 					</div>
 				</div>
 				<CommentSection id={ id } userId={ user.id } />
-				<div className="pad" />
-				{/* {editModal &&
-				} */}
-				<EditEventModal />
+				{editModal &&
+					<EditEventModal setOpen={setEditModal} open={editModal}/>
+				}
+				{/* <div className="pad" /> */}
 			</>
 		);
 	} else {
