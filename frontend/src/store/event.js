@@ -44,6 +44,25 @@ export const createEvent = (event) => async (dispatch) => {
   return response;
 };
 
+export const updateEvent = (event) => async (dispatch) => {
+  console.log('this is event in the store: ', event)
+  const { id, name, description, dateStart, dateEnd, categoryId, userId } = event;
+  const res = await csrfFetch(`/api/event/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      name,
+      description,
+      dateStart,
+      dateEnd,
+      categoryId,
+      userId,
+    }),
+  });
+  const data = await res.json();
+  dispatch(addEvent(data.event));
+  return res;
+};
+
 export const removeEvent = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/event/${id}/delete`, {
     method: 'DELETE',

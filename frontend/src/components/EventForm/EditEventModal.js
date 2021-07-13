@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as eventActions from '../../store/event';
+import { updateEvent } from '../../store/event';
 import './EditEventModal.css'
 
 const EditEventModal = ({setOpen, open, event}) => {
@@ -13,15 +13,27 @@ const EditEventModal = ({setOpen, open, event}) => {
   const [dateEnd, setDateEnd] = useState(event.dateEnd);
   const [categoryId, setCategoryId] = useState(event.categoryId);
   const [userId, setUserId] = useState(user?.id)
+  const [changes, setChanges] = useState(false);
 
   const categories = Object.values(categoryItems);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(eventActions.createEvent({ 
-        name, description, dateStart, 
-        dateEnd,categoryId, userId,
-      }))
+    event.name !== name ||
+    event.description !== description ||
+    event.dateStart !== dateStart ||
+    event.dateEnd !== dateEnd ||
+    event.categoryId !== categoryId
+    ? dispatch(updateEvent({ 
+        id: event.id, name, description, dateStart, 
+        dateEnd, categoryId, userId
+      })).then(setOpen(!open))
+    : noChanges()
+  }
+
+  const noChanges = () => {
+    setChanges(true)
+    setTimeout(() => setChanges(false), 3000)
   }
 
   const openFunc = () => {
@@ -33,6 +45,9 @@ const EditEventModal = ({setOpen, open, event}) => {
       <div className='editModal'>
         <div className='modalBackground' onClick={openFunc} />
         <div className='editEventDiv'>
+          { changes &&
+            <div>No changes detected</div>
+          }
         <form value={ categoryId } onSubmit={ handleSubmit } className='formE SignupForm editEventForm'>
         <ul>
           {/* {errors.map((err, id) => <li key={ id } >{ err }</li>)} */}
@@ -52,7 +67,8 @@ const EditEventModal = ({setOpen, open, event}) => {
         <label className='labels'>Description:
           <textarea
             type='text'
-            className='input'
+            className='input2'
+            maxLength='500'
             value={ description }
             onChange={ (e) => setDescription(e.target.value) }
             required

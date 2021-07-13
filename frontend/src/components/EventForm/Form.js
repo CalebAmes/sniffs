@@ -51,8 +51,9 @@ const AddEventForm = () => {
         <label className='labels'>Description:
           <textarea
             type='text'
-            className='input'
+            className='input2'
             value={ description }
+            maxLength='500'
             onChange={ (e) => setDescription(e.target.value) }
             required
           />
