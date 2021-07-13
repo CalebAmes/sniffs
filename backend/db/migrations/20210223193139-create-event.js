@@ -25,7 +25,8 @@ module.exports = {
         allowNull: false,
       },
       photo: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING(500),
+        defaultValue: 'https://global-uploads.webflow.com/5c098da588bb06e551e5c0c4/5ca21aecb9de9c2b1fb90281_activedog-2.jpg',
       },
       categoryId: {
         type: Sequelize.INTEGER,
