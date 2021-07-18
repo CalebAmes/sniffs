@@ -13,14 +13,25 @@ router.post(
   '/',
   asyncHandler(async(req, res) => {
     const {
+      id,
       userId, 
       eventId
     } = req.body;
     const rsvp = await Rsvp.createRsvp({
-      userId, eventId
+      id, userId, eventId
     });
     return res.json({ rsvp })
   })
 )
+
+router.delete(
+  '/:id(\\d+/delete)',
+  asyncHandler(async(req, res) => {
+    const { id } = req.body;
+    const rsvp = await Rsvp.findByPk(id);
+    await rsvp.destroy();
+    return res.json();
+  })
+);
 
 module.exports = router;

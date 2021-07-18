@@ -5,12 +5,17 @@ const ADD_RSVP = 'comment/addRsvp';
 
 const setRsvp = (rsvp) => ({
   type: SET_RSVP,
-  payload: rsvp
+  payload: rsvp,
 })
 
 const addRsvp = (rsvp) => ({
   type: ADD_RSVP,
-  payload: rsvp
+  payload: rsvp,
+})
+
+const deleteRsvp = (id) => ({
+  type: 'DELETE_RSVP',
+  payload: id,
 })
 
 export const getRsvp = () => async (dispatch) => {
@@ -21,15 +26,28 @@ export const getRsvp = () => async (dispatch) => {
 }
 
 export const createRsvp = (rsvp) => async (dispatch) => {
-  const { userId, content, eventId } = rsvp;
+  const { id, userId, eventId } = rsvp;
   const res = await csrfFetch('/api/rsvp', {
     method: 'POST',
     body: JSON.stringify({
-      userId, content, eventId
+      id, userId, eventId
     }),
   });
   const data = await res.json();
   dispatch(addRsvp(data.rsvp));
+  return res;
+}
+
+export const removeRsvp = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/rsvp/${id}/delete`, {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      id
+    })
+  });
+  const data = await res.json();
+  await dispatch(deleteRsvp(id));
   return res;
 }
 
@@ -45,6 +63,10 @@ function reducer(state = {}, action) {
       action.payload.forEach(item => {
         newState[item.id] = item;
       });
+      return newState;
+    case 'DELETE_RSVP':
+      newState = { ...state };
+      delete newState[action.payload];
       return newState;
     default:
       return state;
