@@ -65,10 +65,15 @@ export function Dropdown({ openFunc }) {
 	const sessionUser = useSelector((state) => state.session.user);
 	const eventItems = useSelector((state) => state.event);
 	const categoryItems = useSelector((state) => state.category);
+  const userEvents = useSelector((state) => state.rsvp);
 	const eventItemsArray = Object.values(eventItems);
 	const categoryItemsArray = Object.values(categoryItems);
+  const userEventsArray = Object.values(userEvents);
 	const [activeMenu, setActiveMenu] = useState('main');
 	const [menuHeight, setMenuHeight] = useState(null);
+
+  console.log('this is userEvents: ', userEvents);
+  console.log('this is userEventsArray: ', userEventsArray);
 
 	function calcHeight(el) {
 		const height = el.offsetHeight;
@@ -104,6 +109,7 @@ export function Dropdown({ openFunc }) {
 			</Link>
 		);
 	}
+
 	return (
     <>
       <div className='cardBackground' onClick={ openFunc } />
@@ -134,6 +140,9 @@ export function Dropdown({ openFunc }) {
             <DropdownItem leftIcon={<i class="fas fa-layer-group" />} goToMenu="categories">
               Categories
             </DropdownItem>
+            <DropdownItem leftIcon={<i class="fas fa-layer-group" />} goToMenu="userEvents">
+              Events You're Attending
+            </DropdownItem>
             { sessionUser &&
               <>
                 <Link onClick={ openFunc } to="/createEvent" className="menu-item">
@@ -163,6 +172,25 @@ export function Dropdown({ openFunc }) {
               <DropdownEvent event={item} key={item.id}>
                 {' '}
                 {item.name}
+              </DropdownEvent>
+            ))}
+          </div>
+        </CSSTransition>
+        <CSSTransition
+          in={activeMenu === 'userEvents'}
+          unmountOnExit
+          timeout={500}
+          classNames="menu-secondary"
+          onEnter={calcHeight}
+        >
+          <div className="menu">
+            <DropdownItem goToMenu="main" leftIcon={<i class="far fa-arrow-alt-circle-left" />}>
+              ...back
+            </DropdownItem>
+            {userEventsArray.map((item) => (
+              <DropdownEvent event={item.Event} key={item.Event.eventId}>
+                {' '}
+                {item.Event.name}
               </DropdownEvent>
             ))}
           </div>
