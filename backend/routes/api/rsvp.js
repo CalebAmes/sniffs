@@ -21,6 +21,7 @@ router.post(
     const rsvp = await Rsvp.createRsvp({
       id, userId, eventId
     });
+    console.log('this is rsvp in post ------------------------', rsvp);
     return res.json({ rsvp })
   })
 )
@@ -37,8 +38,6 @@ router.delete(
         ]
       }
     });
-    console.log('this is rsvp -------------------------: ', rsvp);
-
     await rsvp.forEach(el => el.destroy());
     return res.json();
   })

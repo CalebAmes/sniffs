@@ -34,6 +34,7 @@ export const createRsvp = (rsvp) => async (dispatch) => {
     }),
   });
   const data = await res.json();
+  console.log('this is data in store: ', data);
   dispatch(addRsvp(data.rsvp));
   return res;
 }
@@ -57,7 +58,7 @@ function reducer(state = {}, action) {
   switch (action.type) {
     case ADD_RSVP:
       newState = { ...state };
-      newState[action.rsvp] = action.rsvp;
+      newState[action.rsvp.eventId] = action.rsvp;
       return newState;
     case SET_RSVP:
       newState = {};
