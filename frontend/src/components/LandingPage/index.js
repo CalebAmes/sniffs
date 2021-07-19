@@ -15,8 +15,9 @@ const LandingPage = () => {
   
   const categoryItems = useSelector((state) => state.category);
   const eventItems = useSelector((state) => state.event);
-  
+  // let eventItemsArray = Object.values(eventItems);
   const [eventItemsArray, setEventItemsArray] = useState(Object.values(eventItems));
+
   const [isLoaded, setIsLoaded] = useState(false);
   const categoryItemsArray = Object.values(categoryItems);
   const category = categoryItems[id];
@@ -31,7 +32,7 @@ const LandingPage = () => {
   
   const search = (e) => {
     let val = e.target.value.toLowerCase()
-      setEventItemsArray(
+      setEventItemsArray( 
         Object.values(eventItems).filter((el) => {
           let name = el.name.toLowerCase();
           let desc = el.description.toLowerCase();

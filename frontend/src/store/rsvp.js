@@ -1,7 +1,8 @@
 import { csrfFetch } from './csrf';
 
 const SET_RSVP = 'rsvp/setRsvp';
-const ADD_RSVP = 'comment/addRsvp';
+const ADD_RSVP = 'rsvp/addRsvp';
+const DELETE_RSVP = 'rsvp/deleteRsvp';
 
 const setRsvp = (rsvp) => ({
   type: SET_RSVP,
@@ -14,7 +15,7 @@ const addRsvp = (rsvp) => ({
 })
 
 const deleteRsvp = (id) => ({
-  type: 'DELETE_RSVP',
+  type: DELETE_RSVP,
   id,
 })
 
@@ -65,7 +66,7 @@ function reducer(state = {}, action) {
         newState[item.eventId] = item;
       });
       return newState;
-    case 'DELETE_RSVP':
+    case DELETE_RSVP:
       newState = { ...state };
       delete newState[action.id];
       return newState;

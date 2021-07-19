@@ -71,6 +71,7 @@ export const removeEvent = (id) => async (dispatch) => {
       id
     })
   });
+  console.log('this is in thunk')
   await dispatch(deleteEvent(id))
   return res;
 }
