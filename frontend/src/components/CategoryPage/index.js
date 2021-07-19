@@ -62,8 +62,8 @@ const LandingPage = () => {
         <div className='carouselDiv'>
           <ScrollingCarousel className='scrollingCarousel'>
             {
-              eventItemsArray.map(item => (
-                <EventHolder event={ item } key={ item?.id }> { item?.name }</EventHolder>
+              eventItemsArray.map((item, i) => (
+                <EventHolder event={ item } i={ i } key={ item?.id }> { item?.name }</EventHolder>
               ))
             }
           </ScrollingCarousel>
