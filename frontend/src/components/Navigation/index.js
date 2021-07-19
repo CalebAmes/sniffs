@@ -24,7 +24,7 @@ const Navigation = (props) => {
 					<NavLink className="link icon-navlink" to="/">
 						Home
 					</NavLink>
-					<NavItem icon={<i class="fas fa-chevron-circle-down" />}>
+					<NavItem icon={<i className="fas fa-chevron-circle-down" />}>
 					</NavItem>
 				</ul>
 			</nav>
@@ -34,7 +34,7 @@ const Navigation = (props) => {
 			<nav className="navbar">
 				<ul className="navbar-nav">
 					<NavLink className="link icon-navlink" to="/profile">{`Welcome,  ${sessionUser.username}`}</NavLink>
-					<NavItem icon={<i class="fas fa-chevron-circle-down" />}>
+					<NavItem icon={<i className="fas fa-chevron-circle-down" />}>
 					</NavItem>
 				</ul>
 			</nav>
@@ -125,32 +125,32 @@ export function Dropdown({ openFunc }) {
             {sessionUser &&
               <>
                 <Link onClick={ openFunc } to="/" className="menu-item">
-                  <div className="icon-button">{<i class="fas fa-home" />}</div>
+                  <div className="icon-button">{<i className="fas fa-home" />}</div>
                   Home
                 </Link>
                 <Link onClick={ openFunc } to="/profile" className="menu-item">
-                  <div className="icon-button">{<i class="fas fa-house-user" />}</div>
+                  <div className="icon-button">{<i className="fas fa-house-user" />}</div>
                   Profile
                 </Link>
               </>
             }
-            <DropdownItem leftIcon={<i class="far fa-calendar-alt" />} goToMenu="events">
+            <DropdownItem leftIcon={<i className="far fa-calendar-alt" />} goToMenu="events">
               Events
             </DropdownItem>
-            <DropdownItem leftIcon={<i class="fas fa-layer-group" />} goToMenu="categories">
+            <DropdownItem leftIcon={<i className="fas fa-layer-group" />} goToMenu="categories">
               Categories
             </DropdownItem>
-            <DropdownItem leftIcon={<i class="fas fa-layer-group" />} goToMenu="userEvents">
+            <DropdownItem leftIcon={<i className="fas fa-layer-group" />} goToMenu="userEvents">
               Events You're Attending
             </DropdownItem>
             { sessionUser &&
               <>
                 <Link onClick={ openFunc } to="/createEvent" className="menu-item">
-                  <div className="icon-button">{<i class="far fa-calendar-plus" />}</div>
+                  <div className="icon-button">{<i className="far fa-calendar-plus" />}</div>
                   Create Event
                 </Link>
                 <div onClick={() => {logout(); openFunc();}} className="menu-item">
-                  <div className="icon-button">{<i class="fas fa-sign-out-alt" />}</div>
+                  <div className="icon-button">{<i className="fas fa-sign-out-alt" />}</div>
                   Log Out
                 </div>
               </>
@@ -165,7 +165,7 @@ export function Dropdown({ openFunc }) {
           onEnter={calcHeight}
         >
           <div className="menu">
-            <DropdownItem goToMenu="main" leftIcon={<i class="far fa-arrow-alt-circle-left" />}>
+            <DropdownItem goToMenu="main" leftIcon={<i className="far fa-arrow-alt-circle-left" />}>
               ...back
             </DropdownItem>
             {eventItemsArray.map((item) => (
@@ -184,7 +184,7 @@ export function Dropdown({ openFunc }) {
           onEnter={calcHeight}
         >
           <div className="menu">
-            <DropdownItem goToMenu="main" leftIcon={<i class="far fa-arrow-alt-circle-left" />}>
+            <DropdownItem goToMenu="main" leftIcon={<i className="far fa-arrow-alt-circle-left" />}>
               ...back
             </DropdownItem>
             {userEventsArray.map((item) => (
@@ -203,7 +203,7 @@ export function Dropdown({ openFunc }) {
           onEnter={calcHeight}
         >
           <div className="menu">
-            <DropdownItem goToMenu="main" leftIcon={<i class="far fa-arrow-alt-circle-left" />}>
+            <DropdownItem goToMenu="main" leftIcon={<i className="far fa-arrow-alt-circle-left" />}>
               ...back
             </DropdownItem>
             {categoryItemsArray.map((item) => (
