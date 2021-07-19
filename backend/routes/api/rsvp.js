@@ -27,8 +27,11 @@ router.post(
 router.delete(
   '/:id(\\d+/delete)',
   asyncHandler(async(req, res) => {
-    const { id } = req.body;
-    const rsvp = await Rsvp.findByPk(id);
+    const { eventId, userId } = req.body;
+    const rsvp = await Rsvp.findOne({
+      where: { userId, eventId }
+    });
+    console.log('this is rsvp in delete route'
     await rsvp.destroy();
     return res.json();
   })

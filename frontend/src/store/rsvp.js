@@ -5,23 +5,24 @@ const ADD_RSVP = 'comment/addRsvp';
 
 const setRsvp = (rsvp) => ({
   type: SET_RSVP,
-  payload: rsvp,
+  rsvp,
 })
 
 const addRsvp = (rsvp) => ({
   type: ADD_RSVP,
-  payload: rsvp,
+  rsvp,
 })
 
 const deleteRsvp = (id) => ({
   type: 'DELETE_RSVP',
-  payload: id,
+  id,
 })
 
-export const getRsvp = () => async (dispatch) => {
-  const res = await fetch('/api/rsvp');
-  const data = await res.json();
-  dispatch(setRsvp(data.rsvp));
+export const getRsvp = (userId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/session/${userId}/events`);
+  const data = await res.json()
+  dispatch(setRsvp(data));
+  console.log('this is in the store: ', data);
   return res;
 }
 
@@ -38,16 +39,17 @@ export const createRsvp = (rsvp) => async (dispatch) => {
   return res;
 }
 
-export const removeRsvp = (id) => async (dispatch) => {
-  const res = await csrfFetch(`/api/rsvp/${id}/delete`, {
+export const removeRsvp = (eventId, userId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/rsvp/${eventId}/delete`, {
     method: 'DELETE',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
-      id
+      eventId,
+      userId,
     })
   });
-  const data = await res.json();
-  await dispatch(deleteRsvp(id));
+  // const data = await res.json();
+  await dispatch(deleteRsvp(eventId));
   return res;
 }
 
@@ -56,17 +58,17 @@ function reducer(state = {}, action) {
   switch (action.type) {
     case ADD_RSVP:
       newState = { ...state };
-      newState[action.payload] = action.payload;
+      newState[action.rsvp] = action.rsvp;
       return newState;
     case SET_RSVP:
       newState = {};
-      action.payload.forEach(item => {
-        newState[item.id] = item;
+      action.rsvp.forEach(item => {
+        newState[item.eventId] = item;
       });
       return newState;
     case 'DELETE_RSVP':
       newState = { ...state };
-      delete newState[action.payload];
+      delete newState[action.id];
       return newState;
     default:
       return state;

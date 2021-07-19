@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const SET_USER_EVENTS = 'session/setUserEvents';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -10,6 +11,11 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
+});
+
+const setUserEvents = (events) => ({
+  type: SET_USER_EVENTS,
+  events,
 });
 
 export const signup = (user) => async (dispatch) => {
@@ -31,8 +37,17 @@ export const restoreUser = () => async dispatch => {
   const response = await csrfFetch('/api/session');
   const data = await response.json();
   dispatch(setUser(data.user));
+  dispatch(getUserEvents(data.user.id));
   return response;
 };
+
+export const getUserEvents = (userId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/session/${userId}/events`);
+  const data = await response.json()
+  dispatch(setUserEvents(data));
+  return response;
+};
+
 
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -64,6 +79,8 @@ const sessionReducer = (state = initialState, action) => {
       return { ...state, user: action.user };
     case REMOVE_USER:
       return { ...state, user: null };
+    case SET_USER_EVENTS:
+      return { ...state, userEvents: action.events };
     default:
       return state;
   }

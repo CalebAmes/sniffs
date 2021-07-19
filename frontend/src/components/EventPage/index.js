@@ -4,74 +4,71 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, removeEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
 import { getRsvp, createRsvp, removeRsvp } from '../../store/rsvp';
+import { getUserEvents } from '../../store/session';
 import EditEventModal from '../EventForm/EditEventModal';
 import './EventPage.css';
 import { body1 } from '../index';
-
 import CommentSection from '../Comments'
+
 
 const EventPage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const user = useSelector((state) => state.session.user);
+	const userEvents = useSelector((state) => state.session.userEvents);
 	const eventItems = useSelector((state) => state.event);
 	const categoryItems = useSelector((state) => state.category);
-	const rsvps = useSelector((state) => state.rsvp);
 	const [editModal, setEditModal] = useState(false);
-	const [hasRSVP, setHasRSVP] = useState(false);
+	const rsvps = useSelector((state) => state.rsvp);
 
-	let { id } = useParams();
-	id = Number(id);
+	console.log('this is rsvps: ', rsvps);
+
+	const id = Number(useParams().id);
+
+	let hasRSVP = rsvps?.eventId;
+
 	const event = eventItems && eventItems[id];
 	const rsvpArray = Object.values(rsvps);
-	let getRSVP = rsvpArray.find(el => el.userId === user?.id && el.eventId === id);
 	const rsvpIdx = rsvpArray[rsvpArray.length - 1]?.id + 1;
 	const category = categoryItems && event && categoryItems[event.categoryId];
 	const eventId = id;
 
 	const deleteEventId = async (id) => {
-		await dispatch(removeEvent(id));
+		dispatch(removeEvent(id));
 		history.push('/');
 	};
 
-	console.log(hasRSVP, 'has');
-	console.log(getRSVP, 'get');
-
 	const addRsvp = () => {
+		const rsvp = {
+			userId: user.id,
+			eventId,
+		}
+		console.log('this is rsvp: ', rsvp);
 		dispatch(
 			createRsvp({
-				id: rsvpIdx,
-				userId: user.id,
-				eventId,
+				...rsvp,
 			})
 		);
-		setHasRSVP(true);
+		hasRSVP = rsvp;
 	};
 
 	const rmRSVP = () => {
 		dispatch(
-			removeRsvp(getRSVP.id)
-			);
+			removeRsvp(hasRSVP.id)
+		);
 	};
-
-	const Button = (props) => {
-		
-
+	
 
 	useEffect(() => {
 		body1();
 		dispatch(getEvent());
 		dispatch(getCategory());
-		dispatch(getRsvp());
-		setRSVP()
+		dispatch(getRsvp(user.id));
+		// dispatch(getUserEvents(user.id));
+		// setHasRSVP(userEvents?.find(e => e.eventId === id))
+		// console.log('this is hasRSVP in useEffect: ', hasRSVP);
 	}, [dispatch]);
-
-	const setRSVP = () => {
-		if (getRSVP) {
-			setHasRSVP(true);
-		}
-	};
 	
 	if (user) {
 		return (
@@ -92,12 +89,12 @@ const EventPage = () => {
 							<p>-</p>
 							<div className="dateTime">{event?.dateEnd}</div>
 						</div>
-						{ getRSVP &&
+						{ hasRSVP &&
 							<button type="button" className="submit rsvp" onClick={rmRSVP}>
 								Delete Reservation
 							</button>
 						}
-						{ !getRSVP &&
+						{ !hasRSVP &&
 							<button type="button" className="submit rsvp" onClick={addRsvp}>
 								RSVP
 							</button>
