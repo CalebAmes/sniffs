@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Rsvp } = require('../../db/models');
 
 const router = express.Router();
 const validateLogin = [
@@ -62,5 +62,18 @@ router.get(
     } else return res.json({});
   }
 )
+
+router.get(
+  '/:id(\\d+/events)', asyncHandler(async (req, res) => {
+    const id = req.params.id[0];
+    const userRsvps = await Rsvp.findAll({ 
+      where: {
+        userId: id
+      }
+    });
+    return res.json(userRsvps);
+  }
+));
+
 
 module.exports = router;

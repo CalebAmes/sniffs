@@ -65,8 +65,6 @@ router.delete(
         eventId: id
       }
     })
-    console.log('this is the event: ', event)
-    console.log('this is the comments: ', comments)
     comments.forEach(comment => comment.destroy())
     rsvps.forEach(rsvp => rsvp.destroy())
     event.destroy()

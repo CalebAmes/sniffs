@@ -9,8 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     Rsvp.belongsTo( models.Event, { foreignKey: 'eventId' });
   };
   Rsvp.createRsvp = async function ({ userId, eventId }) {
-    const rsvp = await Rsvp.create({ userId, eventId });
-    return await Rsvp.findByPk(rsvp.id);
+    return await Rsvp.create({ userId, eventId });
   }
   return Rsvp;
 };

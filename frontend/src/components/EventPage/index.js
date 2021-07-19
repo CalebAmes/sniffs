@@ -3,12 +3,12 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, removeEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
-import { getRsvp, createRsvp } from '../../store/rsvp';
+import { getRsvp, createRsvp, removeRsvp } from '../../store/rsvp';
 import EditEventModal from '../EventForm/EditEventModal';
 import './EventPage.css';
 import { body1 } from '../index';
-
 import CommentSection from '../Comments'
+
 
 const EventPage = () => {
 	const dispatch = useDispatch();
@@ -17,37 +17,51 @@ const EventPage = () => {
 	const user = useSelector((state) => state.session.user);
 	const eventItems = useSelector((state) => state.event);
 	const categoryItems = useSelector((state) => state.category);
-
 	const [editModal, setEditModal] = useState(false);
+	const rsvps = useSelector((state) => state.rsvp);
 
-	const { id } = useParams();
+	const id = Number(useParams().id);
+
+	let hasRSVP = rsvps[id]
+
 	const event = eventItems && eventItems[id];
-
 	const category = categoryItems && event && categoryItems[event.categoryId];
-	const eventId = id;
 
 	const deleteEventId = async (id) => {
-		await dispatch(removeEvent(id));
+		dispatch(removeEvent(id));
 		history.push('/');
 	};
 
 	const addRsvp = () => {
+		const rsvp = {
+			userId: user.id,
+			eventId: id,
+		}
 		dispatch(
 			createRsvp({
-				userId: user.id,
-				eventId,
+				...rsvp,
 			})
 		);
-		history.push('/');
+		hasRSVP = rsvp;
 	};
+
+	const rmRSVP = () => {
+		dispatch(
+			removeRsvp(hasRSVP)
+		);
+	};
+	
 
 	useEffect(() => {
 		body1();
 		dispatch(getEvent());
 		dispatch(getCategory());
-		dispatch(getRsvp());
+		dispatch(getRsvp(user.id));
+		// dispatch(getUserEvents(user.id));
+		// setHasRSVP(userEvents?.find(e => e.eventId === id))
+		// console.log('this is hasRSVP in useEffect: ', hasRSVP);
 	}, [dispatch]);
-
+	
 	if (user) {
 		return (
 			<>
@@ -67,9 +81,16 @@ const EventPage = () => {
 							<p>-</p>
 							<div className="dateTime">{event?.dateEnd}</div>
 						</div>
-						<button type="button" className="submit rsvp" onClick={addRsvp}>
-							RSVP
-						</button>
+						{ hasRSVP &&
+							<button type="button" className="submit rsvp" onClick={rmRSVP}>
+								Delete Reservation
+							</button>
+						}
+						{ !hasRSVP &&
+							<button type="button" className="submit rsvp" onClick={addRsvp}>
+								RSVP
+							</button>
+						}
 						<button type="button" className="submit rsvp" onClick={() => deleteEventId(event.id)}>
 							Delete
 						</button>
@@ -88,7 +109,7 @@ const EventPage = () => {
 				<h1 className="title">{category?.name}.</h1>
 				<div className="block">
 					<div className="image">
-						<img src={event?.photo} />
+						<img src={event?.photo[0]} />
 					</div>
 					<div className="eventBox">
 						<div className="name">{event?.name.toUpperCase()}</div>

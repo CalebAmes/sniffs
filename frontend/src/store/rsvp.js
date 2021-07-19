@@ -5,31 +5,51 @@ const ADD_RSVP = 'comment/addRsvp';
 
 const setRsvp = (rsvp) => ({
   type: SET_RSVP,
-  payload: rsvp
+  rsvp,
 })
 
 const addRsvp = (rsvp) => ({
   type: ADD_RSVP,
-  payload: rsvp
+  rsvp,
 })
 
-export const getRsvp = () => async (dispatch) => {
-  const res = await fetch('/api/rsvp');
-  const data = await res.json();
-  dispatch(setRsvp(data.rsvp));
+const deleteRsvp = (id) => ({
+  type: 'DELETE_RSVP',
+  id,
+})
+
+export const getRsvp = (userId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/session/${userId}/events`);
+  const data = await res.json()
+  dispatch(setRsvp(data));
   return res;
 }
 
 export const createRsvp = (rsvp) => async (dispatch) => {
-  const { userId, content, eventId } = rsvp;
+  const { id, userId, eventId } = rsvp;
   const res = await csrfFetch('/api/rsvp', {
     method: 'POST',
     body: JSON.stringify({
-      userId, content, eventId
+      id, userId, eventId
     }),
   });
   const data = await res.json();
+  console.log('this is data in store: ', data);
   dispatch(addRsvp(data.rsvp));
+  return res;
+}
+
+export const removeRsvp = ({eventId, userId}) => async (dispatch) => {
+  const res = await csrfFetch(`/api/rsvp/${eventId}/delete`, {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      eventId,
+      userId,
+    })
+  });
+  // const data = await res.json();
+  await dispatch(deleteRsvp(eventId));
   return res;
 }
 
@@ -38,13 +58,17 @@ function reducer(state = {}, action) {
   switch (action.type) {
     case ADD_RSVP:
       newState = { ...state };
-      newState[action.payload] = action.payload;
+      newState[action.rsvp.eventId] = action.rsvp;
       return newState;
     case SET_RSVP:
       newState = {};
-      action.payload.forEach(item => {
-        newState[item.id] = item;
+      action.rsvp.forEach(item => {
+        newState[item.eventId] = item;
       });
+      return newState;
+    case 'DELETE_RSVP':
+      newState = { ...state };
+      delete newState[action.id];
       return newState;
     default:
       return state;
