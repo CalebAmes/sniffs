@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Rsvp = sequelize.define('Rsvp', {
-    id: {
-      primaryKey: true,
-      type: DataTypes.INTEGER,
-    },
+    // id: {
+    //   primaryKey: true,
+    //   type: DataTypes.INTEGER,
+    // },
     userId: DataTypes.INTEGER,
     eventId: DataTypes.INTEGER
   }, {});

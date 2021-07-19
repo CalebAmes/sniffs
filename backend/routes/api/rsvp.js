@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Rsvp } = require('../../db/models');
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -28,11 +29,17 @@ router.delete(
   '/:id(\\d+/delete)',
   asyncHandler(async(req, res) => {
     const { eventId, userId } = req.body;
-    const rsvp = await Rsvp.findOne({
-      where: { userId, eventId }
+    const rsvp = await Rsvp.findAll({
+      where: { 
+        [Op.and]: [
+          { eventId: eventId },
+          { userId: userId },
+        ]
+      }
     });
-    console.log('this is rsvp in delete route'
-    await rsvp.destroy();
+    console.log('this is rsvp -------------------------: ', rsvp);
+
+    await rsvp.forEach(el => el.destroy());
     return res.json();
   })
 );

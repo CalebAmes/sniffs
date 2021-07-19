@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, removeEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
 import { getRsvp, createRsvp, removeRsvp } from '../../store/rsvp';
-import { getUserEvents } from '../../store/session';
 import EditEventModal from '../EventForm/EditEventModal';
 import './EventPage.css';
 import { body1 } from '../index';
@@ -16,23 +15,17 @@ const EventPage = () => {
 	const history = useHistory();
 
 	const user = useSelector((state) => state.session.user);
-	const userEvents = useSelector((state) => state.session.userEvents);
 	const eventItems = useSelector((state) => state.event);
 	const categoryItems = useSelector((state) => state.category);
 	const [editModal, setEditModal] = useState(false);
 	const rsvps = useSelector((state) => state.rsvp);
 
-	console.log('this is rsvps: ', rsvps);
-
 	const id = Number(useParams().id);
 
-	let hasRSVP = rsvps?.eventId;
+	let hasRSVP = rsvps[id]
 
 	const event = eventItems && eventItems[id];
-	const rsvpArray = Object.values(rsvps);
-	const rsvpIdx = rsvpArray[rsvpArray.length - 1]?.id + 1;
 	const category = categoryItems && event && categoryItems[event.categoryId];
-	const eventId = id;
 
 	const deleteEventId = async (id) => {
 		dispatch(removeEvent(id));
@@ -42,9 +35,8 @@ const EventPage = () => {
 	const addRsvp = () => {
 		const rsvp = {
 			userId: user.id,
-			eventId,
+			eventId: id,
 		}
-		console.log('this is rsvp: ', rsvp);
 		dispatch(
 			createRsvp({
 				...rsvp,
@@ -55,7 +47,7 @@ const EventPage = () => {
 
 	const rmRSVP = () => {
 		dispatch(
-			removeRsvp(hasRSVP.id)
+			removeRsvp(hasRSVP)
 		);
 	};
 	
