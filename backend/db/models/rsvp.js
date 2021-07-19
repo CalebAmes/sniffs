@@ -1,3 +1,6 @@
+const { Op } = require("sequelize");
+const { Event } = require('./event');
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Rsvp = sequelize.define('Rsvp', {
@@ -10,6 +13,6 @@ module.exports = (sequelize, DataTypes) => {
   };
   Rsvp.createRsvp = async function ({ userId, eventId }) {
     return await Rsvp.create({ userId, eventId });
-  }
+  };
   return Rsvp;
 };

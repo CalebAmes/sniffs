@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Rsvp } = require('../../db/models');
+const { Rsvp, Event } = require('../../db/models');
 const { Op } = require("sequelize");
 
 const router = express.Router();
@@ -10,18 +10,40 @@ router.get('/', asyncHandler(async function (req, res) {
   return res.json({ rsvp })
 }))
 
+router.get(
+  '/:id(\\d+/events)', asyncHandler(async (req, res) => {
+    const id = req.params.id[0];
+    const userRsvps = await Rsvp.findAll({ 
+      where: {
+        userId: id
+      },
+      include: Event,
+    });
+    return res.json(userRsvps);
+  }
+));
+
 router.post(
   '/',
   asyncHandler(async(req, res) => {
     const {
-      id,
       userId, 
       eventId
     } = req.body;
-    const rsvp = await Rsvp.createRsvp({
-      id, userId, eventId
+    await Rsvp.createRsvp({
+      userId, eventId
     });
-    return res.json({ rsvp })
+    
+    const rsvp = await Rsvp.findOne({
+      where: { 
+        [Op.and]: [
+          { eventId: eventId },
+          { userId: userId },
+        ]
+      }, include: Event
+    });
+    
+    return res.json(rsvp);
   })
 )
 
