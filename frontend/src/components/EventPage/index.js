@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, removeEvent } from '../../store/event';
 import { getCategory } from '../../store/category';
-import { getRsvp, createRsvp, removeRsvp } from '../../store/rsvp';
+import { getUserRsvp, createRsvp, removeRsvp } from '../../store/rsvp';
 import EditEventModal from '../EventForm/EditEventModal';
 import './EventPage.css';
 import { body1 } from '../index';
@@ -22,7 +22,7 @@ const EventPage = () => {
 
 	const id = Number(useParams().id);
 
-	let hasRSVP = rsvps[id]
+	let hasRSVP = rsvps[id];
 
 	const event = eventItems && eventItems[id];
 	const category = categoryItems && event && categoryItems[event.categoryId];
@@ -56,10 +56,7 @@ const EventPage = () => {
 		body1();
 		dispatch(getEvent());
 		dispatch(getCategory());
-		dispatch(getRsvp(user.id));
-		// dispatch(getUserEvents(user.id));
-		// setHasRSVP(userEvents?.find(e => e.eventId === id))
-		// console.log('this is hasRSVP in useEffect: ', hasRSVP);
+		dispatch(getUserRsvp(user.id));
 	}, [dispatch]);
 	
 	if (user) {

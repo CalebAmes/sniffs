@@ -21,7 +21,6 @@ router.post(
     const rsvp = await Rsvp.createRsvp({
       id, userId, eventId
     });
-    console.log('this is rsvp in post ------------------------', rsvp);
     return res.json({ rsvp })
   })
 )
