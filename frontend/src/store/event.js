@@ -45,7 +45,6 @@ export const createEvent = (event) => async (dispatch) => {
 };
 
 export const updateEvent = (event) => async (dispatch) => {
-  console.log('this is event in the store: ', event)
   const { id, name, description, dateStart, dateEnd, categoryId, userId } = event;
   const res = await csrfFetch(`/api/event/${id}`, {
     method: 'PUT',
@@ -71,7 +70,6 @@ export const removeEvent = (id) => async (dispatch) => {
       id
     })
   });
-  console.log('this is in thunk')
   await dispatch(deleteEvent(id))
   return res;
 }
