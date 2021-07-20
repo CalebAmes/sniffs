@@ -56,7 +56,10 @@ const EventPage = () => {
 		body1();
 		dispatch(getEvent());
 		dispatch(getCategory());
-		dispatch(getUserRsvp(user.id));
+		if(user?.id) {
+			console.log('dispatch hit');
+			dispatch(getUserRsvp(user?.id));
+		}
 	}, [dispatch]);
 	
 	if (user) {
