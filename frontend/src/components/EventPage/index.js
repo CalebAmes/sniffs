@@ -28,7 +28,7 @@ const EventPage = () => {
 	const category = categoryItems && event && categoryItems[event.categoryId];
 
 	const deleteEventId = async (id) => {
-		dispatch(removeEvent(id));
+		await dispatch(removeEvent(id));
 		history.push('/');
 	};
 

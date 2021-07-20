@@ -11,16 +11,14 @@ import { body1 } from '../index';
 
 const LandingPage = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
-  
+
   const categoryItems = useSelector((state) => state.category);
   const eventItems = useSelector((state) => state.event);
-  // let eventItemsArray = Object.values(eventItems);
-  const [eventItemsArray, setEventItemsArray] = useState(Object.values(eventItems));
+
+  const [eventItemsArray, setEventItemsArray] = useState(null);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const categoryItemsArray = Object.values(categoryItems);
-  const category = categoryItems[id];
   
   useEffect(() => {
     body1()
@@ -37,9 +35,7 @@ const LandingPage = () => {
           let name = el.name.toLowerCase();
           let desc = el.description.toLowerCase();
 
-          if(name.includes(val) || desc.includes(val))
-            return el;
-          else return;
+          return name.includes(val) || desc.includes(val)
         })
       )
   }

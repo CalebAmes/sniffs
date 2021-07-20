@@ -16,7 +16,7 @@ const addEvent = (event) => ({
 
 const deleteEvent = (id) => ({
   type: DELETE_EVENT,
-  payload: id,
+  id,
 })
 
 export const getEvent = () => async (dispatch) => {
@@ -91,7 +91,7 @@ function reducer(state = {}, action) {
       return newState;
     case DELETE_EVENT:
       newState = { ...state };
-      delete newState[action.payload];
+      delete newState[action.id];
       return newState
     default:
       return state;
