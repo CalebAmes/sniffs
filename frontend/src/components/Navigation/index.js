@@ -140,11 +140,11 @@ export function Dropdown({ openFunc }) {
             <DropdownItem leftIcon={<i className="fas fa-layer-group" />} goToMenu="categories">
               Categories
             </DropdownItem>
-            <DropdownItem leftIcon={<i className="fas fa-layer-group" />} goToMenu="userEvents">
-              Events You're Attending
-            </DropdownItem>
             { sessionUser &&
               <>
+                <DropdownItem leftIcon={<i className="fas fa-hotdog" />} goToMenu="userEvents">
+                  Events You're Attending
+                </DropdownItem>
                 <Link onClick={ openFunc } to="/createEvent" className="menu-item">
                   <div className="icon-button">{<i className="far fa-calendar-plus" />}</div>
                   Create Event
