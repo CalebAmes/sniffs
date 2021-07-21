@@ -8,7 +8,8 @@ router.get('/', asyncHandler(async function (req, res) {
   const event = await Event.findAll({
     order: [
       ['id', 'ASC'],
-  ],
+    ],
+    include: Rsvp
   });
   return res.json({ event })
 }))
