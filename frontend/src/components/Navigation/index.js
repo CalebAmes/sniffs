@@ -72,9 +72,6 @@ export function Dropdown({ openFunc }) {
 	const [activeMenu, setActiveMenu] = useState('main');
 	const [menuHeight, setMenuHeight] = useState(null);
 
-  console.log('this is userEvents: ', userEvents);
-  console.log('this is userEventsArray: ', userEventsArray);
-
 	function calcHeight(el) {
 		const height = el.offsetHeight;
 		setMenuHeight(height);

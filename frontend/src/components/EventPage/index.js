@@ -57,7 +57,6 @@ const EventPage = () => {
 		dispatch(getEvent());
 		dispatch(getCategory());
 		if(user?.id) {
-			console.log('dispatch hit');
 			dispatch(getUserRsvp(user?.id));
 		}
 	}, [dispatch]);
