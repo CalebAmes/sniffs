@@ -15,6 +15,8 @@ const EventPage = () => {
 	const history = useHistory();
 	const id = Number(useParams().id);
 
+	console.log('this is id ' + id);
+
 	const user = useSelector((state) => state.session.user);
 	// const user = undefined;
 	const event = useSelector((state) => state.event[id]);
@@ -81,7 +83,7 @@ const EventPage = () => {
 		if(user?.id) {
 			dispatch(getUserRsvp(user?.id));
 		}
-	}, [dispatch]);
+	}, [dispatch, id]);
 	
 	return (
 		<>
