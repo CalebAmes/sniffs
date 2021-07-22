@@ -74,16 +74,16 @@ const EventPage = () => {
 	
 	return (
 		<>
-		{ event.User && user &&
+		{ event?.User &&
 			<>
 				<div className="eventPadding">
 					<h2>{event.dateStart}</h2>
 					<h1>{event.name}</h1>
 					<div className = "eventHost">
 						<p>Hosted by</p>
-						{ event.User.id === user.id &&
+						{ event.User.id === user?.id &&
 							<h3>This event is hosted by you</h3>
-						}{ event.User.id !== user.id && 
+						}{ event.User.id !== user?.id && 
 							<h3>{event.User.username}</h3>
 						}
 					</div>
