@@ -55,9 +55,6 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     User.hasMany(models.Rsvp, { foreignKey: 'userId'});
-    // User.belongsToMany(models.Event, { 
-    //   through: 'Rsvp', otherKey: 'eventId', foreignKey: 'userId'
-    // });
 
     User.hasMany(models.Event, { foreignKey: 'userId'});
 

@@ -17,11 +17,6 @@ module.exports = (sequelize, DataTypes) => {
   );
   Event.associate = function (models) {
     Event.hasMany (models.Rsvp, {foreignKey: 'eventId'});
-    // Event.belongsToMany (models.User, {
-    //   through: 'Rsvp',
-    //   otherKey: 'userId',
-    //   foreignKey: 'eventId',
-    // });
 
     Event.hasMany (models.Comment, {foreignKey: 'eventId'});
 

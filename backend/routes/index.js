@@ -4,7 +4,7 @@ const apiRouter = require('./api');
 
 router.use('/api', apiRouter);
 
-if(process.env.NODE_ENV ==='production') {
+if(process.env.NODE_ENV ===' ') {
   const path = require('path');
 
   router.get('/', (req, res) => {
