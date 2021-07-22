@@ -86,7 +86,7 @@ const EditEventModal = ({setOpen, open, event}) => {
           <input
             type='datetime-local'
             className='input'
-            value='1990-12-31T23:59:60Z'
+            value= { dateEnd }
             onChange={ (e) => setDateEnd(e.target.value) }
             />
         </label>
