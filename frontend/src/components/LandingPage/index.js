@@ -43,6 +43,9 @@ const LandingPage = () => {
 
     return (
       <>
+      { !isLoaded &&
+        <div className="loading" />
+      }
       { isLoaded &&
         <div className='home'>
           <div className='topPad'></div>
