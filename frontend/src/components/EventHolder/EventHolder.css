@@ -28,7 +28,7 @@
   height: 216px;
   width: 248px;
   border-radius: 0px 0px 8px 8px;
-  overflow: scroll;
+  overflow: auto;
   margin: auto;
   text-align: center;
 }
