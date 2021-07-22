@@ -26,9 +26,11 @@ const EventPage = () => {
 
 	const category = categoryItems && event && categoryItems[event.categoryId];
 
-	const deleteEventId = async (id) => {
-		await dispatch(removeEvent(id));
-		history.push('/');
+	const deleteEventId = (id) => {
+		console.log('in deleteEventId')
+		dispatch(removeEvent(id)).then(() => {
+		return history.push('/');
+		});
 	};
 
 	const addRsvp = () => {
@@ -52,6 +54,7 @@ const EventPage = () => {
 	};
 
 	const dateCreator = time => {
+		if(!time) return undefined;
 		let ymd = time.slice(0, 10)
 		let hm = time.slice(11, 16).split(':');
 		let hours;
@@ -68,12 +71,8 @@ const EventPage = () => {
 		return { hm, ymd };
 	};
 
-	const startTime = dateCreator(event.dateStart);
-	const endTime = dateCreator(event.dateEnd);
-
-	console.log('this is startTime: ' + JSON.stringify(startTime))
-	console.log('this is endTime: ' + JSON.stringify(endTime))
-	
+	const startTime = dateCreator(event?.dateStart);
+	const endTime = dateCreator(event?.dateEnd);
 
 	useEffect(() => {
 		body1();
@@ -156,9 +155,9 @@ const EventPage = () => {
 						<CommentSection id={ id } userId={ user?.id } />
 					</div>
 				</div>
-				{/* <div className="pad" /> */}
+				<div className="pad" />
 			</>
-		}{ !event.User &&
+		}{ !event?.User &&
 			<>
 				<h1>Event is not there</h1>
 				<div className="loading" />
