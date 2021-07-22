@@ -1,3 +1,10 @@
+.eventGrid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+
+
 .title {
   margin-top: 10px;
   margin-left: 30px;
@@ -8,28 +15,44 @@
   display: flex;
   margin: auto 30px;
   box-sizing: border-box;
-    padding: 2%;
+  padding: 2%;
   width: 80%;
   flex-direction: column;
   border: 1px solid #000;
   height: 302px;
-  overflow: scroll;
+  overflow: auto;
+}
+
+.comments {
+  overflow: auto;
+  width: 100%;
+}
+
+.comments > h3 {
+  margin: 20px;
 }
 
 .commentBlock{
   display: flex;
-  margin: 80px auto;
+  margin: auto;
   box-sizing: border-box;
-  padding: padding 5%;
-  width: 50%;
-  height: 100%;
+  width: 90%;
+  /* min-height: 40vh; */
+  height: 50vh;
   flex-direction: column;
   border: 1px solid #000;
-  overflow: scroll;
-  transform: translateY(20%);
+  overflow-y: auto;
+  justify-content: flex-end; 
 }
 
-.image {
+.eventButtons{
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  width: 100%;
+}
+
+.image, .eventBox{
   display: flex;
   margin: auto;
   box-sizing: border-box;
@@ -41,13 +64,14 @@
   overflow: hidden;
 }
 
-.block {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
-  margin: auto -3%;
-  height: 18em;
-  
+.eventDates {
+  box-sizing: border-box;
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .name {
@@ -77,6 +101,7 @@
 }
 
 .comment {
+  box-sizing: border-box;
   width: 100%;
   box-sizing: border-box;
   padding: 8px 20px;
@@ -91,7 +116,6 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  align-items: center;
   box-sizing: border-box;
   padding: 15px;
 }

@@ -74,7 +74,7 @@
 	border: var(--border);
 	border-radius: var(--border-radius);
 	padding: 1rem;
-	overflow: scroll;
+	overflow: auto;
 	transition: height var(--speed) ease;
 }
 

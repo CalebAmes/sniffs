@@ -38,10 +38,13 @@ const CommentSection = ({ id, userId }) => {
   return (
     <div className="commentBlock">
       <div className="comments">
-        {commentsArray
+        { commentsArray
           ?.map((comment) => (
 						<CommentHolder comment = {comment} id = { id }key={comment.id} />
           ))}
+        { !commentsArray.length &&
+          <h3>This is where you can post comments</h3>
+        }
       </div>
       <div>
         <form value={userId} onSubmit={addComment}>

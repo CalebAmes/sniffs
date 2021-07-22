@@ -49,6 +49,18 @@ const EventPage = () => {
 			removeRsvp(hasRSVP)
 		);
 	};
+
+	// const dateCreator = time => {
+	// 	let mdy = time.slice(0, 10).split('-');
+	// 	let hms = time.slice(11, 16).split(':');
+	// 	return `${mdy[0]}, ${mdy[1]} - 1, ${mdy[2]}, ${hms[0]}, ${hms[1]}, ${hms[2]}`;
+	// };
+
+	// const startTime = dateCreator(event.dateStart);
+	// const endTime = dateCreator(event.dateEnd);
+
+	// console.log('this is startTime: ' + startTime)
+	// console.log('this is endTime: ' + endTime)
 	
 
 	useEffect(() => {
@@ -62,51 +74,70 @@ const EventPage = () => {
 	
 	return (
 		<>
-		{ event && user &&
+		{ event.User && user &&
 			<>
 				<div className="eventPadding">
 					<h2>{event.dateStart}</h2>
 					<h1>{event.name}</h1>
 					<div className = "eventHost">
 						<p>Hosted by</p>
-						<p>{event.host}</p>
+						{ event.User.id === user.id &&
+							<h3>This event is hosted by you</h3>
+						}{ event.User.id !== user.id && 
+							<h3>{event.User.username}</h3>
+						}
 					</div>
 				</div>
 				<h1 className="title">{category?.name}.</h1>
 				{editModal &&
 					<EditEventModal setOpen={setEditModal} open={editModal} event={event} />
 				}
-				<div className="block">
-					<div className="image">
-						<img src={event?.photo[2]} />
-					</div>
-					<div className="eventBox">
-						<div className="name">{event?.name.toUpperCase()}</div>
-						<div className="desc">{event?.description.toLowerCase()}</div>
-						<div className="dateTimeDiv">
-							<div className="dateTime">{event?.dateStart}</div>
-							<p>-</p>
-							<div className="dateTime">{event?.dateEnd}</div>
+				<div className="eventGrid">
+					<div className="block eventColumnLeft">
+						<div className="image">
+							<img src={event?.photo[2]} />
 						</div>
-						{ hasRSVP &&
-							<button type="button" className="submit rsvp" onClick={rmRSVP}>
-								Delete Reservation
-							</button>
-						}
-						{ !hasRSVP &&
-							<button type="button" className="submit rsvp" onClick={addRsvp}>
-								RSVP
-							</button>
-						}
-						<button type="button" className="submit rsvp" onClick={() => deleteEventId(event.id)}>
-							Delete
-						</button>
-						<button type="button" className="submit rsvp" onClick={() => setEditModal(!editModal)}>
-							Update
-						</button>
+						<div className="eventBox">
+							<div className="name">{event?.name.toUpperCase()}</div>
+							<div className="desc">{event?.description.toLowerCase()}</div>
+								<div className="dateTimeDiv">
+									<div className="dateTime">{event?.dateStart}</div>
+									<p>-</p>
+									<div className="dateTime">{event?.dateEnd}</div>
+							</div>
+						</div>
+					</div>
+					<div className="block eventColumnRight">
+						<div className="eventButtons">
+								{ hasRSVP &&
+									<button type="button" className="submit rsvp" onClick={rmRSVP}>
+											Delete Reservation
+									</button>
+								}
+								{ !hasRSVP && user.id !== event.User.id &&
+									<button type="button" className="submit rsvp" onClick={addRsvp}>
+										RSVP
+									</button>
+								}
+								{/* { user.id === event.User.id && */}
+									<>
+										<button type="button" className="submit rsvp" onClick={() => setEditModal(!editModal)}>
+											Update
+										</button>
+										<button type="button" className="submit rsvp" onClick={() => deleteEventId(event.id)}>
+											Delete
+										</button>
+									</>
+								{/* } */}
+						</div>
+						<div className="eventDates">
+							{/* <h2>from: {startTime}</h2> */}
+							<h2> - </h2>
+							{/* <h2>to: {endTime}</h2> */}
+						</div>
+						<CommentSection id={ id } userId={ user.id } />
 					</div>
 				</div>
-				<CommentSection id={ id } userId={ user.id } />
 				{/* <div className="pad" /> */}
 			</>
 		}{
