@@ -23,6 +23,15 @@ export const getEvent = () => async (dispatch) => {
   const res = await fetch('/api/event/');
   const data = await res.json();
   dispatch(setEvent(data.event))
+  console.log('this is data getEvent: ', data);
+  return res;
+}
+
+export const getEventDetails = (id) => async (dispatch) => {
+  const res = await fetch(`/api/event/${id}`);
+  const data = await res.json();
+  console.log('this is data getEventDetails: ', data);
+  dispatch(addEvent(data.event))
   return res;
 }
 

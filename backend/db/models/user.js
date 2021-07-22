@@ -59,6 +59,8 @@ module.exports = (sequelize, DataTypes) => {
       through: 'Rsvp', otherKey: 'eventId', foreignKey: 'userId'
     });
 
+    User.hasMany(models.Event, { foreignKey: 'userId'});
+
     User.hasMany(models.Comment, { foreignKey: 'userId'});
   };
   User.prototype.toSafeObject = function() {
