@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import { getComment, createComment } from '../../store/comment';
 import CommentHolder from './CommentHolder';
 
 const CommentSection = ({ id, userId }) => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const commentItems = useSelector((state) => state.comment);
 	const commentsArray = Object.values(commentItems).filter(comment =>
 			comment.eventId === parseInt(id))
@@ -13,6 +14,7 @@ const CommentSection = ({ id, userId }) => {
   const [content, setContent] = useState('');
 
   const addComment = (e) => {
+    if (!userId) return history.push('/login');
 		if (e) e.preventDefault();
 		dispatch(
 			createComment({

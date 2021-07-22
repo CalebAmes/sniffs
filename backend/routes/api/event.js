@@ -71,7 +71,8 @@ router.put (
       categoryId,
       userId,
     } = req.body;
-    const event = await Event.updateEvent ({
+
+    const e = await Event.updateEvent ({
       name,
       description,
       dateStart,
@@ -79,6 +80,21 @@ router.put (
       categoryId,
       userId,
       id,
+    });
+
+    const event = await Event.findByPk (e.id, {
+      order: [['id', 'ASC']],
+      include: [
+        {
+          model: Rsvp,
+          include: User,
+        },
+        {
+          model: Comment,
+          include: User,
+        },
+        User,
+      ],
     });
     return res.json ({event});
   })

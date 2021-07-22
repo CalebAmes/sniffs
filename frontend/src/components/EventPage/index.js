@@ -32,6 +32,7 @@ const EventPage = () => {
 	};
 
 	const addRsvp = () => {
+		if (!user) return history.push('/login');
 		const rsvp = {
 			userId: user.id,
 			eventId: id,
@@ -50,17 +51,28 @@ const EventPage = () => {
 		);
 	};
 
-	// const dateCreator = time => {
-	// 	let mdy = time.slice(0, 10).split('-');
-	// 	let hms = time.slice(11, 16).split(':');
-	// 	return `${mdy[0]}, ${mdy[1]} - 1, ${mdy[2]}, ${hms[0]}, ${hms[1]}, ${hms[2]}`;
-	// };
+	const dateCreator = time => {
+		let ymd = time.slice(0, 10)
+		let hm = time.slice(11, 16).split(':');
+		let hours;
+		let am;
+		if(hm[0] > 12){
+			(hours = hm[0] - 12);
+			am = 'pm';
+		}else{
+			(hours = hm[0]);
+			am = 'am';
+		};
+		hm = [hours, hm[1]].join(':') + am;
+		
+		return { hm, ymd };
+	};
 
-	// const startTime = dateCreator(event.dateStart);
-	// const endTime = dateCreator(event.dateEnd);
+	const startTime = dateCreator(event.dateStart);
+	const endTime = dateCreator(event.dateEnd);
 
-	// console.log('this is startTime: ' + startTime)
-	// console.log('this is endTime: ' + endTime)
+	console.log('this is startTime: ' + JSON.stringify(startTime))
+	console.log('this is endTime: ' + JSON.stringify(endTime))
 	
 
 	useEffect(() => {
@@ -74,16 +86,16 @@ const EventPage = () => {
 	
 	return (
 		<>
-		{ event.User && user &&
+		{ event?.User &&
 			<>
 				<div className="eventPadding">
-					<h2>{event.dateStart}</h2>
+					<h2>{startTime.ymd}</h2>
 					<h1>{event.name}</h1>
 					<div className = "eventHost">
 						<p>Hosted by</p>
-						{ event.User.id === user.id &&
+						{ event.User.id === user?.id &&
 							<h3>This event is hosted by you</h3>
-						}{ event.User.id !== user.id && 
+						}{ event.User.id !== user?.id && 
 							<h3>{event.User.username}</h3>
 						}
 					</div>
@@ -101,9 +113,15 @@ const EventPage = () => {
 							<div className="name">{event?.name.toUpperCase()}</div>
 							<div className="desc">{event?.description.toLowerCase()}</div>
 								<div className="dateTimeDiv">
-									<div className="dateTime">{event?.dateStart}</div>
+									<div>
+										<div className="dateTime">{startTime.hm}</div>
+										<div className="dateTime">{`${startTime.ymd}`}</div>
+									</div>
 									<p>-</p>
-									<div className="dateTime">{event?.dateEnd}</div>
+									<div>
+										<div className="dateTime">{endTime.hm}</div>
+										<div className="dateTime">{`${endTime.ymd}`}</div>
+									</div>
 							</div>
 						</div>
 					</div>
@@ -114,12 +132,12 @@ const EventPage = () => {
 											Delete Reservation
 									</button>
 								}
-								{ !hasRSVP && user.id !== event.User.id &&
+								{ !hasRSVP && user?.id !== event.User.id &&
 									<button type="button" className="submit rsvp" onClick={addRsvp}>
 										RSVP
 									</button>
 								}
-								{/* { user.id === event.User.id && */}
+								{ user &&
 									<>
 										<button type="button" className="submit rsvp" onClick={() => setEditModal(!editModal)}>
 											Update
@@ -128,23 +146,22 @@ const EventPage = () => {
 											Delete
 										</button>
 									</>
-								{/* } */}
+								}
 						</div>
 						<div className="eventDates">
-							{/* <h2>from: {startTime}</h2> */}
+							<h2>from: {startTime.hm}</h2>
 							<h2> - </h2>
-							{/* <h2>to: {endTime}</h2> */}
+							<h2>to: {endTime.hm}</h2>
 						</div>
-						<CommentSection id={ id } userId={ user.id } />
+						<CommentSection id={ id } userId={ user?.id } />
 					</div>
 				</div>
 				{/* <div className="pad" /> */}
 			</>
-		}{
-			(!event || !user ) &&
+		}{ !event.User &&
 			<>
-			<h1>Event is not there</h1>
-			<div className="loading" />
+				<h1>Event is not there</h1>
+				<div className="loading" />
 			</>
 		}
 		</>
