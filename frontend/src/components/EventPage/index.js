@@ -49,6 +49,18 @@ const EventPage = () => {
 			removeRsvp(hasRSVP)
 		);
 	};
+
+	// const dateCreator = time => {
+	// 	let mdy = time.slice(0, 10).split('-');
+	// 	let hms = time.slice(11, 16).split(':');
+	// 	return `${mdy[0]}, ${mdy[1]} - 1, ${mdy[2]}, ${hms[0]}, ${hms[1]}, ${hms[2]}`;
+	// };
+
+	// const startTime = dateCreator(event.dateStart);
+	// const endTime = dateCreator(event.dateEnd);
+
+	// console.log('this is startTime: ' + startTime)
+	// console.log('this is endTime: ' + endTime)
 	
 
 	useEffect(() => {
@@ -71,7 +83,7 @@ const EventPage = () => {
 						<p>Hosted by</p>
 						{ event.User.id === user.id &&
 							<h3>This event is hosted by you</h3>
-						}{ event.User.id !== user.id &&
+						}{ event.User.id !== user.id && 
 							<h3>{event.User.username}</h3>
 						}
 					</div>
@@ -107,7 +119,7 @@ const EventPage = () => {
 										RSVP
 									</button>
 								}
-								{ user.id === event.User.id &&
+								{/* { user.id === event.User.id && */}
 									<>
 										<button type="button" className="submit rsvp" onClick={() => setEditModal(!editModal)}>
 											Update
@@ -116,12 +128,12 @@ const EventPage = () => {
 											Delete
 										</button>
 									</>
-								}
+								{/* } */}
 						</div>
 						<div className="eventDates">
-							<h2>from: {event.dateStart}</h2>
+							{/* <h2>from: {startTime}</h2> */}
 							<h2> - </h2>
-							<h2>to: {event.dateEnd}</h2>
+							{/* <h2>to: {endTime}</h2> */}
 						</div>
 						<CommentSection id={ id } userId={ user.id } />
 					</div>
