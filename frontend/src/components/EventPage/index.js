@@ -152,7 +152,9 @@ const EventPage = () => {
 							<h2> - </h2>
 							<h2>to: {endTime.hm}</h2>
 						</div>
+						{ user &&
 						<CommentSection id={ id } userId={ user?.id } />
+						}
 					</div>
 				</div>
 				<div className="pad" />
