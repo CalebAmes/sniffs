@@ -159,7 +159,8 @@ const EventPage = () => {
 				</div>
 				<div className="pad" />
 			</>
-		}{ !event?.User &&
+		}
+		{ !event?.User &&
 			<>
 				<h1>Event is not there</h1>
 				<div className="loading" />
