@@ -65,15 +65,14 @@
   box-sizing: border-box;
   flex-direction: column;
   border: 1px solid #000;
-  height: 302px;
+  height: 100%;
   width: 70%;
   overflow: -moz-hidden-unscrollable;
   overflow: hidden;
+  max-width: 35vw;
+  max-height: 35vh;
 }
 
-.image {
-  max-width: 35vw;
-}
 
 .eventDates {
   box-sizing: border-box;
