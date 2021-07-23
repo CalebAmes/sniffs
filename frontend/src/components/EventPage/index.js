@@ -107,9 +107,8 @@ const EventPage = () => {
 				}
 				<div className="eventGrid">
 					<div className="eventColumnLeft">
-						<div className="image">
-							<h2>Add Image Here.</h2>
-							{/* <img src={event?.photo[2]} /> */}
+						<div className="image">					
+							<img src={event?.photo[2]} />
 						</div>
 						<div className="eventBox">
 							<div className="name">{event?.name.toUpperCase()}</div>
