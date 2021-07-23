@@ -102,13 +102,14 @@ const EventPage = () => {
 					</div>
 				</div>
 				<h1 className="title">{category?.name}.</h1>
-				{/* {editModal &&
+				{editModal &&
 					<EditEventModal setOpen={setEditModal} open={editModal} event={event} />
-				} */}
+				}
 				<div className="eventGrid">
 					<div className="eventColumnLeft">
 						<div className="image">
-							<img src={event?.photo[2]} />
+							<h2>Add Image Here.</h2>
+							{/* <img src={event?.photo[2]} /> */}
 						</div>
 						<div className="eventBox">
 							<div className="name">{event?.name.toUpperCase()}</div>
