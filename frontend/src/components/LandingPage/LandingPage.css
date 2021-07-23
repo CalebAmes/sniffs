@@ -37,8 +37,8 @@
 .categoryBlock {
   padding: 40px;
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 33% 33% 33%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   margin: auto;
   width: 70%;
   height: 18em;

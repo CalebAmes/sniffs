@@ -106,7 +106,7 @@ const EventPage = () => {
 					<EditEventModal setOpen={setEditModal} open={editModal} event={event} />
 				} */}
 				<div className="eventGrid">
-					<div className="block eventColumnLeft">
+					<div className="eventColumnLeft">
 						<div className="image">
 							<img src={event?.photo[2]} />
 						</div>
@@ -126,7 +126,7 @@ const EventPage = () => {
 							</div>
 						</div>
 					</div>
-					<div className="block eventColumnRight">
+					<div className="eventColumnRight">
 						<div className="eventButtons">
 								{ hasRSVP &&
 									<button type="button" className="submit rsvp" onClick={rmRSVP}>
