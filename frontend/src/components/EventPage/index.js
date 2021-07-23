@@ -102,9 +102,9 @@ const EventPage = () => {
 					</div>
 				</div>
 				<h1 className="title">{category?.name}.</h1>
-				{editModal &&
+				{/* {editModal &&
 					<EditEventModal setOpen={setEditModal} open={editModal} event={event} />
-				}
+				} */}
 				<div className="eventGrid">
 					<div className="block eventColumnLeft">
 						<div className="image">
