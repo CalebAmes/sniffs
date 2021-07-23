@@ -1,11 +1,11 @@
-.eventGrid {
+/* .eventGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: "eventColumnLeft eventColumnRight";
   width: 100%;
   height: 30em;
-}
+} */
 
 /* .eventColumnLeft, .eventColumnRight {
   width: 100%;
