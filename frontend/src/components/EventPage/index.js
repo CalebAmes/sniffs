@@ -6,7 +6,7 @@ import { getCategory } from '../../store/category';
 import { getUserRsvp, createRsvp, removeRsvp } from '../../store/rsvp';
 import EditEventModal from '../EventForm/EditEventModal';
 import './EventPage.css';
-import { body1 } from '../index';
+import { body1, footer1, footer2 } from '../index';
 import CommentSection from '../Comments';
 
 
@@ -91,11 +91,13 @@ const EventPage = () => {
 
 	useEffect(() => {
 		body1();
+		footer2();
 		dispatch(getEventDetails(id));
 		dispatch(getCategory());
 		if(user?.id) {
 			dispatch(getUserRsvp(user?.id));
 		}
+		return () => footer1();
 	}, [dispatch, id]);
 	
 	return (

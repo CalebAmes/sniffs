@@ -41,45 +41,45 @@ const LandingPage = () => {
   }
 
 
-    return (
-      <>
-      { !isLoaded &&
-        <div className="loading" />
-      }
-      { isLoaded &&
-        <div className='home'>
-          <div className='topPad'></div>
-          <div>
-            <div className='headerDiv'>
-              <h1 className='h1'>events.</h1>
+  return (
+    <>
+    { !isLoaded &&
+      <div className="loading" />
+    }
+    { isLoaded &&
+      <div className='home'>
+        <div className='topPad'></div>
+        <div>
+          <div className='headerDiv'>
+            <h1 className='h1'>events.</h1>
+          </div>
+            <div className='eventSearchDiv'>
+              <input className='eventSearchInput' onChange={(e)=>search(e)} placeholder='search.'></input>
             </div>
-              <div className='eventSearchDiv'>
-                <input className='eventSearchInput' onChange={(e)=>search(e)} placeholder='search.'></input>
-              </div>
-              <div className='carouselDiv'>
-                <ScrollingCarousel className='scrollingCarousel'>
-                  {
-                    eventItemsArray.map((item, i) => (
-                      <EventHolder event={ item } i={ i } key={ item?.id }> { item?.name }</EventHolder>
-                    ))
-                  }
-                </ScrollingCarousel>
-              </div>
-          </div>
-            <h1 className='h1'>categories.</h1>
-            <div className='categoryBlock'>
-              {
-                categoryItemsArray.map(item => (
-                  <CategoryHolder category={ item } key={ item?.id }>
-                    { item?.name }
-                  </CategoryHolder>
-                ))
-              }
-          </div>
-        </div>  
-      }
-      </>
-    )
+            <div className='carouselDiv'>
+              <ScrollingCarousel className='scrollingCarousel'>
+                {
+                  eventItemsArray.map((item, i) => (
+                    <EventHolder event={ item } i={ i } key={ item?.id }> { item?.name }</EventHolder>
+                  ))
+                }
+              </ScrollingCarousel>
+            </div>
+        </div>
+          <h1 className='h1'>categories.</h1>
+          <div className='categoryBlock'>
+            {
+              categoryItemsArray.map(item => (
+                <CategoryHolder category={ item } key={ item?.id }>
+                  { item?.name }
+                </CategoryHolder>
+              ))
+            }
+        </div>
+      </div>  
+    }
+    </>
+  )
 }
 
 export default LandingPage;

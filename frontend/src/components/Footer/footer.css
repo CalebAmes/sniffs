@@ -1,5 +1,8 @@
-.footerDiv {
+.footerDiv1 {
   background-color: #000;
+  position: relative;
+  bottom: 0;
+  width: 100%;
   padding: 20px 0;
   border-top: 1px solid #e7e7e7;
   margin-top: 20px;
@@ -7,7 +10,20 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+}
+
+.footerDiv2 {
+  background-color: #000;
+  position: absolute;
   bottom: 0;
+  width: 100%;
+  padding: 20px 0;
+  border-top: 1px solid #e7e7e7;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .footerItem {

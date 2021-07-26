@@ -2,7 +2,7 @@ import "./footer.css";
 
 const Footer = () => {
   return (
-    <div className="footerDiv">
+    <div id="footer" className="footerDiv2">
       <a
         className="footerItem"
         href="https://github.com/CalebAmes"
