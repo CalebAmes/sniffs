@@ -12,11 +12,6 @@
   height: 100%;
   margin: auto;
 }
-/* 
-.eventPadding {
-  background: #fde2e4;
-
-} */
 
 .rightColor {
   position: fixed;
@@ -28,9 +23,9 @@
 }
 
 .title {
-  margin-top: 10px;
+  padding-top: 75px;
   margin-left: 30px;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 
 .comments > h3 {

@@ -94,18 +94,6 @@ const EventPage = () => {
 		{ event?.User &&
 			<>
 				<div className='rightColor' />
-				<div className="eventPadding">
-					<h2>{startTime.ymd}</h2>
-					<h1>{event.name}</h1>
-					<div className = "eventHost">
-						<p>Hosted by</p>
-						{ event.User.id === user?.id &&
-							<h3>This event is hosted by you</h3>
-						}{ event.User.id !== user?.id && 
-							<h3>{event.User.username}</h3>
-						}
-					</div>
-				</div>
 				<h1 className="title">{category?.name}.</h1>
 				{editModal &&
 					<EditEventModal setOpen={setEditModal} open={editModal} event={event} />
@@ -113,6 +101,14 @@ const EventPage = () => {
 				<div className="event">
 					<div className="eventGrid">
 						<div className="eventColumnLeft">
+							<div className = "eventHost">
+								<p>Hosted by</p>
+								{ event.User.id === user?.id &&
+									<h3>This event is hosted by you</h3>
+								}{ event.User.id !== user?.id && 
+									<h3>{event.User.username}</h3>
+								}
+							</div>
 							<div className="image" style={imageStyles} />
 							<div className="eventBox">
 								<div className="name">{event?.name.toUpperCase()}</div>
@@ -168,6 +164,14 @@ const EventPage = () => {
 							</div>
 							{ user &&
 							<CommentSection id={ id } userId={ user?.id } />
+							}{ !user &&
+								<>
+								<br />
+								<br />
+								<br />
+								<br />
+								<h2>Please login. Demo login available</h2>
+								</>
 							}
 						</div>
 					</div>
