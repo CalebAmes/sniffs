@@ -36,7 +36,7 @@
 }
 
 .changes {
-  position: absolute;
+  position: fixed;
   z-index: 20;
   animation-name: slide2;
   animation-duration: 5s;
@@ -63,15 +63,15 @@
 
 @keyframes slide2 {
   0% {
-    transform: translate(-1000px, 30px);
+    transform: translate(-1000px, -30px);
   }
 	30% {
-		transform: translate(0, 30px);
+		transform: translate(0, -30px);
 	}
   70% {
-    transform: translate(0), 30px;
+    transform: translate(0, 30px);
   }
 	100% {
-		transform: translateX(1000px, 30px)
+		transform: translate(1000px, 30px)
 	}
 } ;
