@@ -1,0 +1,16 @@
+.footerDiv {
+  background-color: #000;
+  padding: 20px 0;
+  border-top: 1px solid #e7e7e7;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  bottom: 0;
+}
+
+.footerItem {
+  color: #fff;
+  margin-right: 20px;
+}
