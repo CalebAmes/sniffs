@@ -31,8 +31,14 @@
   height: 50vh;
   flex-direction: column;
   border: 1px solid #000;
-  overflow-y: auto;
+  /* overflow-y: scroll; */
+  overflow: scroll;
   justify-content: flex-end; 
+}
+
+.comments {
+  overflow: auto;
+  width: 100%;
 }
 
 .eventButtons{
@@ -147,7 +153,7 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 405px) {
   .eventColumnLeft {
     width: 375px;
     height: 100%;
