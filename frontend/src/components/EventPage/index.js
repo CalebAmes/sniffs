@@ -91,13 +91,13 @@ const EventPage = () => {
 
 	useEffect(() => {
 		body1();
-		footer2();
+		// footer2();
 		dispatch(getEventDetails(id));
 		dispatch(getCategory());
 		if(user?.id) {
 			dispatch(getUserRsvp(user?.id));
 		}
-		return () => footer1();
+		// return () => footer1();
 	}, [dispatch, id]);
 	
 	return (
