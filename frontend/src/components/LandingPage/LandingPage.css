@@ -31,13 +31,7 @@
 
 .eventSearchInput {
   min-width: 32vw;
-  margin: 50px, 50vw;
-}
-
-.h3 {
-  max-width: 30%;
   margin: auto;
-  text-align: center;
 }
 
 .categoryBlock {
@@ -57,4 +51,22 @@
 
 .Header > h3 {
   font-size: 8pt;
+  max-width: 30%;
+  margin: auto;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .Header > h3 {
+    font-size: 8pt;
+    max-width: 95%;
+    margin: auto;
+    text-align: center;
+  }
+
+  .eventSearchInput {
+    min-width: 32vw;
+    width: 80%;
+    margin: auto;
+  }
 }
