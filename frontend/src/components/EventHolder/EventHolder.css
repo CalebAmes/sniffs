@@ -45,7 +45,7 @@
   background-color: inherit;
   height: 45px;
   width: 248px;
-  /* border-radius: 0px 0px 3px 3px; */
+  border-radius: 0px 0px 3px 3px;
   overflow: auto;
   margin: auto;
   text-align: center;
