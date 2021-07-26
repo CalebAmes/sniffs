@@ -1,19 +1,37 @@
 .eventHolder{
-  height: 362px;
+  height: 190x;
   width: 248px;
   margin: 12px;
   /* border: 1px solid rgba(0,0,0,0.3); */
-  border-radius: 8px;
+  border-radius: 4px;
+  color: darkgray;
+  /* padding: 5px; */
+}
+
+.eventHolder > p {
+  padding-left: 3px;
 }
 
 .eventHolder:hover{
   background: #e6e6e6;
+  color: black;
+  animation-name: hover;
+  animation-duration: 0.3s;
+}
+
+@keyframes hover {
+  from {
+    background: #fafafa;
+  }
+  to {
+    background: #e6e6e6;
+  }
 }
 
 .eventPhoto{
   height: 140px;
   width: 248px;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 3px;
 }
 
 .lower{
@@ -21,14 +39,20 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   color: #212121;
-  font-size: 12pt;
+  font-size: 8pt;
   background-color: inherit;
-  height: 216px;
+  height: 45px;
   width: 248px;
-  border-radius: 0px 0px 8px 8px;
+  /* border-radius: 0px 0px 3px 3px; */
   overflow: auto;
   margin: auto;
   text-align: center;
+}
+
+.lower > h3 {
+  text-align: left;
+  padding-left: 3px;
+  padding-right: 3px;
 }
