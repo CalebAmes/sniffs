@@ -63,6 +63,17 @@
   background-color: rgba(0,0,0, 0.3)
 }
 
+.imageArea {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.imageArea > i {
+  padding: 10px;
+  color: white;
+}
+
 .eventDates {
   box-sizing: border-box;
   width: 50%;
