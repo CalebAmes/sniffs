@@ -15,17 +15,21 @@ const EventPage = () => {
 	const history = useHistory();
 	const id = Number(useParams().id);
 
-	console.log('this is id ' + id);
-
+	
 	const user = useSelector((state) => state.session.user);
-	// const user = undefined;
 	const event = useSelector((state) => state.event[id]);
 	const categoryItems = useSelector((state) => state.category);
 	const [editModal, setEditModal] = useState(false);
 	const rsvps = useSelector((state) => state.rsvp);
+	
+	const attendees = event.Rsvps
+
+	console.log('this is attendees: ', attendees)
 
 	let hasRSVP = rsvps[id];
 
+	const imageStyles = {background:'url('+event?.photo[0]+') no-repeat center center', backgroundSize: 'cover', height: '400px'}
+	
 	const category = categoryItems && event && categoryItems[event.categoryId];
 
 	const deleteEventId = (id) => {
@@ -105,61 +109,68 @@ const EventPage = () => {
 				{editModal &&
 					<EditEventModal setOpen={setEditModal} open={editModal} event={event} />
 				}
-				<div className="eventGrid">
-					<div className="eventColumnLeft">
-						<div className="image">					
-							<img src={event?.photo[2]} />
-						</div>
-						<div className="eventBox">
-							<div className="name">{event?.name.toUpperCase()}</div>
-							<div className="desc">{event?.description.toLowerCase()}</div>
-								<div className="dateTimeDiv">
-									<div>
-										<div className="dateTime">{startTime.hm}</div>
-										<div className="dateTime">{`${startTime.ymd}`}</div>
-									</div>
-									<p>-</p>
-									<div>
-										<div className="dateTime">{endTime.hm}</div>
-										<div className="dateTime">{`${endTime.ymd}`}</div>
-									</div>
+				<div className="event">
+					<div className="eventGrid">
+						<div className="eventColumnLeft">
+							<div className="image" style={imageStyles} />
+							<div className="eventBox">
+								<div className="name">{event?.name.toUpperCase()}</div>
+								<div className="desc">{event?.description.toLowerCase()}</div>
+									<div className="dateTimeDiv">
+										<div>
+											<div className="dateTime">{startTime.hm}</div>
+											<div className="dateTime">{`${startTime.ymd}`}</div>
+										</div>
+										<p>-</p>
+										<div>
+											<div className="dateTime">{endTime.hm}</div>
+											<div className="dateTime">{`${endTime.ymd}`}</div>
+										</div>
+								</div>
+							</div>
+							<div className='attendees'>
+								<h1>Attendees</h1>
+								{attendees.map((attendee, index) => (
+									<>
+										<h3>{ attendee.User.username }</h3>
+									</>
+								))}
 							</div>
 						</div>
-					</div>
-					<div className="eventColumnRight">
-						<div className="eventButtons">
-								{ hasRSVP &&
-									<button type="button" className="submit rsvp" onClick={rmRSVP}>
-											Delete Reservation
-									</button>
-								}
-								{ !hasRSVP && user?.id !== event.User.id &&
-									<button type="button" className="submit rsvp" onClick={addRsvp}>
-										RSVP
-									</button>
-								}
-								{ user &&
-									<>
-										<button type="button" className="submit rsvp" onClick={() => setEditModal(!editModal)}>
-											Update
+						<div className="eventColumnRight">
+							<div className="eventButtons">
+									{ hasRSVP &&
+										<button type="button" className="submit rsvp" onClick={rmRSVP}>
+												Delete Reservation
 										</button>
-										<button type="button" className="submit rsvp" onClick={() => deleteEventId(event.id)}>
-											Delete
+									}
+									{ !hasRSVP && user?.id !== event.User.id &&
+										<button type="button" className="submit rsvp" onClick={addRsvp}>
+											RSVP
 										</button>
-									</>
-								}
+									}
+									{ user &&
+										<>
+											<button type="button" className="submit rsvp" onClick={() => setEditModal(!editModal)}>
+												Update
+											</button>
+											<button type="button" className="submit rsvp" onClick={() => deleteEventId(event.id)}>
+												Delete
+											</button>
+										</>
+									}
+							</div>
+							<div className="eventDates">
+								<h2>from: {startTime.hm}</h2>
+								<h2> - </h2>
+								<h2>to: {endTime.hm}</h2>
+							</div>
+							{ user &&
+							<CommentSection id={ id } userId={ user?.id } />
+							}
 						</div>
-						<div className="eventDates">
-							<h2>from: {startTime.hm}</h2>
-							<h2> - </h2>
-							<h2>to: {endTime.hm}</h2>
-						</div>
-						{ user &&
-						<CommentSection id={ id } userId={ user?.id } />
-						}
 					</div>
 				</div>
-				<div className="pad" />
 			</>
 		}
 		{ !event?.User &&
