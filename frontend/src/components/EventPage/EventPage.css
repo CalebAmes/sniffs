@@ -1,11 +1,6 @@
-/* .eventColumnRight {
-  width: 400px;
-  height: 100%;
-  margin: auto;
-  position: fixed;
-  right: 5%;
-  top: 13%;
-} */
+.attendees {
+  margin-bottom: 40px;
+}
 
 .eventColumnLeft {
   width: 600px;
@@ -59,13 +54,13 @@
 }
 
 .image {
-  display: flex;
-  margin: auto;
-  box-sizing: border-box;
-  flex-direction: column;
-  height: 100%;
-  overflow: -moz-hidden-unscrollable;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.image > div:hover {
+  background-color: rgba(0,0,0, 0.3)
 }
 
 .eventDates {

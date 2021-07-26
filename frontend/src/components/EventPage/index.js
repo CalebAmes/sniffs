@@ -21,14 +21,21 @@ const EventPage = () => {
 	const categoryItems = useSelector((state) => state.category);
 	const [editModal, setEditModal] = useState(false);
 	const rsvps = useSelector((state) => state.rsvp);
-	
+	const [photoIndex, setPhotoIndex] = useState(0);
 	const attendees = event?.Rsvps
-
-	console.log('this is attendees: ', attendees)
 
 	let hasRSVP = rsvps[id];
 
-	const imageStyles = {background:'url('+event?.photo[0]+') no-repeat center center', backgroundSize: 'cover', height: '400px'}
+	const imageStyles = {backgroundImage:'url('+event?.photo[photoIndex]+')', backgroundSize: 'cover', height: '400px'};
+
+	const nextPhoto = () => {
+		setPhotoIndex((photoIndex + 1) % event?.photo.length);
+	}
+	const prevPhoto = () => {
+		photoIndex === 0
+		? setPhotoIndex(event?.photo.length - 1)
+		: setPhotoIndex((photoIndex - 1) % event?.photo.length);
+	}
 	
 	const category = categoryItems && event && categoryItems[event.categoryId];
 
@@ -109,7 +116,11 @@ const EventPage = () => {
 									<h3>{event.User.username}</h3>
 								}
 							</div>
-							<div className="image" style={imageStyles} />
+							<div className="image" style={imageStyles}>
+								<div className="imageArea1" onClick={prevPhoto}></div>
+								<div className="imageArea2"></div>
+								<div className="imageArea3" onClick={nextPhoto}></div>
+							</div>
 							<div className="eventBox">
 								<div className="name">{event?.name.toUpperCase()}</div>
 								<div className="desc">{event?.description.toLowerCase()}</div>
