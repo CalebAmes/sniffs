@@ -24,6 +24,7 @@ const EventPage = () => {
 	const [photoIndex, setPhotoIndex] = useState(0);
 	const attendees = event?.Rsvps;
 	const [showControls, setShowControls] = useState(false);
+	const [open, setOpen] = useState(false);
 
 	let hasRSVP = rsvps[id];
 
@@ -127,7 +128,7 @@ const EventPage = () => {
 										<i className="fas fa-arrow-left fa-lg" />
 									}
 								</div>
-								<div className="imageArea2 imageArea">
+								<div className="imageArea2 imageArea" onClick={() => setOpen(true)}>
 									{ showControls &&
 										<i className="fas fa-expand fa-lg" />
 									}
@@ -204,6 +205,14 @@ const EventPage = () => {
 						</div>
 					</div>
 				</div>
+				{open && (
+				<>
+					<div className="modal">
+						<div className="modal-background" onClick={() => setOpen(!open)} />
+						<img src={event?.photo[photoIndex]} alt='sent in chat, enlarged' className="modal-content" />
+					</div>
+				</>
+				)}
 			</>
 		}
 		{ !event?.User &&
