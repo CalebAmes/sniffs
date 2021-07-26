@@ -41,8 +41,8 @@
   height: 50vh;
   flex-direction: column;
   border: 1px solid #000;
-  /* overflow-y: scroll; */
-  overflow: scroll;
+  overflow-y: auto;
+  width: 400px;
   justify-content: flex-end; 
 }
 
