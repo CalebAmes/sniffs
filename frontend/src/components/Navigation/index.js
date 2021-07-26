@@ -13,15 +13,15 @@ const Navigation = (props) => {
 
 	if (!sessionUser) {
 		return (
-			<nav className="navbar">
+			<nav className="navbar2">
 				<ul className="navbar-nav">
-					<NavLink className="link icon-navlink" to="/login">
+					<NavLink className="icon-navlink" to="/login">
 						Log In
 					</NavLink>
-					<NavLink className="link icon-navlink" to="/signup">
+					<NavLink className="icon-navlink" to="/signup">
 						Sign Up
 					</NavLink>
-					<NavLink className="link icon-navlink" to="/">
+					<NavLink className="icon-navlink" to="/">
 						Home
 					</NavLink>
 					<NavItem icon={<i className="fas fa-chevron-circle-down" />}>
@@ -32,6 +32,7 @@ const Navigation = (props) => {
 	} else {
 		return (
 			<nav className="navbar">
+        <Link className="logo" to='/'>Sniffs</Link> 
 				<ul className="navbar-nav">
 					<NavLink className="link icon-navlink" to="/profile">{`Welcome,  ${sessionUser.username}`}</NavLink>
 					<NavItem icon={<i className="fas fa-chevron-circle-down" />}>
