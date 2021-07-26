@@ -22,7 +22,9 @@ const EventPage = () => {
 	const [editModal, setEditModal] = useState(false);
 	const rsvps = useSelector((state) => state.rsvp);
 	const [photoIndex, setPhotoIndex] = useState(0);
-	const attendees = event?.Rsvps
+	const attendees = event?.Rsvps;
+	const [showControls, setShowControls] = useState(false);
+	const [open, setOpen] = useState(false);
 
 	let hasRSVP = rsvps[id];
 
@@ -116,10 +118,26 @@ const EventPage = () => {
 									<h3>{event.User.username}</h3>
 								}
 							</div>
-							<div className="image" style={imageStyles}>
-								<div className="imageArea1" onClick={prevPhoto}></div>
-								<div className="imageArea2"></div>
-								<div className="imageArea3" onClick={nextPhoto}></div>
+							<div className="image" 
+								style={imageStyles}
+								onMouseEnter={() => setShowControls(true)}
+								onMouseLeave={() => setShowControls(false)}
+								>
+								<div className="imageArea1 imageArea" onClick={prevPhoto}>
+									{	showControls &&
+										<i className="fas fa-arrow-left fa-lg" />
+									}
+								</div>
+								<div className="imageArea2 imageArea" onClick={() => setOpen(true)}>
+									{ showControls &&
+										<i className="fas fa-expand fa-lg" />
+									}
+								</div>
+								<div className="imageArea3 imageArea" onClick={nextPhoto}>
+									{ showControls &&
+										<i className="fas fa-arrow-right fa-lg" />
+									}
+								</div>
 							</div>
 							<div className="eventBox">
 								<div className="name">{event?.name.toUpperCase()}</div>
@@ -187,6 +205,14 @@ const EventPage = () => {
 						</div>
 					</div>
 				</div>
+				{open && (
+				<>
+					<div className="modal">
+						<div className="modal-background" onClick={() => setOpen(!open)} />
+						<img src={event?.photo[photoIndex]} alt='sent in chat, enlarged' className="modal-content" />
+					</div>
+				</>
+				)}
 			</>
 		}
 		{ !event?.User &&
