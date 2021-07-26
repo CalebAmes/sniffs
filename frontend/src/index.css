@@ -5,6 +5,7 @@
 }
 
 .body1 {
+  /* background: #714955 no-repeat center center fixed; */
   background: #fafafa no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -35,6 +36,10 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
+  }
+
+  .rightColor {
+    visibility: hidden;
   }
 }
 

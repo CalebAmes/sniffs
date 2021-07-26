@@ -3,14 +3,29 @@
   height: 100%;
   margin: auto;
   position: fixed;
-  right: 5%;
+  /* right: 5%; */
   top: 13%;
+  transform: translateX(80%);
 }
 
 .eventColumnLeft {
   width: 600px;
   height: 100%;
   margin: auto;
+}
+/* 
+.eventPadding {
+  background: #fde2e4;
+
+} */
+
+.rightColor {
+  position: fixed;
+  background-color: #fde2e4;
+  top: 0;
+  left: 58%;
+  bottom: 0;
+  right: 0;
 }
 
 .title {

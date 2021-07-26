@@ -22,7 +22,7 @@ const EventPage = () => {
 	const [editModal, setEditModal] = useState(false);
 	const rsvps = useSelector((state) => state.rsvp);
 	
-	const attendees = event.Rsvps
+	const attendees = event?.Rsvps
 
 	console.log('this is attendees: ', attendees)
 
@@ -93,6 +93,7 @@ const EventPage = () => {
 		<>
 		{ event?.User &&
 			<>
+				<div className='rightColor' />
 				<div className="eventPadding">
 					<h2>{startTime.ymd}</h2>
 					<h1>{event.name}</h1>
