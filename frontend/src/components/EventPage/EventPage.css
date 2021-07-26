@@ -3,9 +3,8 @@
   height: 100%;
   margin: auto;
   position: fixed;
-  /* right: 5%; */
+  right: 5%;
   top: 13%;
-  transform: translateX(80%);
 }
 
 .eventColumnLeft {
