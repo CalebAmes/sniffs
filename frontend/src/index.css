@@ -198,3 +198,12 @@ a {
 :-ms-input-placeholder {  
   text-align: center; 
 }
+
+.eventColumnRight {
+  width: 400px;
+  height: 100%;
+  margin: auto;
+  position: fixed;
+  right: 5%;
+  top: 13%;
+}
