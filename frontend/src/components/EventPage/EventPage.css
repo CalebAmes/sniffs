@@ -121,6 +121,10 @@
   margin: auto 0px;
 }
 
+.commentIn {
+  width: 70%;
+}
+
 .comment {
   box-sizing: border-box;
   width: 100%;

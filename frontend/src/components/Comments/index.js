@@ -53,7 +53,7 @@ const CommentSection = ({ id, userId }) => {
           <div className="postComment">
             <textarea
               type="text"
-              className="input"
+              className="input commentIn"
               maxLength="140"
               value={content}
               onChange={(e) => setContent(e.target.value)}
