@@ -1,5 +1,6 @@
 .attendees {
-  margin-bottom: 40px;
+  margin-top: 30px;
+  margin-bottom: 100px;
 }
 
 .eventColumnLeft {
@@ -159,6 +160,11 @@
     position: static;
     right: auto;
     top: auto;
+  }
+
+  .attendees {
+    margin-top: 15px;
+    margin-bottom: 20px;
   }
 }
 

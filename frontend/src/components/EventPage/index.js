@@ -157,12 +157,15 @@ const EventPage = () => {
 								</div>
 							</div>
 							<div className='attendees'>
-								<h1>Attendees</h1>
-								{attendees.map((attendee, index) => (
+								<h2>Attendees</h2>
+								{attendees.length === 0 && attendees.map((attendee, index) => (
 									<>
 										<h3>{ attendee.User.username }</h3>
 									</>
 								))}
+								{	attendees.length === 0 &&
+									<h3>Be the first to rsvp for this event</h3>
+								}
 							</div>
 						</div>
 						<div className="eventColumnRight">
