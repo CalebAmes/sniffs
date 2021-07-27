@@ -152,14 +152,13 @@ label.wrap:after {
     flex-direction: column;
     border-radius: 3px;
     border: 1px solid rgba(0,0,0,0.3);
-    margin-top: 40px;
+    margin-top: 90px;
     margin-bottom: auto;
-    transform: translateX(-3%);
   }
 
   .topE {
-    /* margin-top: 10px; */
-  }
+    margin-top: 20px;
+  }  
 
   .formTitleE {
     margin: 10px;
