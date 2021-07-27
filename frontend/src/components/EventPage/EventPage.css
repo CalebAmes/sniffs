@@ -185,6 +185,19 @@
 }
 
 @media (max-width: 405px) {
+  .commentBlock{
+    display: flex;
+    margin: auto;
+    box-sizing: border-box;
+    min-height: 40vh;
+    height: 50vh;
+    flex-direction: column;
+    border: 1px solid #000;
+    overflow-y: auto;
+    width: 370px;
+    justify-content: flex-end; 
+  }
+
   .eventColumnLeft {
     width: 375px;
     height: 100%;
