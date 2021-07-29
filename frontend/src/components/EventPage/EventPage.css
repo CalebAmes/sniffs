@@ -1,6 +1,10 @@
 .attendees {
   margin-top: 30px;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
+}
+
+.eventPad {
+  padding: 50px;
 }
 
 .eventColumnLeft {

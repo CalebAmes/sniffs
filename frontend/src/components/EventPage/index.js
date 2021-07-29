@@ -226,6 +226,7 @@ const EventPage = () => {
 				<div className="loading" />
 			</>
 		}
+		<div className='eventPad'></div>
 		</>
 	);
 }
