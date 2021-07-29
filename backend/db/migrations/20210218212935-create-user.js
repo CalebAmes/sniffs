@@ -20,8 +20,7 @@ module.exports = {
       },
       avatar: {
         type: Sequelize.STRING(256),
-        allowNull: false,
-        defaultValue: 'https://moonshotcentral.com/wp-content/uploads/Collie_dog.jpg'
+        defaultValue: 'https://moonshotcentral.com/wp-content/uploads/Collie_dog.jpg',
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
