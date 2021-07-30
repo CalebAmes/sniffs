@@ -23,7 +23,7 @@ const deleteRsvp = (id) => ({
 export const getUserRsvp = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/rsvp/${userId}/events`);
   const data = await res.json()
-  dispatch(setRsvp(data));
+  await dispatch(setRsvp(data));
   return res;
 }
 

@@ -94,7 +94,7 @@ const EventPage = () => {
     dispatch(getEventDetails(id));
     dispatch(getCategory());
     if (user?.id) {
-      dispatch(getUserRsvp(user?.id));
+      dispatch(getUserRsvp(user.id));
     }
   }, [dispatch, id]);
 

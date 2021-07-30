@@ -12,7 +12,7 @@ router.get('/', asyncHandler(async function (req, res) {
 
 router.get(
   '/:id(\\d+/events)', asyncHandler(async (req, res) => {
-    const id = req.params.id[0];
+    const id = req.params.id.split('/')[0];
     const userRsvps = await Rsvp.findAll({ 
       where: {
         userId: id
