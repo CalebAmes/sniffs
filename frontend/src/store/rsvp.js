@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+import { addEventRsvp, removeEventRsvp } from './event'
 
 const SET_RSVP = 'rsvp/setRsvp';
 const ADD_RSVP = 'rsvp/addRsvp';
@@ -22,12 +23,12 @@ const deleteRsvp = (id) => ({
 export const getUserRsvp = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/rsvp/${userId}/events`);
   const data = await res.json()
-  dispatch(setRsvp(data));
+  await dispatch(setRsvp(data));
   return res;
 }
 
 export const createRsvp = (rsvp) => async (dispatch) => {
-  const { id, userId, eventId } = rsvp;
+  const { userId, eventId, } = rsvp;
   const res = await csrfFetch('/api/rsvp', {
     method: 'POST',
     body: JSON.stringify({
@@ -35,11 +36,13 @@ export const createRsvp = (rsvp) => async (dispatch) => {
     }),
   });
   const data = await res.json();
+  dispatch(addEventRsvp({eventId, data}));
   dispatch(addRsvp(data));
   return res;
 }
 
-export const removeRsvp = ({eventId, userId}) => async (dispatch) => {
+export const removeRsvp = (rsvp) => async (dispatch) => {
+  const { userId, eventId, } = rsvp;
   const res = await csrfFetch(`/api/rsvp/${eventId}/delete`, {
     method: 'DELETE',
     headers: {'Content-Type': 'application/json'},
@@ -48,7 +51,7 @@ export const removeRsvp = ({eventId, userId}) => async (dispatch) => {
       userId,
     })
   });
-  // const data = await res.json();
+  dispatch(removeEventRsvp(rsvp));
   await dispatch(deleteRsvp(eventId));
   return res;
 }
