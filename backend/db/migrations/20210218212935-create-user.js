@@ -18,6 +18,10 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      avatar: {
+        type: Sequelize.STRING(256),
+        defaultValue: 'https://moonshotcentral.com/wp-content/uploads/Collie_dog.jpg',
+      },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
         allowNull: false,

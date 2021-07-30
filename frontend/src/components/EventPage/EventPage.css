@@ -1,6 +1,5 @@
 .attendees {
   margin-top: 30px;
-  /* margin-bottom: 100px; */
 }
 
 .eventPad {
@@ -82,7 +81,7 @@
 .imageArea {
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .imageArea > i {
@@ -278,4 +277,4 @@
 	to {
 		transform: scale(1);
 	}
-} ;
+}
