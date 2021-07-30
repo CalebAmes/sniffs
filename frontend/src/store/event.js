@@ -107,9 +107,9 @@ function reducer(state = {}, action) {
       delete newState[action.id];
       return newState
     case ADD_RSVP:
-      console.log('addRsvp is hit in reducer: ', action.payload);
+      console.log('addRsvp is hit in reducer: ', action.payload.data);
       newState = { ...state };
-      newState[action.payload.eventId].Rsvps.push(action.payload);
+      newState[action.payload.eventId].Rsvps.push(action.payload.data);
     default:
       return state;
   }

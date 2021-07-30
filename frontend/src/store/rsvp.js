@@ -36,6 +36,7 @@ export const createRsvp = (rsvp) => async (dispatch) => {
     }),
   });
   const data = await res.json();
+  console.log('this is data', data);
   dispatch(addEventRsvp({eventId, data}));
   dispatch(addRsvp(data));
   return res;

@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Rsvp, Event } = require('../../db/models');
+const { Rsvp, Event, User } = require('../../db/models');
 const { Op } = require("sequelize");
 
 const router = express.Router();
@@ -40,7 +40,7 @@ router.post(
           { eventId: eventId },
           { userId: userId },
         ]
-      }, include: Event
+      }, include: [Event, User]
     });
     
     return res.json(rsvp);
