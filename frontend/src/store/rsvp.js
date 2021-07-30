@@ -1,5 +1,5 @@
 import { csrfFetch } from './csrf';
-import { addEventRsvp } from './event'
+import { addEventRsvp, removeEventRsvp } from './event'
 
 const SET_RSVP = 'rsvp/setRsvp';
 const ADD_RSVP = 'rsvp/addRsvp';
@@ -36,13 +36,13 @@ export const createRsvp = (rsvp) => async (dispatch) => {
     }),
   });
   const data = await res.json();
-  console.log('this is data', data);
   dispatch(addEventRsvp({eventId, data}));
   dispatch(addRsvp(data));
   return res;
 }
 
-export const removeRsvp = ({eventId, userId}) => async (dispatch) => {
+export const removeRsvp = (rsvp) => async (dispatch) => {
+  const { userId, eventId, } = rsvp;
   const res = await csrfFetch(`/api/rsvp/${eventId}/delete`, {
     method: 'DELETE',
     headers: {'Content-Type': 'application/json'},
@@ -51,6 +51,7 @@ export const removeRsvp = ({eventId, userId}) => async (dispatch) => {
       userId,
     })
   });
+  dispatch(removeEventRsvp(rsvp));
   await dispatch(deleteRsvp(eventId));
   return res;
 }
