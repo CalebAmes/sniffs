@@ -1,8 +1,10 @@
+import { id } from 'date-fns/locale';
 import { csrfFetch } from './csrf';
 
 const SET_EVENT = 'event/setEvent'
 const ADD_EVENT = 'event/addEvent'
 const DELETE_EVENT = 'event/deleteEvent'
+const ADD_RSVP = 'event/ADD_RSVP'
 
 const setEvent = (event) => ({
   type: SET_EVENT,
@@ -18,6 +20,12 @@ const deleteEvent = (id) => ({
   type: DELETE_EVENT,
   id,
 })
+
+export const addEventRsvp = (payload) => {
+  return {
+  type: ADD_RSVP,
+  payload,
+}}
 
 export const getEvent = () => async (dispatch) => {
   const res = await fetch('/api/event/');
@@ -98,6 +106,10 @@ function reducer(state = {}, action) {
       newState = { ...state };
       delete newState[action.id];
       return newState
+    case ADD_RSVP:
+      console.log('addRsvp is hit in reducer: ', action.payload);
+      newState = { ...state };
+      newState[action.payload.eventId].Rsvps.push(action.payload);
     default:
       return state;
   }

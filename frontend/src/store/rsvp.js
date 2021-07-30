@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+import { addEventRsvp } from './event'
 
 const SET_RSVP = 'rsvp/setRsvp';
 const ADD_RSVP = 'rsvp/addRsvp';
@@ -27,7 +28,7 @@ export const getUserRsvp = (userId) => async (dispatch) => {
 }
 
 export const createRsvp = (rsvp) => async (dispatch) => {
-  const { userId, eventId, event } = rsvp;
+  const { userId, eventId, } = rsvp;
   const res = await csrfFetch('/api/rsvp', {
     method: 'POST',
     body: JSON.stringify({
@@ -35,8 +36,7 @@ export const createRsvp = (rsvp) => async (dispatch) => {
     }),
   });
   const data = await res.json();
-  console.log('this is data: ', data)
-  console.log('this is event: ', event)
+  dispatch(addEventRsvp({eventId, data}));
   dispatch(addRsvp(data));
   return res;
 }
