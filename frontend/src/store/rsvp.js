@@ -27,7 +27,7 @@ export const getUserRsvp = (userId) => async (dispatch) => {
 }
 
 export const createRsvp = (rsvp) => async (dispatch) => {
-  const { id, userId, eventId } = rsvp;
+  const { userId, eventId, event } = rsvp;
   const res = await csrfFetch('/api/rsvp', {
     method: 'POST',
     body: JSON.stringify({
@@ -35,6 +35,8 @@ export const createRsvp = (rsvp) => async (dispatch) => {
     }),
   });
   const data = await res.json();
+  console.log('this is data: ', data)
+  console.log('this is event: ', event)
   dispatch(addRsvp(data));
   return res;
 }
@@ -48,7 +50,6 @@ export const removeRsvp = ({eventId, userId}) => async (dispatch) => {
       userId,
     })
   });
-  // const data = await res.json();
   await dispatch(deleteRsvp(eventId));
   return res;
 }
