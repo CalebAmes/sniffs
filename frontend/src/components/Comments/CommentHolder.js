@@ -1,46 +1,50 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeComment, updateComment } from '../../store/comment';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeComment, updateComment } from "../../store/comment";
+import "../EventPage/EventPage.css";
+import "./comments.css";
 
 const CommentHolder = ({ comment, id }) => {
   const dispatch = useDispatch();
   const [commentEditor, setCommentEditor] = useState(false);
 
-  const userId = useSelector(state => state.session.user.id);
+	console.log('this is comment : ', comment);
 
-	const editComment = async (comment, newComment, id) => {
-		if (newComment !== comment.content) {
-      dispatch(updateComment({id, newComment}));
-		}
-		setCommentEditor(!commentEditor)
-	}
+  const userId = useSelector((state) => state.session.user.id);
 
-	const EditComment = ({ func, comment }) => {
-		const [value, setValue] = useState(comment.content);
-		const keyPress = (e) => {
-			if (e.key === 'Enter') {
-				e.preventDefault();
-				func(comment.content, value, comment.id)
-			}
-		};
-		return (
-			<div className="editCommentDiv">
-				<textarea
-					maxLength="140"
-					onChange={(e) => setValue(e.target.value)}
-					onKeyPress={keyPress}
-					value={value}
-					className="messageInputTextarea"
-				>
-					{comment.content}
-				</textarea>
-			</div>
-		)
-	}
-	
-	const deleteCommentId = (id) => {
-		dispatch(removeComment(id));
-	};
+  const editComment = async (comment, newComment, id) => {
+    if (newComment !== comment.content) {
+      dispatch(updateComment({ id, newComment }));
+    }
+    setCommentEditor(!commentEditor);
+  };
+
+  const EditComment = ({ func, comment }) => {
+    const [value, setValue] = useState(comment.content);
+    const keyPress = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        func(comment.content, value, comment.id);
+      }
+    };
+    return (
+      <div className="editCommentDiv">
+        <textarea
+          maxLength="140"
+          onChange={(e) => setValue(e.target.value)}
+          onKeyPress={keyPress}
+          value={value}
+          className="messageInputTextarea"
+        >
+          {comment.content}
+        </textarea>
+      </div>
+    );
+  };
+
+  const deleteCommentId = (id) => {
+    dispatch(removeComment(id));
+  };
 
   return (
     <>
@@ -49,16 +53,15 @@ const CommentHolder = ({ comment, id }) => {
       </div>
       {userId === comment.userId && (
         <>
-          <button onClick={() => setCommentEditor(!commentEditor)}>edit.</button>
+          <button onClick={() => setCommentEditor(!commentEditor)}>
+            edit.
+          </button>
           <button onClick={() => deleteCommentId(comment.id)}>delete.</button>
         </>
       )}
-      {commentEditor &&
-        <EditComment func={editComment} comment={comment} />
-      }
+      {commentEditor && <EditComment func={editComment} comment={comment} />}
     </>
-  )
-}
-
+  );
+};
 
 export default CommentHolder;

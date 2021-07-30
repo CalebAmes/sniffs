@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import { getComment, createComment } from '../../store/comment';
 import CommentHolder from './CommentHolder';
+import './comments.css'
 
 const CommentSection = ({ id, userId }) => {
   const dispatch = useDispatch();
