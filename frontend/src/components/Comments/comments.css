@@ -1,0 +1,35 @@
+.commentHolder {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 93%;
+}
+
+.commentButton {
+  width: 13px;
+  font-size: 8pt;
+  margin-right: 10px;
+  cursor: pointer;
+  margin: 3px;
+  border-radius: 3px;
+  border: 1px solid #000;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.commentAvatar {
+  height: 40px;
+  width: 40px;
+  margin-right: 0px;
+  margin-left: 8px;
+  border-radius: 4px;
+}
+
+.commentMods {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
