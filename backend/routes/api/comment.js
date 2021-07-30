@@ -1,11 +1,11 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Comment } = require('../../db/models');
+const { Comment, User } = require('../../db/models');
 
 const router = express.Router();
 
 router.get('/', asyncHandler(async function (req, res) {
-  const comment = await Comment.findAll();
+  const comment = await Comment.findAll({ include: User });
   return res.json({ comment })
 }))
 
@@ -15,10 +15,10 @@ router.post(
     const {
       userId, 
       content,
-      eventId
+      eventId,
     } = req.body;
     const comment = await Comment.createComment({
-      userId, content, eventId
+      userId, content, eventId,
     });
     return res.json({ comment })
   })

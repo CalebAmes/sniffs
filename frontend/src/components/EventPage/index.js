@@ -117,7 +117,7 @@ const EventPage = () => {
             <div className="eventGrid">
               <div className="eventColumnLeft">
                 <div className="hostInfo">
-                  <img src={event?.User.avatar} className="hostAvatar"></img>
+                  <img src={event?.User.avatar} className="avatar"></img>
                   <div className="eventHost">
                     <p>Hosted by</p>
                     {event.User.id === user?.id && (

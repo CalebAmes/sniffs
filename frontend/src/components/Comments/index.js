@@ -12,6 +12,7 @@ const CommentSection = ({ id, userId }) => {
 	const commentsArray = Object.values(commentItems).filter(comment =>
 			comment.eventId === parseInt(id))
 
+
   const [content, setContent] = useState('');
 
   const addComment = (e) => {
