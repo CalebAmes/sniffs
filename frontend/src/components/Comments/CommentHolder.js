@@ -7,6 +7,7 @@ import "./comments.css";
 const CommentHolder = ({ comment, id }) => {
   const dispatch = useDispatch();
   const [commentEditor, setCommentEditor] = useState(false);
+  const [hover, setHover] = useState(false);
 
   const userId = useSelector((state) => state.session.user.id);
 
@@ -46,23 +47,35 @@ const CommentHolder = ({ comment, id }) => {
 
   return (
     <>
-      <div className="commentHolder">
+      <div
+        className="commentHolder"
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
         <img src={comment.User.avatar} className="commentAvatar" />
         <div className="comment">
-					<div className="comment-header">
-						<h3>{comment.User.username}</h3>
-					</div>
+          <div className="comment-header">
+            <h3>{comment.User.username}</h3>
+          </div>
           <div key={comment?.id} className="commentContent">
             {comment?.content}
           </div>
         </div>
-        {userId === comment.userId && (
-          <>
-            <div className="commentButton" onClick={() => setCommentEditor(!commentEditor)}>
+        {userId === comment.userId && hover && (
+          <div className="commentMods">
+            <div
+              className="commentButton"
+              onClick={() => setCommentEditor(!commentEditor)}
+            >
               edit.
             </div>
-            <div className="commentButton" onClick={() => deleteCommentId(comment.id)}>delete.</div>
-          </>
+            <div
+              className="commentButton"
+              onClick={() => deleteCommentId(comment.id)}
+            >
+              delete.
+            </div>
+          </div>
         )}
         {commentEditor && <EditComment func={editComment} comment={comment} />}
       </div>
