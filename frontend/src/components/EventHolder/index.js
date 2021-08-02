@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './EventHolder.css'
+import './EventHolder.scss'
 
 const EventHolder = ({ event, i }) => {
   const [increment, setIncrement] = useState(i);

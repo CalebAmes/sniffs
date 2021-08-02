@@ -1,6 +1,6 @@
 .scrollingCarousel {
   margin: auto;
-  padding: 10px 0px;
+  padding: 10px 0px 0px 0px;
   width: 100vw;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .Header {
-  padding-top: 10px;
+  /* padding-top: 10px; */
   padding-bottom: 10px;
 }
 
