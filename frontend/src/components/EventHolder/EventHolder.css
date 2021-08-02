@@ -6,7 +6,7 @@
   /* border: 1px solid rgba(0,0,0,0.3); */
   border-radius: 4px;
   color: darkgray;
-  /* padding: 5px; */
+  padding: 5px;
 }
 
 .eventHolder > p {
@@ -14,18 +14,19 @@
 }
 
 .eventHolder:hover{
-  background: #e6e6e6;
+  /* background: #e6e6e6; */
   color: black;
   animation-name: hover;
   animation-duration: 0.3s;
+  box-shadow: 4px 6px 10px #839D9A;
 }
 
 @keyframes hover {
   from {
-    background: #fafafa;
+    box-shadow: none;
   }
   to {
-    background: #e6e6e6;
+    box-shadow: 4px 6px 10px #839D9A;
   }
 }
 
