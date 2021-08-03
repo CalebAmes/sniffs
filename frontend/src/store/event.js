@@ -1,4 +1,3 @@
-import {id} from 'date-fns/locale';
 import {csrfFetch} from './csrf';
 
 const SET_EVENT = 'event/setEvent';
