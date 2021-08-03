@@ -13,7 +13,22 @@
 }
 
 .categoryHolder:hover {
-  background: #e6e6e6
+  background: var(--bg-accent);
+  transform: scale(1.05);
+  animation: categoryHolderHover 0.3s;
+  color: var(--text-color);
+}
+
+@keyframes categoryHolderHover {
+  from {
+    background: #fff;
+    transform: scale(1.0);
+  }
+  to {
+    background: var(--bg-accent);
+    transform: scale(1.05);
+    color: var(--text-color);
+  }
 }
 
 @media screen and (max-width: 750px) {
