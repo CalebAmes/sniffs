@@ -78,6 +78,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
+  /* animation: slideInUp 1s; */
 }
 
 .image > div:hover {
@@ -198,7 +199,7 @@
   .image {
     width: 400px;
     max-height: 266px;
-    animation: fadeIn 1s;
+    animation: slideIn 1s;
   }
 
   .eventColumnRight {
