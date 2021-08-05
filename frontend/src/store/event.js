@@ -118,7 +118,6 @@ function reducer(state = {}, action) {
     case DELETE_RSVP:
       newState = { ...state };
       const arr = newState[action.payload.eventId].Rsvps;
-      // console.log('this is payload.data', action.payload);
       const index = arr.findIndex((obj) => action.payload.userId === obj.userId);
       arr.splice(index, 1);
       return newState;
