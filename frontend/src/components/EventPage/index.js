@@ -184,7 +184,7 @@ const EventPage = () => {
                       Delete Reservation
                     </button>
                   )}
-                  {!hasRSVP && user?.id !== event.User.id && (
+                  {!hasRSVP && (
                     <button
                       type="button"
                       className="submit rsvp"
