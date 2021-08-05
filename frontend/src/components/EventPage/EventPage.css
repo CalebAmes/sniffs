@@ -15,6 +15,7 @@
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 5px;
+  animation: slideInRight 1s;
 }
 
 .eventPad {
@@ -41,6 +42,7 @@
   padding-top: 75px;
   margin-left: 30px;
   margin-bottom: 50px;
+  animation: slideInLeft 1s;
 }
 
 .comments > h3 {
@@ -196,6 +198,7 @@
   .image {
     width: 400px;
     max-height: 266px;
+    animation: fadeIn 1s;
   }
 
   .eventColumnRight {
