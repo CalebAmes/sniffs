@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { updateRsvp } from "./rsvp";
 
 const SET_EVENT = "event/setEvent";
 const ADD_EVENT = "event/addEvent";
@@ -78,6 +79,7 @@ export const updateEvent = (event) => async (dispatch) => {
     }),
   });
   const data = await res.json();
+  dispatch(updateRsvp(data.event));
   dispatch(addEvent(data.event));
   return res;
 };

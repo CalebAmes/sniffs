@@ -4,6 +4,7 @@ import { addEventRsvp, removeEventRsvp } from './event'
 const SET_RSVP = 'rsvp/setRsvp';
 const ADD_RSVP = 'rsvp/addRsvp';
 const DELETE_RSVP = 'rsvp/deleteRsvp';
+const UPDATE_RSVP = 'rsvp/UPDATE_RSVP';
 
 const setRsvp = (rsvp) => ({
   type: SET_RSVP,
@@ -18,6 +19,11 @@ const addRsvp = (rsvp) => ({
 const deleteRsvp = (id) => ({
   type: DELETE_RSVP,
   id,
+})
+
+export const updateRsvp = (event) => ({
+  type: UPDATE_RSVP,
+  event,
 })
 
 export const getUserRsvp = (userId) => async (dispatch) => {
@@ -72,6 +78,10 @@ function reducer(state = {}, action) {
     case DELETE_RSVP:
       newState = { ...state };
       delete newState[action.id];
+      return newState;
+    case UPDATE_RSVP:
+      newState = { ...state };
+      newState[action.event.id] = action.event;
       return newState;
     default:
       return state;
