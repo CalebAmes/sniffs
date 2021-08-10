@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import "./UserProfile.css";
 import "../../index.css";
 import EventHolder from "../EventHolder";
@@ -16,8 +16,12 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const id  = Number(useParams().id);
+
+  console.log('this is id ======>>>>>>>', id);
+
   useEffect(() => {
-    dispatch(getUserComments(user.id));
+    dispatch(getUserComments(id));
   }, [dispatch]);
   
   if ( user && comments ) return (
