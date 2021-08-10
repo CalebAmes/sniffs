@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./UserProfile.css";
 import "../../index.css";
+import EventHolder from "../EventHolder";
+// import '../EventHolder/EventHolder.scss'
+// import '../EventPage/EventPage.css'
 
 const UserProfile = () => {
   const user = useSelector((state) => state.session.user);
@@ -26,13 +29,8 @@ const UserProfile = () => {
         </div>
         <div className="userEvents">
           <h2>Events that you are attending</h2>
-          { rsvps.map((rsvp) => (
-
-            // build a component for this
-            <div key={rsvp.Event.id} className="event">
-              <h2 className="eventName">{rsvp.Event.name}</h2>
-              <h3 className="eventDescription">{rsvp.Event.description}</h3>  
-            </div>
+          { rsvps.map((rsvp, i) => (
+             <EventHolder event={ rsvp.Event } i={ i } key={ rsvp.Event.id }> { rsvp.Event.name }</EventHolder>
           ))}
         </div>
       </div>
