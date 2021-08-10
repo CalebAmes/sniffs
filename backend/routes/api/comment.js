@@ -1,6 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Comment, User } = require("../../db/models");
+const { Comment, User, Event } = require("../../db/models");
 
 const router = express.Router();
 
@@ -8,6 +8,19 @@ router.get(
   "/",
   asyncHandler(async function (req, res) {
     const comment = await Comment.findAll({ include: User });
+    return res.json({ comment });
+  })
+);
+
+router.get(
+  "/user/:id",
+  asyncHandler(async function (req, res) {
+    const comment = await Comment.findAll({
+      where: {
+        userId: req.params.id
+      },
+      include: Event
+    });
     return res.json({ comment });
   })
 );

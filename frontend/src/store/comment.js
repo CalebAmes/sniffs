@@ -26,6 +26,14 @@ export const getComment = () => async (dispatch) => {
   return res;
 };
 
+export const getUserComments = (userId) => async (dispatch) => {
+  const res = await fetch(`/api/comment/user/${userId}/`);
+  const data = await res.json();
+  console.log('this is data ==========>>>>>>>>>:', data);
+  dispatch(setComment(data.comment));
+  return res;
+};
+
 export const createComment = (comment) => async (dispatch) => {
   const { userId, content, eventId } = comment;
   const res = await csrfFetch("/api/comment/", {
