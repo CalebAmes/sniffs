@@ -24,8 +24,15 @@ const UserProfile = () => {
       <div className="UserProfile">
         <div className="userPad"></div>
         <div className="profile">
-          <img src={user.avatar} className="userAvatar" />
-          <h1>{user.username}</h1>
+          <div className="profileCol1">
+            <img src={user.avatar} className="userAvatar" />
+          </div>
+          <div className="profileCol2">
+            <h1>{user.username}</h1>
+            <h3>{user.email}</h3>
+            <h3>Member since March 7th, 2020</h3>
+            <h3>Attending {rsvps.length} events</h3>
+          </div>
         </div>
         <div className="userEvents">
           <h2>Events that you are attending</h2>
