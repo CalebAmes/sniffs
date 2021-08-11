@@ -41,8 +41,8 @@ const CommentHolder = ({ comment, id }) => {
     );
   };
 
-  const deleteCommentId = (id) => {
-    dispatch(removeComment(id));
+  const deleteCommentId = (comment) => {
+    dispatch(removeComment(comment));
   };
 
   return (
@@ -71,7 +71,7 @@ const CommentHolder = ({ comment, id }) => {
             </div>
             <div
               className="commentButton"
-              onClick={() => deleteCommentId(comment.id)}
+              onClick={() => deleteCommentId(comment)}
             >
               delete.
             </div>

@@ -14,7 +14,6 @@ const CommentSection = ({ id, userId }) => {
   );
 
   const commentArray = useSelector((state) => state.event[id].Comments);
-  console.log('this is commentArray ------=->>>>>>>>>:', commentArray);
   const commentBox = useRef();
 
   const [content, setContent] = useState("");

@@ -1,5 +1,5 @@
 import { csrfFetch } from "./csrf";
-import { addEventComment, updateEventComment, deleteEventComment } from "./event";
+import { addEventComment, updateEventComment, removeEventComment } from "./event";
 
 const SET_COMMENT = "comment/setComment";
 const ADD_COMMENT = "comment/addComment";
@@ -46,7 +46,7 @@ export const createComment = (comment) => async (dispatch) => {
   });
   const data = await res.json();
   dispatch(addEventComment(data.comment));
-  dispatch(addComment(data.comment));
+  // dispatch(addComment(data.comment)); don't need this anymore
   return res;
 };
 
@@ -73,7 +73,7 @@ export const removeComment = (id) => async (dispatch) => {
       id,
     }),
   });
-  await dispatch(deleteEventComment(id));
+  await dispatch(removeEventComment(id));
   await dispatch(deleteComment(id));
   return res;
 };

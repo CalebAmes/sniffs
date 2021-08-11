@@ -137,25 +137,29 @@ function reducer(state = {}, action) {
       return newState;
     case DELETE_RSVP:
       newState = { ...state };
-      const arr = newState[action.payload.eventId].Rsvps;
-      const index = arr.findIndex((obj) => action.payload.userId === obj.userId);
-      arr.splice(index, 1);
+      const rsvpArray = newState[action.payload.eventId].Rsvps;
+      const rsvpIndex = rsvpArray.findIndex((obj) => action.payload.userId === obj.userId);
+      rsvpArray.splice(rsvpIndex, 1);
       return newState;
-    case EDIT_COMMENT:
+    case UPDATE_COMMENT:
       newState = { ...state };
-      const arr = newState[action.payload.eventId].Comments;
-      const index = arr.findIndex((obj) => action.payload.commentId === obj.id);
-      console.log('this is what arr[index] looks like ====>>>>>>>' + arr[index]);
+      const commentEditArray = newState[action.payload.eventId].Comments;
+      const commentEditIndex = commentEditArray.findIndex((obj) => action.payload.commentId === obj.id);
+      console.log('this is what commentEditArray[commentEditIndex] looks like ====>>>>>>>' + commentEditArray[commentEditIndex]);
       return newState;
     case ADD_COMMENT:
+      console.log('================================= ADD COMMENT');
       newState = { ...state };
-      newState[action.payload.eventId].Comments.push(action.payload.data);
+      newState[action.payload.eventId].Comments.push(action.payload);
+      console.log('add comment =====>>>> ', action.payload);
       return newState;
     case REMOVE_COMMENT:
       newState = { ...state };
-      const arr = newState[action.payload.eventId].Comments;
-      const index = arr.findIndex((obj) => action.payload.commentId === obj.id);
-      arr.splice(index, 1);
+      console.log('this is action.payload', action.payload);
+      const commentRemoveArray = newState[action.payload.eventId].Comments;
+      const commentRemoveIndex = commentRemoveArray.findIndex((obj) => action.payload.commentId === obj.id);
+      commentRemoveArray.splice(commentRemoveIndex, 1);
+      console.log('remove comment ====>>>>> ', commentRemoveArray);
       return newState;
     default:
       return state;
