@@ -6,6 +6,9 @@ const ADD_EVENT = "event/addEvent";
 const DELETE_EVENT = "event/deleteEvent";
 const ADD_RSVP = "event/ADD_RSVP";
 const DELETE_RSVP = "event/DELETE_RSVP";
+const ADD_COMMENT = "event/ADD_COMMENT";
+const REMOVE_COMMENT = "event/REMOVE_COMMENT";
+const UPDATE_COMMENT = "event/UPDATE_COMMENT";
 
 const setEvent = (event) => ({
   type: SET_EVENT,
@@ -29,6 +32,21 @@ export const addEventRsvp = (payload) => ({
 
 export const removeEventRsvp = (payload) => ({
   type: DELETE_RSVP,
+  payload,
+});
+
+export const addEventComment = (payload) => ({
+  type: ADD_COMMENT,
+  payload,
+});
+
+export const removeEventComment = (payload) => ({
+  type: REMOVE_COMMENT,
+  payload,
+});
+
+export const updateEventComment = (payload) => ({
+  type: UPDATE_COMMENT,
   payload,
 });
 
@@ -121,6 +139,22 @@ function reducer(state = {}, action) {
       newState = { ...state };
       const arr = newState[action.payload.eventId].Rsvps;
       const index = arr.findIndex((obj) => action.payload.userId === obj.userId);
+      arr.splice(index, 1);
+      return newState;
+    case EDIT_COMMENT:
+      newState = { ...state };
+      const arr = newState[action.payload.eventId].Comments;
+      const index = arr.findIndex((obj) => action.payload.commentId === obj.id);
+      console.log('this is what arr[index] looks like ====>>>>>>>' + arr[index]);
+      return newState;
+    case ADD_COMMENT:
+      newState = { ...state };
+      newState[action.payload.eventId].Comments.push(action.payload.data);
+      return newState;
+    case REMOVE_COMMENT:
+      newState = { ...state };
+      const arr = newState[action.payload.eventId].Comments;
+      const index = arr.findIndex((obj) => action.payload.commentId === obj.id);
       arr.splice(index, 1);
       return newState;
     default:
