@@ -45,7 +45,7 @@ export const createComment = (comment) => async (dispatch) => {
     }),
   });
   const data = await res.json();
-  dispatch(addEventComment(data.comment));
+  await dispatch(addEventComment(data.comment));
   // dispatch(addComment(data.comment)); don't need this anymore
   return res;
 };
@@ -60,21 +60,20 @@ export const updateComment = (comment) => async (dispatch) => {
     }),
   });
   const data = await res.json();
-  dispatch(updateEventComment(data.comment));
-  dispatch(addComment(data.comment));
+  await dispatch(updateEventComment(data.comment));
   return res;
 };
 
-export const removeComment = (id) => async (dispatch) => {
-  const res = await csrfFetch(`/api/comment/${id}/delete`, {
+export const removeComment = (comment) => async (dispatch) => {
+  const res = await csrfFetch(`/api/comment/${comment.id}/delete`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      id,
+      id: comment.id,
     }),
   });
-  await dispatch(removeEventComment(id));
-  await dispatch(deleteComment(id));
+  await dispatch(removeEventComment(comment));
+  // await dispatch(deleteComment(id));
   return res;
 };
 

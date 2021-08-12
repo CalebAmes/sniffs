@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeComment, updateComment } from "../../store/comment";
 import "../EventPage/EventPage.css";
@@ -13,7 +13,7 @@ const CommentHolder = ({ comment, id }) => {
 
   const editComment = async (comment, newComment, id) => {
     if (newComment !== comment.content) {
-      dispatch(updateComment({ id, newComment }));
+      await dispatch(updateComment({ id, newComment }));
     }
     setCommentEditor(!commentEditor);
   };
@@ -41,8 +41,8 @@ const CommentHolder = ({ comment, id }) => {
     );
   };
 
-  const deleteCommentId = (comment) => {
-    dispatch(removeComment(comment));
+  const deleteCommentId = async (comment) => {
+    await dispatch(removeComment(comment));
   };
 
   return (

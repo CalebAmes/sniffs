@@ -144,7 +144,7 @@ function reducer(state = {}, action) {
     case UPDATE_COMMENT:
       newState = { ...state };
       const commentEditArray = newState[action.payload.eventId].Comments;
-      const commentEditIndex = commentEditArray.findIndex((obj) => action.payload.commentId === obj.id);
+      const commentEditIndex = commentEditArray.findIndex((obj) => action.payload.id === obj.id);
       console.log('this is what commentEditArray[commentEditIndex] looks like ====>>>>>>>' + commentEditArray[commentEditIndex]);
       return newState;
     case ADD_COMMENT:
@@ -157,9 +157,9 @@ function reducer(state = {}, action) {
       newState = { ...state };
       console.log('this is action.payload', action.payload);
       const commentRemoveArray = newState[action.payload.eventId].Comments;
-      const commentRemoveIndex = commentRemoveArray.findIndex((obj) => action.payload.commentId === obj.id);
+      const commentRemoveIndex = commentRemoveArray.findIndex((obj) => action.payload.id === obj.id);
+      console.log('remove comment ====>>>>> ', commentRemoveArray[commentRemoveIndex], '-----', commentRemoveIndex);
       commentRemoveArray.splice(commentRemoveIndex, 1);
-      console.log('remove comment ====>>>>> ', commentRemoveArray);
       return newState;
     default:
       return state;
