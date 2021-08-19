@@ -83,7 +83,7 @@ const UserProfile = () => {
           </div>
         </div>
         <div className="profileDivider">
-          <div className="dividerRight">
+          <div className="dividerLeft">
             <div className="rightSection">
               <div className='dividerBubble'>{comments.length % 100}</div>
               <p>Comments</p>
@@ -93,7 +93,7 @@ const UserProfile = () => {
               <p>Hosting</p>
             </div>
           </div>
-          <div className="dividerLeft">
+          <div className="dividerRight">
             <button
               type="button"
               className="submit editProfile"
