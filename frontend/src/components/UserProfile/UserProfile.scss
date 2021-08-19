@@ -1,3 +1,64 @@
+.userEvent {
+  width: 370px;
+  height: 100px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  border: 1px solid #2C4251;
+  border-radius: 5px;
+  background-color: #fff;
+
+  .eventCardImg {
+    margin-left: 8px;
+    margin-right: 8px;
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    img {
+      height: 100px;
+    }
+  }
+
+  .userEventDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    height: 80px;
+    width: 70%;
+    overflow: hidden;
+
+    p {
+      font-size: 10pt;
+      color: #2C4251;
+    }
+  }
+}
+
+.userEvent:hover {
+  background-color: #efefef;
+  animation: userEventHover 0.5s;
+}
+
+@keyframes userEventHover {
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: #efefef;
+  }
+}
+
+// ^^^^ This needs to be separated into it's own file ^^^^
+
 .userPad {
   padding: 50px;
 }
@@ -8,9 +69,14 @@
   border-radius: 15px;
 }
 
+.profileCol1 {
+  animation: slideInLeft 0.5s;
+}
+
 .profileCol2 {
   padding-left: 25px;
   padding-top: 25px;
+
   h1 {
     padding-bottom: 10px;
   }
@@ -20,13 +86,21 @@
   }
 
   p {
-    color: #757575;
+    color: #2C4251;
     padding-bottom: 10px;
   }
+
+  animation: slideInRight 0.5s;
 }
 
 .userEvents {
-  width: 250px;
+  box-sizing: border-box;
+  margin: 50px 0px;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+  grid-gap: 10px;
+  justify-items: center
 }
 
 .profile {
@@ -49,19 +123,24 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #757575;
-  border-bottom: 1px solid #757575;  
+  border-top: 1px solid #2C4251;
+  border-bottom: 1px solid #2C4251;  
   
   .editProfile {
     width: 110px;
   }
 }
 
-.dividerRight {
+.dividerLeft {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-left: 20vw;
+}
+
+.dividerRight {
+  margin-right: 20vw;
 }
 
 .rightSection {
@@ -76,7 +155,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #757575;
+  background-color: #2C4251;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,6 +164,30 @@
   margin: 10px;
 }
 
+.userH2 {
+  font-size: 20pt;
+  padding-left: 20px;
+}
+
+@media screen and (max-width: 1750px) {
+  .dividerRight {
+    margin-right: 10vw;
+  }
+
+  .dividerLeft {
+    margin-left: 10vw;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .dividerRight {
+    margin-right: 0;
+  }
+
+  .dividerLeft {
+    margin-left: 0;
+  }
+}
 
 @media screen and (max-width: 1000px) {
   .userAvatar {
@@ -115,6 +218,11 @@
     padding-left: 5;
     text-align: center;
   }
+
+  .userH2 {
+    font-size: 17pt;
+    padding-left: 20px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -144,5 +252,20 @@
     .editProfile {
       width: 80px;
     }
+  }
+
+  .userH2 {
+    font-size: 13pt;
+    padding-left: 20px;
+  }
+
+  .userEvents {
+    width: 370px;
+    overflow: hidden;
+  };
+
+  .userEvent {
+    box-sizing: border-box;
+    width: 365px;
   }
 }
