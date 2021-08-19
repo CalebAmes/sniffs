@@ -77,7 +77,7 @@ const UserProfile = () => {
           </div>
           <div className="profileCol2">
             <h1>{user.username}</h1>
-            <h3>Member since March 7th, 2020</h3>
+            <h3>Member since March 7th, 2021</h3>
             <p><i class="fas fa-dog iPad"></i> Attending {rsvps.length} events</p>
             <p><i class="fas fa-map-marker-alt iPad"></i> Located in Dogtopia, USA</p>
           </div>

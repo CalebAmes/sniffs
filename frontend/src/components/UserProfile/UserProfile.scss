@@ -50,45 +50,50 @@
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #757575;
-  border-bottom: 1px solid #757575;
-
-  .dividerRight {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    .rightSection {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin-left: 10px;
-
-      .dividerBubble {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: #757575;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        font-weight: bold;
-        margin: 10px;
-      }
-    }
-  }
-
+  border-bottom: 1px solid #757575;  
+  
   .editProfile {
     width: 110px;
   }
 }
 
+.dividerRight {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rightSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.dividerBubble {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #757575;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  margin: 10px;
+}
+
+
 @media screen and (max-width: 1000px) {
   .userAvatar {
     height: 300px;
     max-width: 450px;
+  }
+
+  .editProfile {
+    width: 100px;
   }
 }
 
@@ -107,7 +112,7 @@
   }
 
   .profileCol2 {
-    padding-left: 0;
+    padding-left: 5;
     text-align: center;
   }
 }
@@ -125,5 +130,19 @@
     height: 200px;
     max-width: 350px;
     padding: 0;
+  }
+
+  .rightSection {
+    margin-left: 5px;
+  }
+
+  .dividerBubble {
+    margin: 5px;
+  }
+
+  .profileDivider {
+    .editProfile {
+      width: 80px;
+    }
   }
 }
