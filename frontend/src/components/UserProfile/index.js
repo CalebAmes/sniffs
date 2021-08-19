@@ -5,11 +5,16 @@ import "./UserProfile.scss";
 import "../../index.css";
 import EventHolder from "../EventHolder";
 import { getUserComments } from "../../store/comment"
-// import '../EventHolder/EventHolder.scss'
-// import '../EventPage/EventPage.css'
 
 const UserEvent = ({event, i}) => {
   const [increment, setIncrement] = useState(i);
+
+  const imageStyles = {
+    backgroundImage: "url(" + event?.photo[increment % 3] + ")",
+    backgroundSize: "cover",
+    height: "80px",
+    width: "80px",
+  };
 
   useEffect(() => {
     let timeout = setInterval(() => {
@@ -40,11 +45,13 @@ const UserEvent = ({event, i}) => {
 
   return (
     <>
-      <Link to={`/event/${event?.id}`} className='eventHolder'>
+      <Link to={`/event/${event?.id}`} className='userEvent'>
         {/* <h3>{ event?.name }</h3> */}
-        <p>{startTime?.ymd} @ {startTime?.hm}</p>
-        <img className='eventPhoto' src={`${ event?.photo[increment % 3] }`} />
-        <div className='lower'>
+        <div className='eventCardImg'>
+          <img src={ event?.photo[increment % 3] } alt='dogs' />
+        </div>
+        <div className='userEventDetails'>
+          <p>{startTime?.ymd} @ {startTime?.hm}</p>
           <h3>{ event?.name }</h3>
           {/* <p>to: {endTime?.ymd} at: {endTime?.hm}</p> */}
         </div>
@@ -52,6 +59,8 @@ const UserEvent = ({event, i}) => {
     </>
   )
 }
+
+// TODO: #24 ^^^ This component needs it's own file!
 
 const UserProfile = () => {
   const user = useSelector((state) => state.session.user);
@@ -102,34 +111,38 @@ const UserProfile = () => {
             </button>
           </div>
         </div>
+        <h2 className='userH2'>Attending</h2>
         <div className="userEvents">
-          <h2>Events that you are attending</h2>
+          { rsvps.length === 0 && <div className="noEvents">No events</div> }
           {rsvps.map((rsvp, i) => (
-            <EventHolder event={rsvp.Event} i={i} key={rsvp.Event.id}>
+            <UserEvent event={rsvp.Event} i={i} key={rsvp.Event.id}>
               {rsvp.Event.name}
-            </EventHolder>
+            </UserEvent>
           ))}
         </div>
+        <h2 className='userH2'>Hosting</h2>
         <div className="userEvents">
-          <h2>Events that you are hosting</h2>
+          { user.Events.length === 0 && <div className="noEvents">No events</div> }
           {user.Events.map((event, i) => (
-            <EventHolder event={event} i={i} key={event.id}>
+            <UserEvent event={event} i={i} key={event.id}>
               {event.name}
-            </EventHolder>
+            </UserEvent>
           ))}
         </div>
+        <h2 className='userH2'>Commented on</h2>
         <div className="userEvents">
-          <h2>Events that you have commented on</h2>
+          { comments.length === 0 && <div className="noEvents">No events</div> }
           {comments.map((comment, i) => (
-            <EventHolder event={comment.Event} i={i} key={comment.Event.id}>
+            <UserEvent event={comment.Event} i={i} key={comment.Event.id}>
               {comment.Event.name}
-            </EventHolder>
+            </UserEvent>
           ))}
         </div>
+        <h2 className='userH2'>Based on your interest</h2>
         <div className="userEvents">
-          <h2>Events that you might be interested in</h2>
+          { interest.length === 0 && <div className="noEvents">No events</div> }
           {interest.map((event, i) => (
-            <EventHolder event={event} i={i} key={event.id}>{event.name}</EventHolder>
+            <UserEvent event={event} i={i} key={event.id}>{event.name}</UserEvent>
           ))}
         </div>
       </div>
