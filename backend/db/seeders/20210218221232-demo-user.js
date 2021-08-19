@@ -9,6 +9,7 @@ module.exports = {
         email: 'demo@user.io',
         username: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password'),
+        avatar: 'https://moonshotcentral.com/wp-content/uploads/Collie_dog.jpg',
       },
       {
         email: faker.internet.email(),
@@ -147,8 +148,8 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Users',{
-      username: { [Op.in]: ['Demo-lition']}
+    return queryInterface.bulkDelete('Users', {
+      username: { [Op.in]: ['Demo-lition'] }
     }, {});
   }
 };
