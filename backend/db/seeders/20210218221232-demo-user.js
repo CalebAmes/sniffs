@@ -9,7 +9,6 @@ module.exports = {
         email: 'demo@user.io',
         username: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password'),
-        avatar: 'https://live.staticflickr.com/65535/51389317958_d33cb31cd0_h.jpg'
       },
       {
         email: faker.internet.email(),
@@ -21,7 +20,7 @@ module.exports = {
         email: faker.internet.email(),
         username: faker.name.findName(),
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
-        avatar: 'https://lovelace-media.imgix.net/getty/604560524.jpg'
+        avatar: 'https://live.staticflickr.com/65535/51389317958_d33cb31cd0_h.jpg'
       },
       {
         email: faker.internet.email(),
