@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { addEventComment, updateEventComment, removeEventComment } from "./event";
 
 const SET_COMMENT = "comment/setComment";
 const ADD_COMMENT = "comment/addComment";
@@ -26,6 +27,13 @@ export const getComment = () => async (dispatch) => {
   return res;
 };
 
+export const getUserComments = (userId) => async (dispatch) => {
+  const res = await fetch(`/api/comment/user/${userId}/`);
+  const data = await res.json();
+  dispatch(setComment(data.comment));
+  return res;
+};
+
 export const createComment = (comment) => async (dispatch) => {
   const { userId, content, eventId } = comment;
   const res = await csrfFetch("/api/comment/", {
@@ -37,7 +45,8 @@ export const createComment = (comment) => async (dispatch) => {
     }),
   });
   const data = await res.json();
-  dispatch(addComment(data.comment));
+  await dispatch(addEventComment(data.comment));
+  // dispatch(addComment(data.comment)); don't need this anymore
   return res;
 };
 
@@ -51,19 +60,20 @@ export const updateComment = (comment) => async (dispatch) => {
     }),
   });
   const data = await res.json();
-  dispatch(addComment(data.comment));
+  await dispatch(updateEventComment(data.comment));
   return res;
 };
 
-export const removeComment = (id) => async (dispatch) => {
-  const res = await csrfFetch(`/api/comment/${id}/delete`, {
+export const removeComment = (comment) => async (dispatch) => {
+  const res = await csrfFetch(`/api/comment/${comment.id}/delete`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      id,
+      id: comment.id,
     }),
   });
-  await dispatch(deleteComment(id));
+  await dispatch(removeEventComment(comment));
+  // await dispatch(deleteComment(id));
   return res;
 };
 

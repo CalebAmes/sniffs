@@ -39,7 +39,7 @@ const Navigation = (props) => {
         <ul className="navbar-nav">
           <NavLink
             className="link icon-navlink"
-            to="/profile"
+            to={`/profile/${sessionUser.id}`}
           >{`Welcome,  ${sessionUser.username}`}</NavLink>
           <NavItem
             icon={<i className="fas fa-chevron-circle-down" />}
@@ -82,7 +82,6 @@ export function Dropdown({ openFunc }) {
 
   useEffect(async () => {
     await dispatch(getUserRsvp(sessionUser.id));
-    console.log('nav rerender');
   }, [dispatch, openFunc])
 
   function calcHeight(el) {
@@ -145,7 +144,7 @@ export function Dropdown({ openFunc }) {
                   </div>
                   Home
                 </Link>
-                <Link onClick={openFunc} to="/profile" className="menu-item">
+                <Link onClick={openFunc} to={`/profile/${sessionUser.id}`} className="menu-item">
                   <div className="icon-button">
                     {<i className="fas fa-house-user" />}
                   </div>

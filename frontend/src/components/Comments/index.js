@@ -12,6 +12,8 @@ const CommentSection = ({ id, userId }) => {
   const commentsArray = Object.values(commentItems).filter(
     (comment) => comment.eventId === parseInt(id)
   );
+
+  const commentArray = useSelector((state) => state.event[id].Comments);
   const commentBox = useRef();
 
   const [content, setContent] = useState("");
@@ -47,14 +49,13 @@ const CommentSection = ({ id, userId }) => {
     const scroll = () => {
       comments.scrollTop = comments.scrollHeight;
     };
-    await dispatch(getComment());
     scroll();
   }, [dispatch]);
 
   return (
     <div className="commentBlock">
       <div className="comments" ref={commentBox}>
-        {commentsArray?.map((comment) => (
+        {commentArray?.map((comment) => (
           <CommentHolder comment={comment} id={id} key={comment.id} />
         ))}
         {!commentsArray.length && <h3>This is where you can post comments</h3>}

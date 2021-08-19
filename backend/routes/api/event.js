@@ -19,7 +19,6 @@ router.get (
   asyncHandler (async function (req, res) {
     const {id} = req.params;
     const event = await Event.findByPk (id, {
-      order: [['id', 'ASC']],
       include: [
         {
           model: Rsvp,
@@ -31,6 +30,7 @@ router.get (
         },
         User,
       ],
+      order: [[Comment, 'id', 'ASC'], [Rsvp, 'id', 'DESC']],
     });
     return res.json ({event});
   })

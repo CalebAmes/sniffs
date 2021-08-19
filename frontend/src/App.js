@@ -45,7 +45,7 @@ function App() {
           <Route path="/createEvent">
             <EventForm />
           </Route>
-          <Route path="/profile">
+          <Route path="/profile/:id">
             <UserProfile />
           </Route>
           <Route path="/login">

@@ -6,6 +6,9 @@ const ADD_EVENT = "event/addEvent";
 const DELETE_EVENT = "event/deleteEvent";
 const ADD_RSVP = "event/ADD_RSVP";
 const DELETE_RSVP = "event/DELETE_RSVP";
+const ADD_COMMENT = "event/ADD_COMMENT";
+const REMOVE_COMMENT = "event/REMOVE_COMMENT";
+const UPDATE_COMMENT = "event/UPDATE_COMMENT";
 
 const setEvent = (event) => ({
   type: SET_EVENT,
@@ -29,6 +32,21 @@ export const addEventRsvp = (payload) => ({
 
 export const removeEventRsvp = (payload) => ({
   type: DELETE_RSVP,
+  payload,
+});
+
+export const addEventComment = (payload) => ({
+  type: ADD_COMMENT,
+  payload,
+});
+
+export const removeEventComment = (payload) => ({
+  type: REMOVE_COMMENT,
+  payload,
+});
+
+export const updateEventComment = (payload) => ({
+  type: UPDATE_COMMENT,
   payload,
 });
 
@@ -119,9 +137,29 @@ function reducer(state = {}, action) {
       return newState;
     case DELETE_RSVP:
       newState = { ...state };
-      const arr = newState[action.payload.eventId].Rsvps;
-      const index = arr.findIndex((obj) => action.payload.userId === obj.userId);
-      arr.splice(index, 1);
+      const rsvpArray = newState[action.payload.eventId].Rsvps;
+      const rsvpIndex = rsvpArray.findIndex((obj) => action.payload.userId === obj.userId);
+      rsvpArray.splice(rsvpIndex, 1);
+      return newState;
+    case UPDATE_COMMENT:
+      newState = { ...state };
+      const commentEditArray = newState[action.payload.eventId].Comments;
+      const commentEditIndex = commentEditArray.findIndex((obj) => action.payload.id === obj.id);
+      console.log('this is what commentEditArray[commentEditIndex] looks like ====>>>>>>>' + commentEditArray[commentEditIndex]);
+      return newState;
+    case ADD_COMMENT:
+      console.log('================================= ADD COMMENT');
+      newState = { ...state };
+      newState[action.payload.eventId].Comments.push(action.payload);
+      console.log('add comment =====>>>> ', action.payload);
+      return newState;
+    case REMOVE_COMMENT:
+      newState = { ...state };
+      console.log('this is action.payload', action.payload);
+      const commentRemoveArray = newState[action.payload.eventId].Comments;
+      const commentRemoveIndex = commentRemoveArray.findIndex((obj) => action.payload.id === obj.id);
+      console.log('remove comment ====>>>>> ', commentRemoveArray[commentRemoveIndex], '-----', commentRemoveIndex);
+      commentRemoveArray.splice(commentRemoveIndex, 1);
       return newState;
     default:
       return state;
