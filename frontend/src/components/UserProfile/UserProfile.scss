@@ -95,7 +95,7 @@
 
 .userEvents {
   box-sizing: border-box;
-  padding: 50px 0px;
+  margin: 50px 0px;
   width: 100vw;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
@@ -165,7 +165,7 @@
 }
 
 .userH2 {
-  font-size: 25pt;
+  font-size: 20pt;
   padding-left: 20px;
 }
 
@@ -218,6 +218,11 @@
     padding-left: 5;
     text-align: center;
   }
+
+  .userH2 {
+    font-size: 17pt;
+    padding-left: 20px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -247,5 +252,20 @@
     .editProfile {
       width: 80px;
     }
+  }
+
+  .userH2 {
+    font-size: 13pt;
+    padding-left: 20px;
+  }
+
+  .userEvents {
+    width: 370px;
+    overflow: hidden;
+  };
+
+  .userEvent {
+    box-sizing: border-box;
+    width: 365px;
   }
 }
