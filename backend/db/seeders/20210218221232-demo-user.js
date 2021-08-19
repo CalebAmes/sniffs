@@ -9,7 +9,7 @@ module.exports = {
         email: 'demo@user.io',
         username: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password'),
-        avatar: 'https:sniffs.herokuapp.com/Luna6post.JPEG'
+        avatar: 'https://live.staticflickr.com/65535/51389317958_d33cb31cd0_h.jpg'
       },
       {
         email: faker.internet.email(),
