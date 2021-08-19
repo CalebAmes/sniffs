@@ -96,7 +96,7 @@
 .userEvents {
   box-sizing: border-box;
   margin: 50px 0px;
-  width: 100vw;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
   grid-gap: 10px;
@@ -117,7 +117,6 @@
 
 .profileDivider {
   margin: 40px 0;
-  width: 100%;
   height: 70px;
   display: flex;
   flex-direction: row;
