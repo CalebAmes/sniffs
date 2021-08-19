@@ -8,9 +8,14 @@
   border-radius: 15px;
 }
 
+.profileCol1 {
+  animation: slideInLeft 0.5s;
+}
+
 .profileCol2 {
   padding-left: 25px;
   padding-top: 25px;
+
   h1 {
     padding-bottom: 10px;
   }
@@ -23,6 +28,8 @@
     color: #757575;
     padding-bottom: 10px;
   }
+
+  animation: slideInRight 0.5s;
 }
 
 .userEvents {
