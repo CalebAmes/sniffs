@@ -33,11 +33,12 @@ const SignupForm = () => {
           const data = await res.json();
           if (data?.errors){
             setErrors(data.errors);
-            clearErrors();
           }
+          clearErrors();
         });
     }
-    return setErrors(['Confirm Password and Password fields must match']);
+    setErrors(['Confirm Password and Password fields must match']);
+    return clearErrors();
   };
 
   return (
