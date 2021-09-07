@@ -22,6 +22,8 @@ const SignupForm = () => {
 
   if (user) return <Redirect to='/' />;
 
+  const clearErrors = () => setTimeout(() => setErrors([]), 3000);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
@@ -31,6 +33,7 @@ const SignupForm = () => {
           const data = await res.json();
           if (data?.errors){
             setErrors(data.errors);
+            clearErrors();
           }
         });
     }
