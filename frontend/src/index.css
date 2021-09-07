@@ -162,7 +162,6 @@
     overflow: hidden;
     position: absolute;
     z-index: 10;
-    transform: translate(0px, -90px);
 }
 
 :root {

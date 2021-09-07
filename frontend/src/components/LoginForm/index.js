@@ -45,8 +45,7 @@ function LoginForm() {
     <div className='formDiv loginFormDiv'>
       {errors.map((err, id) =>
         <>
-          <h3 className='errors'>This has an error</h3>
-          <div className='errors' key={id}>{err}</div>
+          <div className='errors loginErrors' key={id}>{err}</div>
         </>
       )}
       <form className='form loginForm' onSubmit={ handleSubmit }>

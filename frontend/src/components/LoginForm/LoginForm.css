@@ -1,10 +1,13 @@
-.loginForm{
+.loginForm {
   min-height: 300px;
   max-height: 300px;
-  /* padding-top: 40px; */
 }
 
 .loginFormDiv {
   display: flex;
   flex-direction: column;
+}
+
+.loginErrors {
+  transform: translate(0px, -90px);
 }

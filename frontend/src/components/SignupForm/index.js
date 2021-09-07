@@ -39,8 +39,10 @@ const SignupForm = () => {
 
   return (
     <>
-        {errors.map((err, id) => <div className='errors' key={ id } >{ err }</div>)}
     <div className='formDiv SignupFormDiv'>
+      {errors.map((err, id) =>
+        <div className='errors signupErrors' key={ id } >{ err }</div>
+      )}
       <form onSubmit={ handleSubmit } className='form SignupForm'>
         <div className='formTitleDiv'>
           <h2 className='formTitle'>Sign up</h2>
