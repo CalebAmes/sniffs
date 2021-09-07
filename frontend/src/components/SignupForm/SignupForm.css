@@ -1,5 +1,13 @@
-.SignupForm{
+.SignupForm {
   min-height: 450px;
   max-height: 450px;
-  /* padding-top: 40px; */
+}
+
+.SignupFormDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.signupErrors {
+  transform: translate(0px, -160px);
 }
