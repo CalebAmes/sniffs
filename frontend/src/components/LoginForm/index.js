@@ -19,6 +19,7 @@ function LoginForm() {
     dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
   }
 
+  const clearErrors = () => setTimeout(() => setErrors([]), 3000);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ function LoginForm() {
         const data = await res.json();
         if(data?.errors) {
           setErrors(data.errors);
+          clearErrors();
         }
       });
   }
@@ -40,9 +42,13 @@ function LoginForm() {
 
   return (
     <>
-    {errors.map((err, id) => <div className='errors' key={id}>{err}
-      </div>)}
     <div className='formDiv loginFormDiv'>
+      {errors.map((err, id) =>
+        <>
+          <h3 className='errors'>This has an error</h3>
+          <div className='errors' key={id}>{err}</div>
+        </>
+      )}
       <form className='form loginForm' onSubmit={ handleSubmit }>
         <div className='formTitleDiv'>
           <h2 className='formTitle'>Log in</h2>
@@ -62,6 +68,7 @@ function LoginForm() {
             type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </label>
         <div className='submitDiv'>
