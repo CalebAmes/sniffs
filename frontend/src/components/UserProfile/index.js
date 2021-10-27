@@ -103,12 +103,12 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="dividerRight">
-            <button
+            {/* <button
               type="button"
               className="submit editProfile"
             >
               Edit profile
-            </button>
+            </button> */}
           </div>
         </div>
         <h2 className='userH2'>Attending</h2>
