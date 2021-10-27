@@ -20,10 +20,6 @@ const AddEventForm = () => {
 
   const categories = Object.values(categoryItems);
 
-  console.log('this is dateStart ===>>', dateStart)
-  // console.log('this is dateStart to locale string===>>', dateStart.toISOString())
-  console.log('this is dateEnd ===>>', dateEnd)
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(eventActions.createEvent({
@@ -70,7 +66,7 @@ const AddEventForm = () => {
           className='input'
           value={dateStart}
           min={currDate}
-          onChange={(e) => setDateStart(e.target.value)}
+          onChange={(e) => {setDateStart(e.target.value); setDateEnd(e.target.value)}}
           required
         />
       </label>

@@ -81,7 +81,7 @@ export function Dropdown({ openFunc }) {
   const [menuHeight, setMenuHeight] = useState(null);
 
   useEffect(async () => {
-    await dispatch(getUserRsvp(sessionUser.id));
+    await dispatch(getUserRsvp(sessionUser?.id));
   }, [dispatch, openFunc])
 
   function calcHeight(el) {

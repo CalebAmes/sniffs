@@ -12,6 +12,7 @@ const EditEventModal = ({setOpen, open, event}) => {
   const [dateStart, setDateStart] = useState(event.dateStart);
   const [dateEnd, setDateEnd] = useState(event.dateEnd);
   const [categoryId, setCategoryId] = useState(event.categoryId);
+  const [currDate, setCurrDate] = useState(new Date().toISOString().split('.')[0])
   const [userId, setUserId] = useState(user?.id)
   const [changes, setChanges] = useState(false);
 
@@ -80,6 +81,7 @@ const EditEventModal = ({setOpen, open, event}) => {
             type='datetime-local'
             className='input'
             value={ dateStart }
+            min={ currDate }
             onChange={ (e) => setDateStart(e.target.value) }
             />
         </label>
@@ -88,6 +90,7 @@ const EditEventModal = ({setOpen, open, event}) => {
             type='datetime-local'
             className='input'
             value= { dateEnd }
+            min={ currDate }
             onChange={ (e) => setDateEnd(e.target.value) }
             />
         </label>
