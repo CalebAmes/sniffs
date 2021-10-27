@@ -119,6 +119,11 @@ function reducer(state = {}, action) {
   switch (action.type) {
     case ADD_EVENT:
       newState = { ...state };
+      action.payload.comments = {};
+      action.payload?.Comments && action.payload.Comments.forEach((comment) => {
+        action.payload.comments[comment.id] = comment
+      });
+      delete action.payload.Comments;
       newState[action.payload.id] = action.payload;
       return newState;
     case SET_EVENT:
@@ -143,23 +148,15 @@ function reducer(state = {}, action) {
       return newState;
     case UPDATE_COMMENT:
       newState = { ...state };
-      const commentEditArray = newState[action.payload.eventId].Comments;
-      const commentEditIndex = commentEditArray.findIndex((obj) => action.payload.id === obj.id);
-      console.log('this is what commentEditArray[commentEditIndex] looks like ====>>>>>>>' + commentEditArray[commentEditIndex]);
+      newState[action.payload.eventId].comments[action.payload.id] = action.payload;
       return newState;
     case ADD_COMMENT:
-      console.log('================================= ADD COMMENT');
       newState = { ...state };
-      newState[action.payload.eventId].Comments.push(action.payload);
-      console.log('add comment =====>>>> ', action.payload);
+      newState[action.payload.eventId].comments[action.payload.id] = action.payload;
       return newState;
     case REMOVE_COMMENT:
       newState = { ...state };
-      console.log('this is action.payload', action.payload);
-      const commentRemoveArray = newState[action.payload.eventId].Comments;
-      const commentRemoveIndex = commentRemoveArray.findIndex((obj) => action.payload.id === obj.id);
-      console.log('remove comment ====>>>>> ', commentRemoveArray[commentRemoveIndex], '-----', commentRemoveIndex);
-      commentRemoveArray.splice(commentRemoveIndex, 1);
+      delete newState[action.payload.eventId].comments[action.payload.id];
       return newState;
     default:
       return state;

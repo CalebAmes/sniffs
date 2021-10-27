@@ -2,18 +2,16 @@ import { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getComment, createComment } from "../../store/comment";
+import { getEventDetails } from "../../store/event";
 import CommentHolder from "./CommentHolder";
 import "./comments.css";
 
-const CommentSection = ({ id, userId }) => {
+const CommentSection = ({ id, userId, comments }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const commentItems = useSelector((state) => state.comment);
-  const commentsArray = Object.values(commentItems).filter(
-    (comment) => comment.eventId === parseInt(id)
-  );
 
-  const commentArray = useSelector((state) => state.event[id].Comments);
+  const comments2 = useSelector((state) => state.event[id].comments);
+  const commentArray = Object.values(comments2);
   const commentBox = useRef();
 
   const [content, setContent] = useState("");
@@ -44,21 +42,26 @@ const CommentSection = ({ id, userId }) => {
     }
   };
 
+  // This is a fix for poorly designed redux state that requires a redesign of my state management. This was my first react redux project
+  const update = () => {
+    dispatch(getEventDetails(id))
+  }
+
   useEffect(async () => {
     const comments = commentBox.current;
     const scroll = () => {
       comments.scrollTop = comments.scrollHeight;
     };
     scroll();
-  }, [dispatch]);
+  }, [dispatch, comments]);
 
   return (
     <div className="commentBlock">
       <div className="comments" ref={commentBox}>
         {commentArray?.map((comment) => (
-          <CommentHolder comment={comment} id={id} key={comment.id} />
+          <CommentHolder comment={comment} id={id} key={comment.id} update={update} />
         ))}
-        {!commentsArray.length && <h3>This is where you can post comments</h3>}
+        {!commentArray.length && <h3>This is where you can post comments</h3>}
       </div>
       <div>
         <form value={userId} onSubmit={addComment}>

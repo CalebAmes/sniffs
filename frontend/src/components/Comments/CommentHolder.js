@@ -4,7 +4,7 @@ import { removeComment, updateComment } from "../../store/comment";
 import "../EventPage/EventPage.css";
 import "./comments.css";
 
-const CommentHolder = ({ comment, id }) => {
+const CommentHolder = ({ comment, id, update }) => {
   const dispatch = useDispatch();
   const [commentEditor, setCommentEditor] = useState(false);
   const [hover, setHover] = useState(false);
@@ -14,6 +14,7 @@ const CommentHolder = ({ comment, id }) => {
   const editComment = async (comment, newComment, id) => {
     if (newComment !== comment.content) {
       await dispatch(updateComment({ id, newComment }));
+      update();
     }
     setCommentEditor(!commentEditor);
   };
@@ -43,6 +44,7 @@ const CommentHolder = ({ comment, id }) => {
 
   const deleteCommentId = async (comment) => {
     await dispatch(removeComment(comment));
+    update();
   };
 
   return (

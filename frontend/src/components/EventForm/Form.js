@@ -11,13 +11,16 @@ const AddEventForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [dateStart, setDateStart] = useState('');
-  const [dateEnd, setDateEnd] = useState('');
+  const [dateStart, setDateStart] = useState(Date.now());
+  const [dateEnd, setDateEnd] = useState(Date.now());
   const [categoryId, setCategoryId] = useState(1);
   const [userId, setUserId] = useState(user?.id)
   const history = useHistory();
 
   const categories = Object.values(categoryItems);
+
+  console.log('this is dateStart ===>>', dateStart)
+  console.log('this is dateEnd ===>>', dateEnd)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,8 +66,9 @@ const AddEventForm = () => {
           <input
             type='datetime-local'
             className='input'
-            value={ dateEnd }
-            onChange={ (e) => setDateEnd(e.target.value) }
+            value={ dateStart }
+            min={Date.now()}
+            onChange={ (e) => setDateStart(e.target.value) }
             required
             />
         </label>
@@ -72,8 +76,9 @@ const AddEventForm = () => {
           <input
             type='datetime-local'
             className='input'
-            value={ dateStart }
-            onChange={ (e) => setDateStart(e.target.value) }
+            value={ dateEnd }
+            min={ dateStart }
+            onChange={ (e) => setDateEnd(e.target.value) }
             required
             />
         </label>
