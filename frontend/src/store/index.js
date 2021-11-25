@@ -1,10 +1,10 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import sessionReducer from './session';
-import event from './event';
-import category from './category';
-import comment from './comment';
-import rsvp from './rsvp'
+import sessionReducer from "./session";
+import event from "./event";
+import category from "./category";
+import comment from "./comment";
+import rsvp from "./rsvp";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   category,
   rsvp,
   comment,
-})
+});
 
 let enhancer;
 

@@ -17,9 +17,9 @@ router.get(
   asyncHandler(async function (req, res) {
     const comment = await Comment.findAll({
       where: {
-        userId: req.params.id
+        userId: req.params.id,
       },
-      include: Event
+      include: Event,
     });
     return res.json({ comment });
   })
