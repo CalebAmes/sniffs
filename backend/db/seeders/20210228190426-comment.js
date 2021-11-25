@@ -1,12 +1,12 @@
-'use strict';
-const faker = require('faker')
+"use strict";
+const faker = require("faker");
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Comments', [
+    return queryInterface.bulkInsert("Comments", [
       {
         userId: 8,
-        content: 'I like doggos',
+        content: "I like doggos",
         eventId: 8,
       },
       {
@@ -439,10 +439,10 @@ module.exports = {
         content: faker.random.words(10),
         eventId: 8,
       },
-    ])
+    ]);
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Comments', {})
-  }
+    return queryInterface.bulkDelete("Comments", {});
+  },
 };

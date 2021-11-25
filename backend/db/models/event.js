@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Event = sequelize.define (
-    'Event',
+  const Event = sequelize.define(
+    "Event",
     {
       name: DataTypes.STRING,
       description: DataTypes.STRING,
@@ -16,15 +16,15 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Event.associate = function (models) {
-    Event.hasMany (models.Rsvp, {foreignKey: 'eventId'});
+    Event.hasMany(models.Rsvp, { foreignKey: "eventId" });
 
-    Event.hasMany (models.Comment, {foreignKey: 'eventId'});
+    Event.hasMany(models.Comment, { foreignKey: "eventId" });
 
-    Event.belongsTo (models.User, {foreignKey: 'userId'});
+    Event.belongsTo(models.User, { foreignKey: "userId" });
 
-    Event.belongsTo (models.Category, {foreignKey: 'categoryId'});
+    Event.belongsTo(models.Category, { foreignKey: "categoryId" });
   };
-  Event.createEvent = async function({
+  Event.createEvent = async function ({
     name,
     description,
     dateStart,
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     categoryId,
     userId,
   }) {
-    const event = await Event.create ({
+    const event = await Event.create({
       name,
       description,
       dateStart,
@@ -40,9 +40,9 @@ module.exports = (sequelize, DataTypes) => {
       categoryId,
       userId,
     });
-    return await Event.findByPk (event.id);
+    return await Event.findByPk(event.id);
   };
-  Event.updateEvent = async function({
+  Event.updateEvent = async function ({
     id,
     name,
     description,
@@ -51,16 +51,16 @@ module.exports = (sequelize, DataTypes) => {
     categoryId,
     userId,
   }) {
-    const event = await Event.findByPk (id);
+    const event = await Event.findByPk(id);
     event.name = name;
     event.description = description;
     event.dateStart = dateStart;
     event.dateEnd = dateEnd;
     event.categoryId = categoryId;
     event.userId = userId;
-    await event.save ();
-    return await Event.findByPk (id);
-  }
+    await event.save();
+    return await Event.findByPk(id);
+  };
 
   return Event;
 };

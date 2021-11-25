@@ -1,17 +1,17 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Profiles', {
+    return queryInterface.createTable("Profiles", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Users' },
+        references: { model: "Users" },
       },
       bio: {
         type: Sequelize.STRING(300),
@@ -22,27 +22,27 @@ module.exports = {
         allowNull: false,
       },
       profilePicture: {
-        type: Sequelize.STRING(100)
+        type: Sequelize.STRING(100),
       },
       latitude: {
-        type: Sequelize.DECIMAL(8,6)
+        type: Sequelize.DECIMAL(8, 6),
       },
       longitude: {
-        type: Sequelize.DECIMAL(9,6)
+        type: Sequelize.DECIMAL(9, 6),
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn("now"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
-      }
+        defaultValue: Sequelize.fn("now"),
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Profiles');
-  }
+    return queryInterface.dropTable("Profiles");
+  },
 };

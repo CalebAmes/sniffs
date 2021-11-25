@@ -120,9 +120,10 @@ function reducer(state = {}, action) {
     case ADD_EVENT:
       newState = { ...state };
       action.payload.comments = {};
-      action.payload?.Comments && action.payload.Comments.forEach((comment) => {
-        action.payload.comments[comment.id] = comment
-      });
+      action.payload?.Comments &&
+        action.payload.Comments.forEach((comment) => {
+          action.payload.comments[comment.id] = comment;
+        });
       delete action.payload.Comments;
       newState[action.payload.id] = action.payload;
       return newState;
@@ -143,16 +144,20 @@ function reducer(state = {}, action) {
     case DELETE_RSVP:
       newState = { ...state };
       const rsvpArray = newState[action.payload.eventId].Rsvps;
-      const rsvpIndex = rsvpArray.findIndex((obj) => action.payload.userId === obj.userId);
+      const rsvpIndex = rsvpArray.findIndex(
+        (obj) => action.payload.userId === obj.userId
+      );
       rsvpArray.splice(rsvpIndex, 1);
       return newState;
     case UPDATE_COMMENT:
       newState = { ...state };
-      newState[action.payload.eventId].comments[action.payload.id] = action.payload;
+      newState[action.payload.eventId].comments[action.payload.id] =
+        action.payload;
       return newState;
     case ADD_COMMENT:
       newState = { ...state };
-      newState[action.payload.eventId].comments[action.payload.id] = action.payload;
+      newState[action.payload.eventId].comments[action.payload.id] =
+        action.payload;
       return newState;
     case REMOVE_COMMENT:
       newState = { ...state };

@@ -1,5 +1,9 @@
 import { csrfFetch } from "./csrf";
-import { addEventComment, updateEventComment, removeEventComment } from "./event";
+import {
+  addEventComment,
+  updateEventComment,
+  removeEventComment,
+} from "./event";
 
 const SET_COMMENT = "comment/setComment";
 const ADD_COMMENT = "comment/addComment";

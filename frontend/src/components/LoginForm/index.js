@@ -1,82 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { body2 } from '../index'
-import './LoginForm.css';
-import '../../index.css';
+import React, { useState, useEffect } from "react";
+import * as sessionActions from "../../store/session";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { body2 } from "../index";
+import "./LoginForm.css";
+import "../../index.css";
 
 function LoginForm() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user)
-  const [credential, setCredential] = useState('');
-  const [password, setPassword] = useState('');
+  const sessionUser = useSelector((state) => state.session.user);
+  const [credential, setCredential] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
   const user = useSelector((state) => state.session.user);
 
   const demoLogin = () => {
-    dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
-  }
+    dispatch(
+      sessionActions.login({ credential: "Demo-lition", password: "password" })
+    );
+  };
 
   const clearErrors = () => setTimeout(() => setErrors([]), 3000);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password }))
-    .catch(async (res) => {
+    return dispatch(sessionActions.login({ credential, password })).catch(
+      async (res) => {
         const data = await res.json();
-        if(data?.errors) {
+        if (data?.errors) {
           setErrors(data.errors);
           clearErrors();
         }
-      });
-  }
+      }
+    );
+  };
 
   useEffect(() => {
-    body2()
+    body2();
   }, []);
 
-  if (user) return <Redirect to='/' />;
+  if (user) return <Redirect to="/" />;
 
   return (
     <>
-    <div className='formDiv loginFormDiv'>
-      {errors.map((err, id) =>
-        <>
-          <div className='errors loginErrors' key={id}>{err}</div>
-        </>
-      )}
-      <form className='form loginForm' onSubmit={ handleSubmit }>
-        <div className='formTitleDiv'>
-          <h2 className='formTitle'>Log in</h2>
-        </div>
-        <label className='labels top'>Username or Email address:
-          <input
-            className='input'
-            type='text'
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label className='labels'>Password:
-          <input
-            className='input'
-            type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <div className='submitDiv'>
-          <button className='submit' type='submit'>Log in</button>
-          <button className='submit' type='button' onClick={ demoLogin }>Demo</button>
-        </div>
-      </form>
-    </div>
-    <div className='bottom'></div>
+      <div className="formDiv loginFormDiv">
+        {errors.map((err, id) => (
+          <>
+            <div className="errors loginErrors" key={id}>
+              {err}
+            </div>
+          </>
+        ))}
+        <form className="form loginForm" onSubmit={handleSubmit}>
+          <div className="formTitleDiv">
+            <h2 className="formTitle">Log in</h2>
+          </div>
+          <label className="labels top">
+            Username or Email address:
+            <input
+              className="input"
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
+          </label>
+          <label className="labels">
+            Password:
+            <input
+              className="input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <div className="submitDiv">
+            <button className="submit" type="submit">
+              Log in
+            </button>
+            <button className="submit" type="button" onClick={demoLogin}>
+              Demo
+            </button>
+          </div>
+        </form>
+      </div>
+      <div className="bottom"></div>
     </>
   );
 }

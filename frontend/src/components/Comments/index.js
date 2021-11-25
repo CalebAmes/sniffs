@@ -17,9 +17,9 @@ const CommentSection = ({ id, userId, comments }) => {
   const [content, setContent] = useState("");
 
   const scroll2 = () => {
-    const commentBox = document.querySelector('.comments');
+    const commentBox = document.querySelector(".comments");
     commentBox.scrollTop = commentBox.scrollHeight;
-  }
+  };
 
   const addComment = async (e) => {
     if (!userId) return history.push("/login");
@@ -44,8 +44,8 @@ const CommentSection = ({ id, userId, comments }) => {
 
   // This is a fix for poorly designed redux state that requires a redesign of my state management. This was my first react redux project
   const update = () => {
-    dispatch(getEventDetails(id))
-  }
+    dispatch(getEventDetails(id));
+  };
 
   useEffect(async () => {
     const comments = commentBox.current;
@@ -59,7 +59,12 @@ const CommentSection = ({ id, userId, comments }) => {
     <div className="commentBlock">
       <div className="comments" ref={commentBox}>
         {commentArray?.map((comment) => (
-          <CommentHolder comment={comment} id={id} key={comment.id} update={update} />
+          <CommentHolder
+            comment={comment}
+            id={id}
+            key={comment.id}
+            update={update}
+          />
         ))}
         {!commentArray.length && <h3>This is where you can post comments</h3>}
       </div>

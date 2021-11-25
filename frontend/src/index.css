@@ -1,6 +1,6 @@
 /* TODO Add site wide styles */
 * {
-  font-family: 'Poppins' ,sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0px;
 }
 
@@ -14,7 +14,8 @@
 }
 
 .body2 {
-  background: url('./photos/territorio-de-zaguates.jpg') no-repeat center center fixed;
+  background: url("./photos/territorio-de-zaguates.jpg") no-repeat center center
+    fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -45,12 +46,12 @@
 
 .button {
   background: none;
-	color: #666;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+  color: #666;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 .dropDown {
@@ -59,7 +60,7 @@
 }
 
 .loading {
-  background: url('./photos/loading.gif') no-repeat center center fixed;
+  background: url("./photos/loading.gif") no-repeat center center fixed;
   height: 1000px;
   width: 100%;
 }
@@ -67,19 +68,19 @@
 .form {
   max-width: 460px;
   min-width: 460px;
-  background: rgba(255, 255, 255 , 0.3);
+  background: rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   border-radius: 3px;
-  border: 1px solid rgba(0,0,0,0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   margin-top: 200px;
   margin-bottom: auto;
 }
 
 .labels {
-  margin: 6px 16px 6px 16px ;
+  margin: 6px 16px 6px 16px;
   font-weight: lighter;
   font-size: 13px;
 }
@@ -101,7 +102,7 @@
   background: #e8f0fe;
   border-radius: 3px;
   box-shadow: none;
-  border: 1px solid rgba(0, 0, 0, 0.3)
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .submitDiv {
@@ -119,7 +120,7 @@
   font-size: 16px;
   border-radius: 3px;
   box-shadow: none;
-  border: 1px solid rgba(0,0,0,0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   line-height: 16px;
   height: 36px;
   width: 81px;
@@ -127,7 +128,7 @@
 }
 
 .submit:hover {
-  background: #f65858
+  background: #f65858;
 }
 
 .formTitle {
@@ -137,7 +138,7 @@
 }
 
 .formTitleDiv {
-  border-bottom: 1px solid rgba(0,0,0,0.3); 
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   max-width: 460px;
   min-width: 460px;
 }
@@ -148,20 +149,20 @@
 }
 
 .errors {
-    background: #fff;
-    margin: auto;
-    padding: 10px;
-    width: 50%;
-    color: #2e3e48;
-    font-size: 16px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: inset 0px 0px 4px rgba(0,0,0,0.5);
-    overflow: hidden;
-    position: absolute;
-    z-index: 10;
+  background: #fff;
+  margin: auto;
+  padding: 10px;
+  width: 50%;
+  color: #2e3e48;
+  font-size: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: absolute;
+  z-index: 10;
 }
 
 :root {
@@ -189,16 +190,18 @@ a {
   text-align: center;
 }
 
-:-moz-placeholder { /* Firefox 18- */
-  text-align: center;  
+:-moz-placeholder {
+  /* Firefox 18- */
+  text-align: center;
 }
 
-::-moz-placeholder {  /* Firefox 19+ */
-  text-align: center;  
+::-moz-placeholder {
+  /* Firefox 19+ */
+  text-align: center;
 }
 
-:-ms-input-placeholder {  
-  text-align: center; 
+:-ms-input-placeholder {
+  text-align: center;
 }
 
 .eventColumnRight {

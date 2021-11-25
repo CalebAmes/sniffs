@@ -82,7 +82,7 @@ export function Dropdown({ openFunc }) {
 
   useEffect(async () => {
     await dispatch(getUserRsvp(sessionUser?.id));
-  }, [dispatch, openFunc])
+  }, [dispatch, openFunc]);
 
   function calcHeight(el) {
     const height = el.offsetHeight;
@@ -144,7 +144,11 @@ export function Dropdown({ openFunc }) {
                   </div>
                   Home
                 </Link>
-                <Link onClick={openFunc} to={`/profile/${sessionUser.id}`} className="menu-item">
+                <Link
+                  onClick={openFunc}
+                  to={`/profile/${sessionUser.id}`}
+                  className="menu-item"
+                >
                   <div className="icon-button">
                     {<i className="fas fa-house-user" />}
                   </div>
